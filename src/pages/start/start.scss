@@ -1,18 +1,37 @@
 page-start {
-    .map-card {
-        ion-card-content {
-            padding: 2px;
-            .map {
-                height: 300px;
-                position: relative;
-                .loading-overlay {
-                    z-index: 9999;
-                    background-color: rgba(255, 255, 255, 0.5);
-                }
-                .leaflet-control-layers {
-                    display: none;
-                }
-            }
+  .map-card {
+    ion-card-content {
+      padding: 2px;
+
+      .map {
+        height: 300px;
+        position: relative;
+
+        .loading-overlay {
+          z-index: 9999;
+          background-color: rgba(255, 255, 255, 0.5);
         }
+
+        .leaflet-control-layers {
+          display: none;
+        }
+      }
     }
+  }
+
+  .slider-card {
+    // text-align: center;
+
+    .location-label {
+      font-size: 1.2em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .location-date {
+      font-size: 0.8em;
+    }
+  }
 }
