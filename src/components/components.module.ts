@@ -23,8 +23,8 @@ import {
 	MobileDatasetByStationSelectorComponent,
 } from './dataset-by-station-selector/dataset-by-station-selector.component';
 import { ExtendedGeometryMapViewerComponent } from './extended-geometry-map-viewer/extended-geometry-map-viewer';
-import { GeolocationEnabledIconComponent } from './geolocation-enabled-icon/geolocation-enabled-icon';
-import { GeolocationEnabledIconPopupComponent } from './geolocation-enabled-icon/geolocation-enabled-icon-popup';
+import { GeolocationEnabledComponent } from './geolocation-enabled/geolocation-enabled';
+import { GeolocationEnabledPopupComponent } from './geolocation-enabled/geolocation-enabled-popup';
 import { LocatedValueNotificationComponent } from './located-value-notification/located-value-notification';
 import { LocationSelectionComponent } from './location-selection/location-selection';
 import { MobileExtentControlComponent } from './mobile-extent-control/mobile-extent-control';
@@ -76,8 +76,8 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		CustomizePersonalAlertsComponent,
 		CustomizedStationMapSelectorComponent,
 		ExtendedGeometryMapViewerComponent,
-		GeolocationEnabledIconComponent,
-		GeolocationEnabledIconPopupComponent,
+		GeolocationEnabledComponent,
+		GeolocationEnabledPopupComponent,
 		LocatedValueNotificationComponent,
 		LocationSelectionComponent,
 		MobileDatasetByStationSelectorComponent,
@@ -135,8 +135,8 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		CustomizePersonalAlertsComponent,
 		CustomizedStationMapSelectorComponent,
 		ExtendedGeometryMapViewerComponent,
-		GeolocationEnabledIconComponent,
-		GeolocationEnabledIconPopupComponent,
+		GeolocationEnabledComponent,
+		GeolocationEnabledPopupComponent,
 		LocatedValueNotificationComponent,
 		LocationSelectionComponent,
 		MobileDatasetByStationSelectorComponent,
@@ -175,7 +175,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		BelaqiChartInformationComponent,
 		BelaqiLocateDelayedInformationComponent,
 		BelaqiWheelInformationComponent,
-		GeolocationEnabledIconPopupComponent,
+		GeolocationEnabledPopupComponent,
 		LocatedValueNotificationComponent,
 		ModalAnnualMapComponent,
 		ModalEditUserLocationComponent,

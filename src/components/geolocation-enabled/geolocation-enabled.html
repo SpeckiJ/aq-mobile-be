@@ -3,12 +3,17 @@
   <p>{{'network.geolocationEnabledExplanation' | translate}}</p>
 </div>
 
-<div *ngIf="isDeactive()" text-wrap>
+<div *ngIf="isDeactive()" text-wrap (click)="activateHighAccMode()">
   <h2 class="disabled">{{'network.geolocationDisabled' | translate}}</h2>
   <p>{{'network.geolocationDisabledExplanation' | translate}}</p>
 </div>
 
-<div *ngIf="isPartial()" text-wrap>
+<div *ngIf="isPartial()" text-wrap (click)="activateHighAccMode()">
   <h2 class="partial">{{'network.geolocationPartial' | translate}}</h2>
   <p>{{'network.geolocationPartialExplanation' | translate}}</p>
+</div>
+
+<div *ngIf="isDenied()" text-wrap (click)="activateHighAccMode()">
+  <h2 class="disabled">{{'network.geolocationDenied' | translate}}</h2>
+  <p>{{'network.geolocationDeniedExplanation' | translate}}</p>
 </div>

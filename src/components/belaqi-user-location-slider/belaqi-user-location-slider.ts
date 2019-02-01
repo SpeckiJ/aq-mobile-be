@@ -4,7 +4,7 @@ import { ModalController, NavController, PopoverController, Slides, Toggle } fro
 
 import { SettingsPage } from '../../pages/settings/settings';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
-import { LocateProvider } from '../../providers/locate/locate';
+import { LocateProvider, LocationStatus } from '../../providers/locate/locate';
 import { NetworkAlertProvider } from '../../providers/network-alert/network-alert';
 import { RefreshHandler } from '../../providers/refresh/refresh';
 import { LocatedTimeseriesService } from '../../providers/timeseries/located-timeseries';
@@ -68,7 +68,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     protected refresher: RefreshHandler,
     private popoverCtrl: PopoverController
   ) {
-    this.locate.getLocationModeAsObservable().subscribe(() => this.loadBelaqis());
+    this.locate.getLocationStatusAsObservable().subscribe(() => this.loadBelaqis());
     this.refresher.onRefresh.subscribe(() => this.loadBelaqis());
     this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis());
     this.networkAlert.onConnected.subscribe(() => this.loadBelaqis());
@@ -115,6 +115,10 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
 
   public navigateSettings() {
     this.nav.push(SettingsPage);
+  }
+
+  public isLocateDenied(): boolean {
+    return this.locate.getLocationStatus() === LocationStatus.DENIED;
   }
 
   private setHeight() {

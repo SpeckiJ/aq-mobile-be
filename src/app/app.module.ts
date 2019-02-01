@@ -19,6 +19,7 @@ import { FCM } from '@ionic-native/fcm';
 import { Geolocation } from '@ionic-native/geolocation';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -132,6 +133,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LocalNotifications,
     LocateProvider,
     LocatedTimeseriesService,
+    LocationAccuracy,
     ModelledValueProvider,
     NearestTimeseriesManagerProvider,
     NearestTimeseriesProvider,

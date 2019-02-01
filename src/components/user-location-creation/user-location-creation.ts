@@ -7,7 +7,7 @@ import { ModalController, ToastController } from 'ionic-angular';
 import { MapOptions } from 'leaflet';
 
 import { GeoLabelsProvider } from '../../providers/geo-labels/geo-labels';
-import { LocateProvider, LocationMode } from '../../providers/locate/locate';
+import { LocateProvider } from '../../providers/locate/locate';
 import { MobileSettings } from '../../providers/settings/settings';
 import { UserLocationListProvider } from '../../providers/user-location-list/user-location-list';
 import { ModalUserLocationListComponent } from '../modal-user-location-list/modal-user-location-list';
@@ -54,33 +54,30 @@ export class UserLocationCreationComponent {
     }
   }
 
-
-
   public getCurrentLocation() {
-    const locationMode = this.locate.getLocationMode();
-    if (locationMode === LocationMode.off) {
-      this.toast.create(
-        {
-          message: this.translate.instant('user-location.creation.location-mode-off'),
-          duration: 3000
-        }).present();
-    } else {
-      this.loadCurrentLocation = true;
-      this.resetLocation();
-      this.locate.determineGeoLocation().subscribe(res => {
-        const lat = parseFloat(res.lat);
-        const lon = parseFloat(res.lon);
-        this.location = { type: 'Point', coordinates: [lon, lat] }
-        this.locationLabel = this.geolabels.createLabelOfReverseResult(res);
-        this.loadCurrentLocation = false;
-      }, () => {
-        this.toast.create(
-          {
-            message: this.translate.instant('user-location.creation.locate-error'),
-            duration: 3000
-          }).present();
-      })
-    }
+    // const locationMode = this.locate.getLocationStatus();
+    // if (locationMode === LocationStatus.OFF) {
+    //   this.toast.create(
+    //     {
+    //       message: this.translate.instant('user-location.creation.location-mode-off'),
+    //       duration: 3000
+    //     }).present();
+    // } else {
+    this.loadCurrentLocation = true;
+    this.resetLocation();
+    // console.error(`Try get current location`);
+    this.locate.determineGeoLocation(true).subscribe(location => {
+      // console.error(`Get Location ${location}`);
+      const lat = parseFloat(location.lat);
+      const lon = parseFloat(location.lon);
+      this.location = { type: 'Point', coordinates: [lon, lat] }
+      this.locationLabel = this.geolabels.createLabelOfReverseResult(location);
+      this.loadCurrentLocation = false;
+    }, (error) => {
+      // console.error(`Error: ${error}`);
+      this.loadCurrentLocation = false;
+    })
+    // }
   }
 
   public resetLocation() {

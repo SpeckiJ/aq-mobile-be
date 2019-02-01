@@ -7,7 +7,7 @@ import { Point } from 'geojson';
 import { Observable, Observer } from 'rxjs';
 
 import { GeoLabelsProvider } from '../geo-labels/geo-labels';
-import { LocateProvider, LocationMode } from '../locate/locate';
+import { LocateProvider, LocationStatus } from '../locate/locate';
 
 export interface UserLocation {
   id?: number;
@@ -58,7 +58,7 @@ export class UserLocationListProvider {
 
   public determineCurrentLocation(): Observable<UserLocation> {
     return new Observable((observer: Observer<UserLocation>) => {
-      this.locate.determinePosition().subscribe(
+      this.locate.getUserLocation().subscribe(
         (pos: Geoposition) => {
           const reverseObs = this.geoSearch.reverse(
             { type: 'Point', coordinates: [pos.coords.latitude, pos.coords.longitude] },
@@ -101,7 +101,11 @@ export class UserLocationListProvider {
   }
 
   public getVisibleUserLocations(): UserLocation[] {
-    return this.userLocations.filter(e => (e.type === 'current' && e.isCurrentVisible && this.locate.getLocationMode() !== LocationMode.off) || e.type === 'user');
+    return this.userLocations.filter(e => (e.type === 'current' && e.isCurrentVisible && this.locationModeAllows()) || e.type === 'user');
+  }
+
+  private locationModeAllows(): any {
+    return this.locate.getLocationStatus() !== LocationStatus.DENIED && this.locate.getLocationStatus() !== LocationStatus.OFF;
   }
 
   public isCurrentLocationVisible(): boolean {
