@@ -23,7 +23,7 @@ export class CategorizeValueToIndexProvider {
   }
 
   private categorizeNO2(value: number): number {
-    if (value <= 20) return 1;
+    if (-1 < value <= 20) return 1;
     if (value <= 50) return 2;
     if (value <= 70) return 3;
     if (value <= 120) return 4;
@@ -36,7 +36,7 @@ export class CategorizeValueToIndexProvider {
   }
 
   private categorizeO3(value: number): number {
-    if (value <= 25) return 1;
+    if (-1 < value <= 25) return 1;
     if (value <= 50) return 2;
     if (value <= 70) return 3;
     if (value <= 120) return 4;
@@ -49,7 +49,7 @@ export class CategorizeValueToIndexProvider {
   }
 
   private categorizePM10(value: number): number {
-    if (value <= 10) return 1;
+    if (-1 < value <= 10) return 1;
     if (value <= 20) return 2;
     if (value <= 30) return 3;
     if (value <= 40) return 4;
@@ -62,7 +62,7 @@ export class CategorizeValueToIndexProvider {
   }
 
   private categorizePM25(value: number): number {
-    if (value <= 5) return 1;
+    if (-1 < value <= 5) return 1;
     if (value <= 10) return 2;
     if (value <= 15) return 3;
     if (value <= 25) return 4;
@@ -75,7 +75,7 @@ export class CategorizeValueToIndexProvider {
   }
 
   private categorizeBC(value: number): number {
-    if (value <= 0.99) return 1;
+    if (-1 < value <= 0.99) return 1;
     if (value <= 1.99) return 2;
     if (value <= 2.99) return 3;
     if (value <= 3.99) return 4;
