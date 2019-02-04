@@ -1,4 +1,8 @@
 modal-annual-map {
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
   .scroll-content {
     overflow: hidden;
     display: flex;

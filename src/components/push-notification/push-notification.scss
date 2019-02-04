@@ -1,3 +1,6 @@
-notification {
-
+push-notification {
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
 }

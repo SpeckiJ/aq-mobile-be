@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>{{'annual-map.header' | translate}} - {{year}}</ion-title>
-    <ion-buttons start>
+    <ion-buttons start right>
       <button ion-button (click)="dismiss()">
-        <span ion-text showWhen="ios">{{'controls.cancel' | translate}}</span>
-        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+        <!-- <span ion-text showWhen="ios">{{'controls.cancel' | translate}}</span> -->
+        <ion-icon name="md-close" item-right></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

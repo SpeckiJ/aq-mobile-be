@@ -6,7 +6,7 @@
     </div>
   </ion-slide>
 </ion-slides>
-<ion-list>
+<ion-list mode="md">
   <ion-item>
     <ion-label>{{'nearest-series-legend-slider.show-nearest-series' | translate}}</ion-label>
     <ion-toggle [checked]="locatedTsSrvc.getShowSeries()" (ionChange)="showSeriesSelectionChanged($event)"></ion-toggle>

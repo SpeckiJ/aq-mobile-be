@@ -1,10 +1,10 @@
 <ion-list *ngIf="counter">
-  <ion-list-header text-center>
+  <ion-list-header mode="md" text-center>
     {{counter}} timeseries are loading...
   </ion-list-header>
 </ion-list>
 
-<ion-list>
+<ion-list mode="md">
   <div *ngFor="let timeseries of timeseriesList">
     <ion-item *ngIf="timeseries.parameters.phenomenon.id === phenomenonId">
       <ion-label>
