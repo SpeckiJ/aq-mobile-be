@@ -197,10 +197,10 @@
     "show-nearest-series": "Toon dichtstbijzijnde metingen"
   },
   "network": {
-    "geolocationDenied": "",
-    "geolocationDeniedExplanation": "",
+    "geolocationDenied": "U hebt het gebruik van u locatie niet toegestaan de app.",
+    "geolocationDeniedExplanation": "Als u de \"huidige locatie\"-functionaliteiten wilt gebruiken, kunt u hier de locatieservice van uw apparaat activeren.",
     "geolocationDisabled": "Geolocatie is uitgeschakeld",
-    "geolocationDisabledExplanation": "Als u gebruik wilt maken van de \"huidige locatie\"-functionaliteiten, schakel dan de locatiedienst van uw apparaat in.",
+    "geolocationDisabledExplanation": "Als u de \"huidige locatie\"-functionaliteiten wilt gebruiken, schakel dan de locatiedienst van uw apparaat in.",
     "geolocationEnabled": "Geolocatie is geactiveerd",
     "geolocationEnabledExplanation": "De \"huidige locatie\"-functionaliteiten zijn voor u beschikbaar.",
     "geolocationPartial": "Geolocatie zonder \"hoge precisie\"",

@@ -197,8 +197,8 @@
 		"show-nearest-series": "Show nearest measurements"
 	},
 	"network": {
-		"geolocationDenied": "",
-		"geolocationDeniedExplanation": "",
+		"geolocationDenied": "You have not allowed the use of your location to the app.",
+		"geolocationDeniedExplanation": "If you want to make use of the \"current position\" functionalities, you can activate the location service of your device here.",
 		"geolocationDisabled": "Geolocation is disabled",
 		"geolocationDisabledExplanation": "If you want to make use of the \"current position\" functionalities, please enable the location service of your device.",
 		"geolocationEnabled": "Geolocation is enabled",
