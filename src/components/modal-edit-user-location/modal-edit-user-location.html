@@ -3,10 +3,10 @@
     <ion-title>
       {{'settings.user-locations.edit-location' | translate}}
     </ion-title>
-    <ion-buttons start>
+    <ion-buttons start right>
       <button ion-button (click)="dismiss()">
-        <span ion-text showWhen="ios">{{'controls.cancel' | translate}}</span>
-        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+        <!-- <span ion-text showWhen="ios">{{'controls.cancel' | translate}}</span> -->
+        <ion-icon name="md-close"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -15,7 +15,7 @@
   <div style="height: 300px;">
     <location-selection mapId="location-gen" [mapOptions]="mapOptions" [location]="point" (locationChanged)="onLocationChanged($event)"></location-selection>
   </div>
-  <ion-list>
+  <ion-list mode="md">
     <ion-item>
       <ion-label stacked>{{'intro.three.locationLabelHint' | translate}}</ion-label>
       <ion-input type="text" [(ngModel)]="label" clearInput placeholder="{{'intro.three.locationLabelPlaceholder' | translate}}"></ion-input>

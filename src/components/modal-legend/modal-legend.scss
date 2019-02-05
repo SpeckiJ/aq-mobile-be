@@ -1,7 +1,11 @@
 modal-legend {
-    .scroll-content {
-        overflow-y: auto;
-    }
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
+  .scroll-content {
+      overflow-y: auto;
+  }
 }
 
 ion-modal.modal-legend ion-backdrop {

@@ -1,4 +1,8 @@
 page-diagram {
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
   .scroll-content {
     display: flex;
     flex-direction: column;

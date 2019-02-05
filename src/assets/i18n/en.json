@@ -151,6 +151,9 @@
 		"header": "Legend",
 		"last-value-at": "Last value at"
 	},
+	"located-value-notification": {
+		"title": "BelAQI index"
+	},
 	"map": {
 		"configured-location": "Your configured location",
 		"current-location": "Your current location",
@@ -160,6 +163,7 @@
 			"placeholder": "Search location..."
 		},
 		"header": "Map",
+		"index": "BelAQI index",
 		"interpolated-map": "interpolated map",
 		"nearest-station": "Nearest station",
 		"no-legend": "No legend available",
@@ -174,7 +178,7 @@
 			"today+3": "+3 days",
 			"tomorrow": "Tomorrow"
 		}
-	},
+		},
 	"menu": {
 		"lastUpdate": "Last update"
 	},
@@ -193,21 +197,21 @@
 		"show-nearest-series": "Show nearest measurements"
 	},
 	"network": {
+		"geolocationDenied": "",
+		"geolocationDeniedExplanation": "",
 		"geolocationDisabled": "Geolocation is disabled",
 		"geolocationDisabledExplanation": "If you want to make use of the \"current position\" functionalities, please enable the location service of your device.",
 		"geolocationEnabled": "Geolocation is enabled",
 		"geolocationEnabledExplanation": "The \"current position\" functionalities are available to you.",
 		"geolocationPartial": "Geolocation without \"high accuracy\".",
 		"geolocationPartialExplanation": "To have an optimal geolocation, please activate the location method \"high accuracy\".",
-		"geolocationDenied": "",
-		"geolocationDeniedExplanation": "",
 		"offline": "Your device is offline",
 		"online": "Your device is online"
 	},
 	"no-network-connection": {
 		"body": "Your device has no data network connection. The BelAir app heavily depends on fresh data being fetched from our servers. Please activate a data network (mobile data or wifi connection) and refresh the app or try again when you are in range of a data network you have access to.",
-		"header": "No data connection",
-		"close": "Close"
+		"close": "Close",
+		"header": "No data connection"
 	},
 	"personal-alert": {
 		"index-1": {
@@ -320,8 +324,5 @@
 				"exists": "User location already exists"
 			}
 		}
-	},
-	"located-value-notification": {
-		"title": "BelAQI index"
 	}
 }

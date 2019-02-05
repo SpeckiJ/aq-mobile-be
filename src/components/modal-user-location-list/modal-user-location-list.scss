@@ -1,5 +1,8 @@
 modal-user-location-list {
-
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
   .location-list {
     .header {
       padding: 10px 0px;

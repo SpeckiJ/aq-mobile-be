@@ -1,4 +1,8 @@
 page-intro {
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
   .tutorial-page {
     .toolbar-background {
       background: #fff;

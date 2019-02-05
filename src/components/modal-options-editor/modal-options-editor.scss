@@ -1,5 +1,9 @@
 modal-options-editor {
-    .center {
-        justify-content: center;
-    }
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
+  .center {
+      justify-content: center;
+  }
 }

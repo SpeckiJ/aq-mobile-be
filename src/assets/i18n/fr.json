@@ -151,6 +151,9 @@
 		"header": "Légende",
 		"last-value-at": "Dernière valeur à"
 	},
+	"located-value-notification": {
+		"title": "Indice BelAQI"
+	},
 	"map": {
 		"configured-location": "Votre position configurée",
 		"current-location": "Votre position actuelle",
@@ -160,6 +163,7 @@
 			"placeholder": "Recherche la localisation ..."
 		},
 		"header": "Carte",
+		"index": "Indice BelAQI",
 		"interpolated-map": "Carte interpolée",
 		"nearest-station": "Station de mesure la plus proche",
 		"no-legend": "Aucune légende disponible",
@@ -193,21 +197,21 @@
 		"show-nearest-series": "Afficher les mesures les plus proches"
 	},
 	"network": {
+		"geolocationDenied": "",
+		"geolocationDeniedExplanation": "",
 		"geolocationDisabled": "La géolocalisation est désactivée",
 		"geolocationDisabledExplanation": "Si vous souhaitez utiliser les fonctionnalités \"position actuelle\", activez le service de localisation de votre appareil.",
 		"geolocationEnabled": "La géolocalisation est activée",
 		"geolocationEnabledExplanation": "Les fonctionnalités \"position actuelle\" sont à votre disposition.",
 		"geolocationPartial": "Géolocalisation sans \"haute précision\".",
 		"geolocationPartialExplanation": "Pour obtenir une géolocalisation optimale, activez le méthode de localisation \"haute précision\".",
-		"geolocationDenied": "",
-		"geolocationDeniedExplanation": "",
 		"offline": "Votre appareil est offline",
 		"online": "Votre appareil est online"
 	},
 	"no-network-connection": {
 		"body": "Votre appareil n'a pas de connexion réseau de données. L'application BelAir dépend énormément des nouvelles données extraites de nos serveurs. Activez un réseau de données (données mobiles ou connexion wifi) et actualisez l'application ou essayez à nouveau lorsque vous êtes à portée d'un réseau de données auquel vous avez accès.",
-		"header": "Pas de connexion de données",
-		"close": "Fermer"
+		"close": "Fermer",
+		"header": "Pas de connexion de données"
 	},
 	"personal-alert": {
 		"index-1": {
@@ -320,8 +324,5 @@
 				"exists": "La localisation existe déjà"
 			}
 		}
-	},
-	"located-value-notification": {
-		"title": "Indice BelAQI"
 	}
 }
