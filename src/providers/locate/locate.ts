@@ -56,6 +56,24 @@ export class LocateProvider {
     return this.locationStatus;
   }
 
+  public askForHighAccuracy(): Promise<void> {
+    // do not hear on resume while ask the user for high accuracy mode
+    this.unsubscribeToResume();
+    return new Promise((resolve, reject) => {
+      this.locationAccuracy
+        .request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+          () => {
+            setTimeout(() => this.subscribeToResume(), 1000);
+            resolve();
+          },
+          error => {
+            setTimeout(() => this.subscribeToResume(), 1000);
+            reject('High Accuracy permission denied');
+          }
+        );
+    });
+  }
+
   private registerLocationStateChangeHandler() {
     if (this.platform.is('cordova')) {
       this.diagnostic.registerLocationStateChangeHandler(() => {
@@ -66,6 +84,59 @@ export class LocateProvider {
         })
       });
     }
+  }
+
+  public determineGeoLocation(askForPermission?: boolean): Observable<GeoReverseResult> {
+    return this.getUserLocation(askForPermission).pipe(switchMap(location =>
+      this.geosearch.reverse(
+        { type: 'Point', coordinates: [location.coords.latitude, location.coords.longitude] },
+        { acceptLanguage: this.translate.currentLang }
+      )
+    ))
+  }
+
+  public getUserLocation(askForPermission?: boolean): Observable<Geoposition> {
+    return new Observable((observer: Observer<Geoposition>) => {
+      if (this.locationStatus !== LocationStatus.DENIED || askForPermission) {
+        if (this.platform.is('cordova')) {
+          this.platform.ready().then(() => {
+            this.diagnostic.isLocationEnabled().then(enabled => {
+              if (enabled) {
+                if (this.platform.is('android')) {
+                  this.diagnostic.getLocationMode().then(locationMode => {
+                    // high accuracy => do locate
+                    if (locationMode === this.diagnostic.locationMode.HIGH_ACCURACY) {
+                      this.getCurrentLocation(observer);
+                    }
+                    // location off
+                    if (locationMode === this.diagnostic.locationMode.LOCATION_OFF) {
+                      this.askForHighAccuracy().then(() => this.getCurrentLocation(observer), error => this.processError(observer, error))
+                    }
+                    // device only or battery saving, first try in this mode, after specified timeout, request the user to use high accuracy
+                    else {
+                      this.geolocate.getCurrentPosition({ timeout: LOCATE_TIMEOUT_UNTIL_HIGH_ACC_REQUEST, maximumAge: LOCATE_MAXIMUM_AGE })
+                        .then(pos => this.processComplete(observer, pos))
+                        .catch(() => {
+                          this.askForHighAccuracy().then(
+                            () => this.getCurrentLocation(observer),
+                            error => this.processError(observer, error)
+                          )
+                        })
+                    }
+                  });
+                } else {
+                  this.getCurrentLocation(observer);
+                }
+              } else {
+                this.askForHighAccuracy().then(() => this.getCurrentLocation(observer), error => this.processError(observer, error))
+              }
+            }, error => this.processError(observer, error));
+          });
+        } else {
+          this.getCurrentLocation(observer);
+        }
+      }
+    });
   }
 
   private isGeolocationEnabled() {
@@ -115,85 +186,6 @@ export class LocateProvider {
     this.locationStatusReplay.next(this.locationStatus);
   }
 
-  // public determinePosition(): Observable<Geoposition> {
-  //   this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-  //     if(canRequest) {
-  //       // the accuracy option will be ignored by iOS
-  //       this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-  //         () => console.log('Request successful'),
-  //         error => console.log('Error requesting location permissions', error)
-  //       );
-  //     }
-  //   });
-
-  //   return new Observable((observer: Observer<Geoposition>) => {
-  //     this.platform.ready().then(() => {
-  //       this.geolocate.getCurrentPosition({
-  //         timeout: 30000,
-  //         maximumAge: 0,
-  //         enableHighAccuracy: true
-  //       }).then(res => {
-  //         observer.next(res);
-  //         observer.complete();
-  //       }).catch((error) => {
-  //         let errorMessage: string;
-  //         if (error && error.message) {
-  //           errorMessage = error.message;
-  //         } else {
-  //           errorMessage = JSON.stringify(error);
-  //         }
-  //         observer.error(error);
-  //         observer.complete();
-  //         this.toast.create({ message: `Error occured, while fetching location: ${errorMessage}`, duration: 3000 }).present();
-  //       });
-  //     })
-  //   })
-  // }
-
-  public getUserLocation(askForPermission?: boolean): Observable<Geoposition> {
-    return new Observable((observer: Observer<Geoposition>) => {
-      if (this.locationStatus !== LocationStatus.DENIED || askForPermission) {
-        if (this.platform.is('cordova')) {
-          this.platform.ready().then(() => {
-            this.diagnostic.isLocationEnabled().then(enabled => {
-              if (enabled) {
-                if (this.platform.is('android')) {
-                  this.diagnostic.getLocationMode().then(locationMode => {
-                    // high accuracy => do locate
-                    if (locationMode === this.diagnostic.locationMode.HIGH_ACCURACY) {
-                      this.getCurrentLocation(observer);
-                    }
-                    // location off
-                    if (locationMode === this.diagnostic.locationMode.LOCATION_OFF) {
-                      this.askForHighAccuracy().then(() => this.getCurrentLocation(observer), error => this.processError(observer, error))
-                    }
-                    // device only or battery saving, first try in this mode, after specified timeout, request the user to use high accuracy
-                    else {
-                      this.geolocate.getCurrentPosition({ timeout: LOCATE_TIMEOUT_UNTIL_HIGH_ACC_REQUEST, maximumAge: LOCATE_MAXIMUM_AGE })
-                        .then(pos => this.processComplete(observer, pos))
-                        .catch(() => {
-                          this.askForHighAccuracy().then(
-                            () => this.getCurrentLocation(observer),
-                            error => this.processError(observer, error)
-                          )
-                        })
-                    }
-                  });
-                } else {
-                  this.getCurrentLocation(observer);
-                }
-              } else {
-                this.askForHighAccuracy().then(() => this.getCurrentLocation(observer), error => this.processError(observer, error))
-              }
-            }, error => this.processError(observer, error));
-          });
-        } else {
-          this.getCurrentLocation(observer);
-        }
-      }
-    });
-  }
-
   private getCurrentLocation(observer: Observer<Geoposition>) {
     this.geolocate.getCurrentPosition({ timeout: LOCATE_TIMEOUT_HIGH_ACCURACY, maximumAge: LOCATE_MAXIMUM_AGE, enableHighAccuracy: true })
       .then(pos => this.processComplete(observer, pos))
@@ -224,32 +216,5 @@ export class LocateProvider {
 
   private unsubscribeToResume() {
     if (this.resumeSubscription) this.resumeSubscription.unsubscribe();
-  }
-
-  private askForHighAccuracy(): Promise<void> {
-    // do not hear on resume while ask the user for high accuracy mode
-    this.unsubscribeToResume();
-    return new Promise((resolve, reject) => {
-      this.locationAccuracy
-        .request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-          () => {
-            setTimeout(() => this.subscribeToResume(), 1000);
-            resolve();
-          },
-          error => {
-            setTimeout(() => this.subscribeToResume(), 1000);
-            reject('High Accuracy permission denied');
-          }
-        );
-    });
-  }
-
-  public determineGeoLocation(askForPermission?: boolean): Observable<GeoReverseResult> {
-    return this.getUserLocation(askForPermission).pipe(switchMap(location =>
-      this.geosearch.reverse(
-        { type: 'Point', coordinates: [location.coords.latitude, location.coords.longitude] },
-        { acceptLanguage: this.translate.currentLang }
-      )
-    ))
   }
 }
