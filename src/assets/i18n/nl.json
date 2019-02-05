@@ -21,7 +21,7 @@
 	"belaqi-user-location-slider": {
 		"create-new-location": "Maak een nieuwe locatie aan",
 		"current-location": "Huidige locatie",
-		"current-location-description": "Activeer deze optie om luchtkwaliteitsgegevens voor u huidige locatie weer te geven.",
+		"current-location-description": "Activeer deze optie om luchtkwaliteitsgegevens voor uw huidige locatie weer te geven.",
 		"current-location-error-1": "U zou de instellingen van de locatiedienst van uw apparaat naar hoge nauwkeurigheidsmodus kunnen veranderen.",
 		"current-location-error-2": "Als u eerder persoonlijke gebruikerslocaties hebt geconfigureerd, zijn deze beschikbaar als u dit scherm naar links veegt.",
 		"current-location-error-3": "Anders kunt u een locatie handmatig configureren:",
@@ -187,7 +187,7 @@
 			"list-o3": "O3 of ozon",
 			"list-pm10": "PM10 of fijn stof met een diameter kleiner dan 10 micrometer",
 			"list-pm25": "PM2.5 of fijn stof met een diameter kleiner dan 2,5 micrometer",
-			"text": "Hier ziet u de actuele gemeten concentraties voor de Dichtstbijgelegen meetstations. De verschillende polluenten zijn:"
+			"text": "Hier ziet u de actuele gemeten concentraties voor de dichtstbijgelegen meetstations. De verschillende polluenten zijn:"
 		}
 	},
 	"nearest-series-legend-slider": {
@@ -200,8 +200,8 @@
 		"geolocationEnabledExplanation": "De \"huidige locatie\"-functionaliteiten zijn voor u beschikbaar.",
 		"geolocationPartial": "Geolocatie zonder \"hoge precisie\"",
 		"geolocationPartialExplanation": "Om een optimale bepaling van uw locatie te hebben, activeer de locatiemethode \"hoge precisie\".",
-		"offline": "U toestel is offline",
-		"online": "U toestel is online"
+		"offline": "Uw toestel is offline",
+		"online": "Uw toestel is online"
 	},
 	"no-network-connection": {
 		"body": "Uw apparaat heeft geen gegevensnetwerkverbinding. De BelAir-app is sterk afhankelijk van het ophalen van nieuwe gegevens van onze servers. Activeer alstublieft een datanetwerk (mobiele data- of wifi-verbinding) en ververs de app of probeer het opnieuw wanneer u binnen bereik bent van een datanetwerk waartoe u toegang hebt.",
@@ -215,39 +215,39 @@
 		},
 		"index-10": {
 			"non-sensitive": "Overweeg het verminderen van zware/lange lichamelijke inspanning.",
-			"sensitive": "Beperk lichamelijke inspanning. Overleg met u arts over aangepaste medicatie."
+			"sensitive": "Beperk lichamelijke inspanning. Overleg met uw arts over aangepaste medicatie."
 		},
 		"index-2": {
 			"non-sensitive": "Het is vandaag gezond om buiten fysiek actief te zijn. Door emissies (uitstoot) te reduceren krijgen we meer van deze gezonde dagen en dalen ook de effecten van de langetermijnblootstelling.",
 			"sensitive": "Het is vandaag gezond om buiten fysiek actief te zijn. Door emissies (uitstoot) te reduceren krijgen we meer van deze gezonde dagen en dalen ook de effecten van de langetermijnblootstelling."
 		},
 		"index-3": {
-			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen om wille van de luchtkwaliteit.",
+			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen omwille van de luchtkwaliteit.",
 			"sensitive": "Indien u hinder ondervindt kan u zware/lange lichamelijke inspanningen best vermijden."
 		},
 		"index-4": {
-			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen om wille van de luchtkwaliteit.",
+			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen omwille van de luchtkwaliteit.",
 			"sensitive": "Indien u hinder ondervindt kan u zware/lange lichamelijke inspanningen best vermijden."
 		},
 		"index-5": {
-			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen om wille van de luchtkwaliteit.",
-			"sensitive": "Verminder lichamelijke inspanningen. Overleg met u arts over aangepaste medicatie."
+			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen omwille van de luchtkwaliteit.",
+			"sensitive": "Verminder lichamelijke inspanningen. Overleg met uw arts over aangepaste medicatie."
 		},
 		"index-6": {
-			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen om wille van de luchtkwaliteit.",
-			"sensitive": "Verminder je lichamelijke inspanning. Overleg met u arts over aangepaste medicatie."
+			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen omwille van de luchtkwaliteit.",
+			"sensitive": "Verminder je lichamelijke inspanning. Overleg met uw arts over aangepaste medicatie."
 		},
 		"index-7": {
-			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen om wille van de luchtkwaliteit.",
-			"sensitive": "Verminder lichamelijke inspanningen. Overleg met u arts over aangepaste medicatie."
+			"non-sensitive": "U hoeft uw gebruikelijke fysieke activiteiten niet aan te passen omwille van de luchtkwaliteit.",
+			"sensitive": "Verminder lichamelijke inspanningen. Overleg met uw arts over aangepaste medicatie."
 		},
 		"index-8": {
 			"non-sensitive": "Overweeg het verminderen van zware/lange lichamelijke inspanningen.",
-			"sensitive": "Beperk lichamelijke inspanningen. Overleg met u arts over aangepaste medicatie."
+			"sensitive": "Beperk lichamelijke inspanningen. Overleg met uw arts over aangepaste medicatie."
 		},
 		"index-9": {
 			"non-sensitive": "Overweeg het verminderen van zware/lange lichamelijke inspanningen.",
-			"sensitive": "Beperk lichamelijke inspanningen. Overleg met u arts over aangepaste medicatie."
+			"sensitive": "Beperk lichamelijke inspanningen. Overleg met uw arts over aangepaste medicatie."
 		}
 	},
 	"personal-alerts": {
