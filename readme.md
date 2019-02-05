@@ -124,3 +124,7 @@ ionic cordova build android
     * `cd ~/Library/Android/sdk/tools/bin/`
     * run `./sdkmanager --licenses` and accept all
      do above
+
+  * If you get the following error: `Execution failed for task ':app:processDebugGoogleServices'. > Please fix the version conflict either by updating the version of the google-services plugin (information about the latest version is available at https://bintray.com/android/android-tools/com.google.gms.google-services/) or updating the version of com.google.android.gms to 10.+. `
+    * adjust in `platforms/project.properties` -> `com.google.android.gms:play-services-location:15.+` to `com.google.android.gms:play-services-location:10.+`
+    * adjust in `plugins/cordova-plugin-request-location-accuracy/plugin.xml` -> `com.google.android.gms:play-services-location:15.+` to `com.google.android.gms:play-services-location:10.+`
