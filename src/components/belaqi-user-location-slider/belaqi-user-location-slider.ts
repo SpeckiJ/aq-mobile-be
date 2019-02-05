@@ -68,7 +68,11 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     protected refresher: RefreshHandler,
     private popoverCtrl: PopoverController
   ) {
-    this.locate.getLocationStatusAsObservable().subscribe(() => this.loadBelaqis());
+    this.locate.getLocationStatusAsObservable().subscribe(locationStatus => {
+      if (locationStatus != LocationStatus.DENIED) {
+        this.loadBelaqis();
+      }
+    });
     this.refresher.onRefresh.subscribe(() => this.loadBelaqis());
     this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis());
     this.networkAlert.onConnected.subscribe(() => this.loadBelaqis());
@@ -182,8 +186,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
                 // clearTimeout(timeout);
               },
               error => {
-                this.presentDelayedLocateHint();
-                this.currentLocationError = error;
+                // this.presentDelayedLocateHint();
+                this.currentLocationError = error || true;
               }
             )
           }

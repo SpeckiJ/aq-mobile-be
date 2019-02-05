@@ -21,19 +21,23 @@
       <ion-item text-wrap>{{'belaqi-user-location-slider.current-location-error-2' | translate}}</ion-item>
       <ion-item text-wrap>{{'belaqi-user-location-slider.current-location-error-3' | translate}}</ion-item>
       <div>
-        <button ion-button outline text-wrap (click)="createNewLocation()">{{'belaqi-user-location-slider.create-new-location' | translate}}</button>
+        <button ion-button outline text-wrap (click)="createNewLocation()">
+          {{'belaqi-user-location-slider.create-new-location' | translate}}
+        </button>
       </div>
     </div>
   </ion-slide>
   <ion-slide [ngStyle]="{'min-height': slidesHeight}">
     <div class="create-new-location-slide">
       <div>
-        <button ion-button outline text-wrap (click)="createNewLocation()">{{'belaqi-user-location-slider.create-new-location' |
-          translate}}</button>
+        <button ion-button outline text-wrap (click)="createNewLocation()">
+          {{'belaqi-user-location-slider.create-new-location' | translate}}
+        </button>
       </div>
       <div>
-        <button ion-button outline text-wrap (click)="openUserLocation()">{{'belaqi-user-location-slider.open-user-location' |
-          translate}}</button>
+        <button ion-button outline text-wrap (click)="openUserLocation()">
+          {{'belaqi-user-location-slider.open-user-location' | translate}}
+        </button>
       </div>
       <ion-list>
         <ion-item>
@@ -44,7 +48,7 @@
             <h2 text-wrap>{{'belaqi-user-location-slider.current-location' | translate}}</h2>
             <p text-wrap>{{'belaqi-user-location-slider.current-location-description' | translate}}</p>
           </ion-label>
-          <ion-toggle (ionChange)="toggle($event)" [(ngModel)]="showCurrentLocation" [disabled]="isLocateDenied()"></ion-toggle>
+          <ion-toggle (ionChange)="toggle($event)" [(ngModel)]="showCurrentLocation"></ion-toggle>
         </ion-item>
       </ion-list>
     </div>

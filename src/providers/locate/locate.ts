@@ -18,8 +18,6 @@ export const enum LocationStatus {
 
 const LOCATE_MAXIMUM_AGE = 1000 * 60 * 3; // 3 minutes
 const LOCATE_TIMEOUT_HIGH_ACCURACY = 1000 * 30 // 30 seconds
-const LOCATE_TIMEOUT_DEVICE_ONLY = 1000 * 30 // 30 seconds
-const LOCATE_TIMEOUT_BATTERY_SAVING = 1000 * 30 // 30 seconds
 const LOCATE_TIMEOUT_UNTIL_HIGH_ACC_REQUEST = 1000 * 3 // 3 seconds
 
 @Injectable()
@@ -27,6 +25,8 @@ export class LocateProvider {
 
   private locationStatusReplay: ReplaySubject<LocationStatus> = new ReplaySubject(1);
   private locationStatus: LocationStatus;
+
+  private resumeSubscription;
 
   constructor(
     private platform: Platform,
@@ -39,7 +39,7 @@ export class LocateProvider {
   ) {
     this.registerLocationStateChangeHandler();
     this.isGeolocationEnabled();
-    this.platform.resume.subscribe(() => this.isGeolocationEnabled());
+    this.subscribeToResume();
   }
 
   /**
@@ -89,13 +89,16 @@ export class LocateProvider {
                     this.setLocationMode(LocationStatus.OFF);
                     break;
                 }
-              }, error => this.setLocationMode(LocationStatus.OFF));
+              }, error => {
+                console.error(`Error occured: ${error.message || error}`);
+                this.setLocationMode(LocationStatus.OFF)
+              });
             } else {
+              console.log(`Set location status to denied`);
               this.setLocationMode(LocationStatus.DENIED);
             }
           })
-        }
-        if (this.platform.is('ios') && res) {
+        } else if (this.platform.is('ios') && res) {
           this.setLocationMode(LocationStatus.HIGH_ACCURACY);
         } else {
           this.setLocationMode(LocationStatus.OFF);
@@ -162,23 +165,25 @@ export class LocateProvider {
                     }
                     // location off
                     if (locationMode === this.diagnostic.locationMode.LOCATION_OFF) {
-                      this.askForHighAccuracy().then(
-                        () => this.getCurrentLocation(observer),
-                        error => this.processError(observer, error)
-                      )
+                      this.askForHighAccuracy().then(() => this.getCurrentLocation(observer), error => this.processError(observer, error))
                     }
-                    // device only or battery saving
+                    // device only or battery saving, first try in this mode, after specified timeout, request the user to use high accuracy
                     else {
-                      // TODO add timeout check and request afterwards
+                      this.geolocate.getCurrentPosition({ timeout: LOCATE_TIMEOUT_UNTIL_HIGH_ACC_REQUEST, maximumAge: LOCATE_MAXIMUM_AGE })
+                        .then(pos => this.processComplete(observer, pos))
+                        .catch(() => {
+                          this.askForHighAccuracy().then(
+                            () => this.getCurrentLocation(observer),
+                            error => this.processError(observer, error)
+                          )
+                        })
                     }
                   });
                 } else {
                   this.getCurrentLocation(observer);
                 }
               } else {
-                this.askForHighAccuracy().then(
-                  () => this.getCurrentLocation(observer),
-                  error => this.processError(observer, error))
+                this.askForHighAccuracy().then(() => this.getCurrentLocation(observer), error => this.processError(observer, error))
               }
             }, error => this.processError(observer, error));
           });
@@ -190,7 +195,7 @@ export class LocateProvider {
   }
 
   private getCurrentLocation(observer: Observer<Geoposition>) {
-    this.geolocate.getCurrentPosition({ timeout: 30000, maximumAge: LOCATE_MAXIMUM_AGE, enableHighAccuracy: true })
+    this.geolocate.getCurrentPosition({ timeout: LOCATE_TIMEOUT_HIGH_ACCURACY, maximumAge: LOCATE_MAXIMUM_AGE, enableHighAccuracy: true })
       .then(pos => this.processComplete(observer, pos))
       .catch(error => this.processError(observer, error));
   }
@@ -208,16 +213,33 @@ export class LocateProvider {
     // timeout
     if (error.code === 3) { }
     console.error(`Code: ${error.code}, Message ${error.message}`);
+    // this.toast.create({ message: `Code: ${error.code}, Message ${error.message || error}`, duration: 3000 }).present();
     observer.error(error.message);
     observer.complete();
   }
 
-  public askForHighAccuracy(): Promise<void> {
+  private subscribeToResume() {
+    this.resumeSubscription = this.platform.resume.subscribe(() => this.isGeolocationEnabled());
+  }
+
+  private unsubscribeToResume() {
+    if (this.resumeSubscription) this.resumeSubscription.unsubscribe();
+  }
+
+  private askForHighAccuracy(): Promise<void> {
+    // do not hear on resume while ask the user for high accuracy mode
+    this.unsubscribeToResume();
     return new Promise((resolve, reject) => {
       this.locationAccuracy
         .request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-          () => resolve(),
-          error => reject('High Accuracy permission denied')
+          () => {
+            setTimeout(() => this.subscribeToResume(), 1000);
+            resolve();
+          },
+          error => {
+            setTimeout(() => this.subscribeToResume(), 1000);
+            reject('High Accuracy permission denied');
+          }
         );
     });
   }
