@@ -65,7 +65,7 @@
 	"change-timespan": {
 		"custom": {
 			"end": "einde",
-			"header": "eigen periode",
+			"header": "zelfgekozen periode",
 			"start": "begin"
 		},
 		"header": "verander periode",
