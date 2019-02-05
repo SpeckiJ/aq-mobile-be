@@ -99,9 +99,9 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
           }
         }
       });
-
-      this.zoomToMarkerBounds(this.markerFeatureGroup.getBounds());
-      if (this.map) { this.map.invalidateSize(); }
+      if (!this.avoidZoomToSelection) {
+        this.zoomToMarkerBounds(this.markerFeatureGroup.getBounds());
+      }
       this.isContentLoading(false);
       if (this.map) { this.markerFeatureGroup.addTo(this.map); }
     });
