@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonAffixEvent } from 'ion-affix/dist/directives/ion-affix-event';
 import { NavController, Platform, Refresher, ToastController } from 'ionic-angular';
 
 import { BelaqiSelection, HeaderContent } from '../../components/belaqi-user-location-slider/belaqi-user-location-slider';
@@ -31,17 +30,6 @@ export class StartPage {
 
   public setHeaderContent(headerContent: HeaderContent) {
     this.sliderHeaderContent = headerContent;
-  }
-
-  public handleOnSticky(event: IonAffixEvent) {
-    if (event.sticky) {
-      event.affix.headerElement.classList.add('ion-affix');
-    } else {
-      event.affix.headerElement.classList.remove('ion-affix');
-    }
-    if (!event.sticky && this.sliderHeaderContent === null) {
-      event.affix.headerElement.remove();
-    }
   }
 
   public doRefresh(refresher: Refresher) {
