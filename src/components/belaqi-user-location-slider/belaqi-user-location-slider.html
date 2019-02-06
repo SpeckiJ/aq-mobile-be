@@ -2,13 +2,13 @@
   <ion-slide *ngFor="let loc of belaqiLocations" [ngStyle]="{'min-height': slidesHeight}">
     <div *ngIf="loc.latitude">
       <div class="wheel">
-        <belaqi-wheel [latitude]="loc.latitude" [longitude]="loc.longitude"></belaqi-wheel>
+        <belaqi-wheel [latitude]="loc.latitude" [longitude]="loc.longitude" (onReady)="wheelReady()"></belaqi-wheel>
       </div>
       <div class="chart">
-        <belaqi-chart [location]="loc"></belaqi-chart>
+        <belaqi-chart [location]="loc" (onReady)="chartReady()"></belaqi-chart>
       </div>
       <div>
-        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenon($event, loc)"></nearest-measuring-station-panel>
+        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenon($event, loc)" (onReady)="nearestStationsReady()"></nearest-measuring-station-panel>
       </div>
     </div>
     <div *ngIf="!currentLocationError && !loc.latitude" style="height: 300px;">
@@ -21,19 +21,22 @@
       <ion-item text-wrap>{{'belaqi-user-location-slider.current-location-error-2' | translate}}</ion-item>
       <ion-item text-wrap>{{'belaqi-user-location-slider.current-location-error-3' | translate}}</ion-item>
       <div>
-        <button ion-button outline text-wrap (click)="createNewLocation()">{{'belaqi-user-location-slider.create-new-location' | translate}}</button>
+        <button ion-button outline text-wrap (click)="createNewLocation()">{{'belaqi-user-location-slider.create-new-location'
+          | translate}}</button>
       </div>
     </div>
   </ion-slide>
   <ion-slide [ngStyle]="{'min-height': slidesHeight}">
     <div class="create-new-location-slide">
       <div>
-        <button ion-button outline text-wrap (click)="createNewLocation()">{{'belaqi-user-location-slider.create-new-location' |
-          translate}}</button>
+        <button ion-button outline text-wrap (click)="createNewLocation()">
+          {{'belaqi-user-location-slider.create-new-location' | translate}}
+        </button>
       </div>
       <div>
-        <button ion-button outline text-wrap (click)="openUserLocation()">{{'belaqi-user-location-slider.open-user-location' |
-          translate}}</button>
+        <button ion-button outline text-wrap (click)="openUserLocation()">
+          {{'belaqi-user-location-slider.open-user-location' | translate}}
+        </button>
       </div>
       <ion-list mode="md">
         <ion-item>

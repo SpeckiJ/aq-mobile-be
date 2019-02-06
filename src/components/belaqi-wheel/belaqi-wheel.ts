@@ -1,4 +1,14 @@
-import { AfterContentInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { LanguageChangNotifier } from '@helgoland/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Chart, ChartOptions } from 'chart.js';
@@ -24,6 +34,9 @@ export class BelaqiWheelComponent extends LanguageChangNotifier implements After
 
   @Input()
   public longitude: number;
+
+  @Output()
+  public onReady: EventEmitter<void> = new EventEmitter();
 
   @ViewChild('belaqiWheel') belaqiWheelCanvas: ElementRef;
   belaqiWheel: Chart;
@@ -67,6 +80,7 @@ export class BelaqiWheelComponent extends LanguageChangNotifier implements After
           error => {
             this.error = true;
             this.loading = false;
+            this.onReady.emit();
           }
         );
     }
@@ -172,6 +186,7 @@ export class BelaqiWheelComponent extends LanguageChangNotifier implements After
             // modelledLabel
             ctx.font = "0.6em Roboto";
             this.wrapText(ctx, this.translate.instant('belaqi-wheel.modelled-hint'), centerX, centerY + (radius * 1.7), 90, 0.6);
+            this.onReady.emit();
           }
         }],
         options: {

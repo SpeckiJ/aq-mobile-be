@@ -56,6 +56,10 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
 
   public currentLocationError: string;
 
+  public waitForWheel: boolean;
+  public waitForChart: boolean;
+  public waitForNearestStations: boolean;
+
   constructor(
     private userLocationProvider: UserLocationListProvider,
     private locatedTimeseriesProvider: LocatedTimeseriesService,
@@ -79,9 +83,6 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     if (this.slider) {
       this.slider.autoHeight = true;
     }
-    setTimeout(() => {
-      document.querySelector('.swiper-wrapper')['style'].height = 'auto';
-    }, 2000)
   }
 
   public selectPhenomenon(selection: PhenomenonLocationSelection, userlocation: UserLocation) {
@@ -159,6 +160,9 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
 
   private loadBelaqis() {
     if (this.userLocationProvider.hasLocations()) {
+      this.waitForChart = true;
+      this.waitForWheel = true;
+      this.waitForNearestStations = true;
       this.currentLocationError = null;
       const previousActiveIndex = this.slider.getActiveIndex();
       this.ircelineSettings.getSettings(false).subscribe(ircelineSettings => {
@@ -218,6 +222,31 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
         const popover = this.popoverCtrl.create(BelaqiLocateDelayedInformationComponent, {}, { showBackdrop: true });
         popover.present();
       }
+    }
+  }
+
+  public wheelReady() {
+    this.waitForWheel = false;
+    this.resizeSlide();
+  }
+
+  public chartReady() {
+    this.waitForChart = false;
+    this.resizeSlide();
+  }
+
+  public nearestStationsReady() {
+    this.waitForNearestStations = false;
+    this.resizeSlide();
+  }
+
+  private allReady(): boolean {
+    return !this.waitForChart && !this.waitForNearestStations && !this.waitForWheel;
+  }
+
+  private resizeSlide() {
+    if (this.allReady()) {
+      document.querySelector('.swiper-wrapper')['style'].height = 'auto';
     }
   }
 

@@ -1,6 +1,6 @@
 import 'chartjs-plugin-annotation';
 
-import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, EventEmitter, Output } from '@angular/core';
 import { Chart, ChartOptions } from 'chart.js';
 import { PopoverController } from 'ionic-angular';
 
@@ -22,6 +22,9 @@ export class BelaqiChartComponent implements OnChanges {
 
   @Input()
   public location: UserLocation;
+
+  @Output()
+  public onReady: EventEmitter<void> = new EventEmitter();
 
   public error: boolean;
   public loading: boolean;
@@ -50,6 +53,7 @@ export class BelaqiChartComponent implements OnChanges {
     console.warn(error);
     this.error = true;
     this.loading = false;
+    this.onReady.emit();
   }
 
   private drawChart(belaqiTimeline: BelaqiTimelineEntry[]) {
@@ -126,6 +130,7 @@ export class BelaqiChartComponent implements OnChanges {
       }
     });
     this.drawData(ctx, chart, belaqiTimeline);
+    this.onReady.emit();
   }
 
 
