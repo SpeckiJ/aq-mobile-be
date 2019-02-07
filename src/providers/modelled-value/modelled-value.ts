@@ -4,6 +4,7 @@ import { CacheService } from 'ionic-cache';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { createCacheKey } from '../../model/caching';
 import { MainPhenomenon } from '../../model/phenomenon';
 import { ValueProvider } from '../value-provider';
 
@@ -44,8 +45,7 @@ export class ModelledValueProvider extends ValueProvider {
       Y: '1'
     };
     let request = this.http.get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url, { params });
-    let cacheKey = url + "_" + JSON.stringify(params) + params.time;
-    return this.cacheService.loadFromObservable(cacheKey, request).pipe(
+    return this.cacheService.loadFromObservable(createCacheKey(url, params, time), request).pipe(
       map(res => {
         if (res && res.features && res.features.length === 1) {
           if (res.features[0].properties['GRAY_INDEX']) {

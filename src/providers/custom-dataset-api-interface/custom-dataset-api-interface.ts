@@ -13,6 +13,7 @@ import { CacheService } from 'ionic-cache';
 import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { createCacheKey } from '../../model/caching';
 import { IrcelineSettingsProvider } from '../irceline-settings/irceline-settings';
 
 @Injectable()
@@ -50,8 +51,7 @@ export class CustomDatasetApiInterface extends SplittedDataDatasetApiInterface {
           params: this.prepareParams(params),
           headers: this.createBasicAuthHeader(options.basicAuthToken)
         })
-        const cacheKey = url + '_' + JSON.stringify(params) + settings.lastupdate.toISOString();
-        this.cacheService.loadFromObservable(cacheKey, request).subscribe(
+        this.cacheService.loadFromObservable(createCacheKey(url, params, settings.lastupdate), request).subscribe(
           res => observer.next(res),
           error => observer.error(error),
           () => observer.complete()

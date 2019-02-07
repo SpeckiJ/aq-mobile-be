@@ -6,6 +6,7 @@ import moment from 'moment';
 import { forkJoin, Observable, Observer, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+import { createCacheKey } from '../../model/caching';
 import { MainPhenomenon } from '../../model/phenomenon';
 import { CategorizeValueToIndexProvider } from '../categorize-value-to-index/categorize-value-to-index';
 import { IrcelineSettingsProvider } from '../irceline-settings/irceline-settings';
@@ -71,8 +72,7 @@ export class BelaqiIndexProvider extends ValueProvider {
         params: params
       }
     );
-    let cacheKey = (url + "_" + JSON.stringify(params)) + params['time'];
-    return this.cacheService.loadFromObservable(cacheKey, request).pipe(
+    return this.cacheService.loadFromObservable(createCacheKey(url, params, params['time']), request).pipe(
       map((res) => {
         if (res && res.features && res.features.length === 1) {
           if (res.features[0].properties['GRAY_INDEX']) {

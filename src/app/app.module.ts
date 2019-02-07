@@ -1,17 +1,10 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HelgolandCachingModule } from '@helgoland/caching';
 import { DatasetApiInterface, SettingsService } from '@helgoland/core';
 import { HelgolandD3Module } from '@helgoland/d3';
 import { HelgolandDatasetlistModule } from '@helgoland/depiction';
-import {
-  GeoSearch,
-  HelgolandMapControlModule,
-  HelgolandMapSelectorModule,
-  HelgolandMapViewModule,
-  NominatimGeoSearchService,
-} from '@helgoland/map';
+import { GeoSearch, HelgolandMapControlModule, HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
 import { AppVersion } from '@ionic-native/app-version';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { Diagnostic } from '@ionic-native/diagnostic';
@@ -42,6 +35,7 @@ import { BelaqiIndexProvider } from '../providers/belaqi/belaqi';
 import { CategorizeValueToIndexProvider } from '../providers/categorize-value-to-index/categorize-value-to-index';
 import { CustomDatasetApiInterface } from '../providers/custom-dataset-api-interface/custom-dataset-api-interface';
 import { GeoLabelsProvider } from '../providers/geo-labels/geo-labels';
+import { GeoSearchService } from '../providers/geo-search/geo-search';
 import { IrcelineSettingsProvider } from '../providers/irceline-settings/irceline-settings';
 import { LanguageHandlerProvider, languageInitializerFactory } from '../providers/language-handler/language-handler';
 import { LayerGeneratorService } from '../providers/layer-generator/layer-generator';
@@ -107,7 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     { provide: DatasetApiInterface, useClass: CustomDatasetApiInterface },
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: GeoSearch, useClass: NominatimGeoSearchService },
+    { provide: GeoSearch, useClass: GeoSearchService },
     { provide: SettingsService, useClass: JSSONSettingsService },
     {
       provide: APP_INITIALIZER,

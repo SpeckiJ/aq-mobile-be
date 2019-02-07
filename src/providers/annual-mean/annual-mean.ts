@@ -4,6 +4,7 @@ import { CacheService } from 'ionic-cache';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { createCacheKey } from '../../model/caching';
 import { BelaqiIndexProvider } from '../belaqi/belaqi';
 import { ValueProvider } from '../value-provider';
 
@@ -74,8 +75,7 @@ export class AnnualMeanProvider extends ValueProvider {
       }
     );
 
-    let cacheKey = url + "_" + JSON.stringify(params) + year;
-    return this.cacheService.loadFromObservable(cacheKey, request).pipe(
+    return this.cacheService.loadFromObservable(createCacheKey(url, params, year), request).pipe(
       map((res) => {
         if (res && res.features && res.features.length === 1) {
           if (res.features[0].properties['GRAY_INDEX']) {
@@ -163,6 +163,4 @@ export class AnnualMeanProvider extends ValueProvider {
     if (value <= 50.5) return this.belaqi.getColorForIndex(9);
     return this.belaqi.getColorForIndex(10);
   }
-
-
 }
