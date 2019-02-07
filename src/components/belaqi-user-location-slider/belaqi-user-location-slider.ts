@@ -74,12 +74,12 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
   ) {
     this.locate.getLocationStatusAsObservable().subscribe(locationStatus => {
       if (locationStatus != LocationStatus.DENIED) {
-        this.loadBelaqis();
+        this.loadBelaqis(false);
       }
     });
-    this.refresher.onRefresh.subscribe(() => this.loadBelaqis());
-    this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis());
-    this.networkAlert.onConnected.subscribe(() => this.loadBelaqis());
+    this.refresher.onRefresh.subscribe(() => this.loadBelaqis(true));
+    this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
+    this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
   }
 
   public ngAfterViewInit(): void {
@@ -166,14 +166,14 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     return yPos;
   }
 
-  private loadBelaqis() {
+  private loadBelaqis(reload: boolean) {
     if (this.userLocationProvider.hasLocations()) {
       this.waitForChart = true;
       this.waitForWheel = true;
       this.waitForNearestStations = true;
       this.currentLocationError = null;
       const previousActiveIndex = this.slider.getActiveIndex();
-      this.ircelineSettings.getSettings(false).subscribe(ircelineSettings => {
+      this.ircelineSettings.getSettings(reload).subscribe(ircelineSettings => {
         this.belaqiLocations = [];
         this.userLocationProvider.getVisibleUserLocations().forEach((loc, i) => {
           if (loc.type !== 'current') {

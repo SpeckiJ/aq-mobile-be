@@ -284,6 +284,10 @@
       "header": "Over de app",
       "version": "Versie"
     },
+		"clear-cache": {
+			"button": "",
+			"confirm": ""
+		},
     "common": "Algemeen",
     "header": "Instellingen",
     "select-language": "Kies een taal",

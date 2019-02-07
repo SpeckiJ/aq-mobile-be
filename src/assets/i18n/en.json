@@ -1,328 +1,332 @@
 {
-	"air-quality-index": {
-		"header": "BelAQI index at:"
-	},
-	"air-quality-location-panel": {
-		"error": "Could not get an index value for your location",
-		"hint": "Modelled air quality index for your location",
-		"loading": "Loading BelAQI for your location"
-	},
-	"annual-map": {
-		"header": "Annual mean map",
-		"legend": {
-			"link-more": "Show more",
-			"link-more-url": "http://www.irceline.be/en"
-		}
-	},
-	"annual-phenomenon-buttons": "Modelled annual mean value for this location:",
-	"belaqi-chart": {
-		"error": "Unfortunately, an error occurred while determining the graph."
-	},
-	"belaqi-user-location-slider": {
-		"create-new-location": "Create new location",
-		"current-location": "Current location",
-		"current-location-description": "Activate this option to display air quality data for your current location.",
-		"current-location-error-1": "You could change the settings of the location service of your device to high accuracy mode.",
-		"current-location-error-2": "If you previously configured personal user locations, these should be available if you swipe this screen to the left.",
-		"current-location-error-3": "Otherwise you can configure a location manually:",
-		"current-location-error-header": "Your device was not able to establish your current location.",
-		"loading-current-location": "Your device is determining your current location",
-		"locate-delayed-information": "Your device was not able to establish your current location.",
-		"open-user-location": "Edit current locations"
-	},
-	"belaqi-wheel": {
-		"error-occured": "It is taking longer than usual to fetch the data. Please try again later.",
-		"loading": "Loading the BelAQI index...",
-		"modelled-hint": "Modelled air quality index for this location",
-		"no-index-ascertained": "No BelAQI index could be ascertained. This can be the case that the location is not in Belgium."
-	},
-	"belaqi": {
-		"level-split": {
-			"bad": "Bad",
-			"excellent": "Excellent",
-			"fairly-good": "Fairly good",
-			"good": "Good",
-			"horrible": "Horrible",
-			"moderate": "Moderate",
-			"poor": "Poor",
-			"very-bad": "Very bad",
-			"very-good": "Very good",
-			"very-poor": "Very poor"
-		},
-		"level": {
-			"bad": "Bad",
-			"excellent": "Excellent",
-			"fairly-good": "Fairly good",
-			"good": "Good",
-			"horrible": "Horrible",
-			"moderate": "Moderate",
-			"poor": "Poor",
-			"very-bad": "Very bad",
-			"very-good": "Very good",
-			"very-poor": "Very poor"
-		}
-	},
-	"change-timespan": {
-		"custom": {
-			"end": "End",
-			"header": "Custom timespan",
-			"start": "Start"
-		},
-		"header": "Change timespan",
-		"predefined": {
-			"current-month": "Current month",
-			"current-week": "Current week",
-			"current-year": "Current year",
-			"header": "Predefined timespan",
-			"last-hour": "Last hour",
-			"last-month": "Last month",
-			"last-week": "Last week",
-			"last-year": "Last year",
-			"today": "Today",
-			"today-yesterday": "Today & Yesterday",
-			"yesterday": "Yesterday"
-		}
-	},
-	"controls": {
-		"cancel": "Cancel",
-		"close": "Close",
-		"ok": "Ok"
-	},
-	"customize-personal-alerts": {
-		"active": "Activate",
-		"alert-index-level": "Notification above BelAQI level",
-		"alert-period": "Verification interval alert",
-		"alert-sensitive-active": "Health advice for people sensitive to air pollution",
-		"header": "Personal alerts",
-		"hint": "To use this functionality, the app needs to keep running in the background. Your location is only determined once for the choosen verification interval if you want to have the air quality checked for your current location. All personally configured locations will also be checked."
-	},
-	"diagram": {
-		"header": "Diagram",
-		"loading": "loading",
-		"no-timeseries-selected": "No timeseries selected!",
-		"select-timeseries": "Please select a timeseries"
-	},
-	"home": {
-		"header": "Home",
-		"noAlert": "no official messages concerning periods of increased air pollution",
-		"noAlertheader": "Currently no warnings:"
-	},
-	"info": {
-		"chart": {
-			"message": "This chart shows the evolution of the BelAQI air quality index. The vertical blue line indicates the current value."
-		},
-		"moreInfo": "More info",
-		"wheel": {
-			"link": "http://www.irceline.be/en/belaqi",
-			"message": "This dial shows the current BelAQI air quality index for your location. This index combines the modelled concentrations of different pollutants depending on their health effects."
-		}
-	},
-	"intro": {
-		"close-introduction": "Close",
-		"four": {
-			"header": "Personalised notifications"
-		},
-		"header": "Introduction",
-		"next-step": "Next",
-		"one": {
-			"header": "Choose a language",
-			"option": {
-				"dutch": "Nederlands",
-				"english": "English",
-				"french": "Français",
-				"german": "Deutsch"
-			}
-		},
-		"prev-step": "Previous",
-		"three": {
-			"addLocationToList": "Add to the list of locations",
-			"baseOnCurrentLocation": "Use current location",
-			"header": "Choose the locations for which you want to receive personalised notifications",
-			"locationLabelHint": "Change the location label",
-			"locationLabelPlaceholder": "e.g. \"Home\", \"Work\", \"School\"",
-			"showLocationList": "Show current locations"
-		},
-		"two": {
-			"header": "For which region would you like to receive official notifications?"
-		}
-	},
-	"legend": {
-		"first-value-at": "First value at",
-		"header": "Legend",
-		"last-value-at": "Last value at"
-	},
-	"located-value-notification": {
-		"title": "BelAQI index"
-	},
-	"map": {
-		"configured-location": "Your configured location",
-		"current-location": "Your current location",
-		"dataset-selection-hint": "Please select one or more timeseries to display in diagram",
-		"error": "An error occured. It is not possible to determine data for the selected pollutant.",
-		"geosearch": {
-			"placeholder": "Search location..."
-		},
-		"header": "Map",
-		"index": "BelAQI index",
-		"interpolated-map": "interpolated map",
-		"nearest-station": "Nearest station",
-		"no-legend": "No legend available",
-		"pollutant": {
-			"other": "other"
-		},
-		"show-in-diagram": "Show {{value}} timeseries in diagram",
-		"time": {
-			"current": "Current",
-			"today": "Today",
-			"today+2": "+2 days",
-			"today+3": "+3 days",
-			"tomorrow": "Tomorrow"
-		}
-		},
-	"menu": {
-		"lastUpdate": "Last update"
-	},
-	"nearest-measuring-station-panel": {
-		"header": "Nearest measuring station",
-		"information-popup": {
-			"list-bc": "or black carbon",
-			"list-no2": "or nitrogen dioxide",
-			"list-o3": "or ozone",
-			"list-pm10": "or particulate matter with a diameter below 10 micrometer",
-			"list-pm25": "or particulate matter with a diameter below 2,5 micrometer",
-			"text": "The actual measured concentrations of the nearest monitoring stations are given here. The different pollutants are:"
-		}
-	},
-	"nearest-series-legend-slider": {
-		"show-nearest-series": "Show nearest measurements"
-	},
-	"network": {
-		"geolocationDenied": "You have not allowed the use of your location to the app.",
-		"geolocationDeniedExplanation": "If you want to make use of the \"current position\" functionalities, you can activate the location service of your device here.",
-		"geolocationDisabled": "Geolocation is disabled",
-		"geolocationDisabledExplanation": "If you want to make use of the \"current position\" functionalities, please enable the location service of your device.",
-		"geolocationEnabled": "Geolocation is enabled",
-		"geolocationEnabledExplanation": "The \"current position\" functionalities are available to you.",
-		"geolocationPartial": "Geolocation without \"high accuracy\".",
-		"geolocationPartialExplanation": "To have an optimal geolocation, please activate the location method \"high accuracy\".",
-		"offline": "Your device is offline",
-		"online": "Your device is online"
-	},
-	"no-network-connection": {
-		"body": "Your device has no data network connection. The BelAir app heavily depends on fresh data being fetched from our servers. Please activate a data network (mobile data or wifi connection) and refresh the app or try again when you are in range of a data network you have access to.",
-		"close": "Close",
-		"header": "No data connection"
-	},
-	"personal-alert": {
-		"index-1": {
-			"non-sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure.",
-			"sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure."
-		},
-		"index-10": {
-			"non-sensitive": "Consider reducing heavy/long physical exertion.",
-			"sensitive": "Limit physical exertion. Consult your doctor about appropriate changes to medication you might be taking."
-		},
-		"index-2": {
-			"non-sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure.",
-			"sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure."
-		},
-		"index-3": {
-			"non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
-			"sensitive": "If you experience discomfort, you can reduce heavy/long physical effort."
-		},
-		"index-4": {
-			"non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
-			"sensitive": "If you experience discomfort, you can reduce heavy/long physical effort."
-		},
-		"index-5": {
-			"non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
-			"sensitive": "Reduce your physical effort. Consult your doctor about appropriate changes to medication you might be taking."
-		},
-		"index-6": {
-			"non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
-			"sensitive": "Reduce your physical effort. Consult your doctor about appropriate changes to medication you might be taking."
-		},
-		"index-7": {
-			"non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
-			"sensitive": "Reduce your physical effort. Consult your doctor about appropriate changes to medication you might be taking."
-		},
-		"index-8": {
-			"non-sensitive": "Consider reducing heavy/long physical exertion.",
-			"sensitive": "Limit physical exertion. Consult your doctor about appropriate changes to medication you might be taking."
-		},
-		"index-9": {
-			"non-sensitive": "Consider reducing heavy/long physical exertion.",
-			"sensitive": "Limit physical exertion. Consult your doctor about appropriate changes to medication you might be taking."
-		}
-	},
-	"personal-alerts": {
-		"background-service": {
-			"hint": "Monitors the configured locations",
-			"title": "App is running in background"
-		}
-	},
-	"phenomenon-selector": {
-		"header": "Choose a pollutant",
-		"hide-some-phenomenons": "Hide pollutants",
-		"list-all-phenomenons": "List all pollutants"
-	},
-	"push-notification-subscription": {
-		"brussels": "Brussels - Brussels Environment - NL/FR",
-		"flanders": "Flanders - Vlaamse Milieumaatschappij (VMM) - NL",
-		"header": "Notifications",
-		"wallonia": "Wallonia - Agence wallonne de l’air et du climat (AwAC) - FR"
-	},
-	"refresh-button": {
-		"message": "Refresh all"
-	},
-	"refresh": {
-		"pull-message": "Pull to refresh",
-		"progress": "busy refreshing"
-	},
-	"settings": {
-		"about": {
-			"header": "About the app",
-			"version": "Version"
-		},
-		"common": "Common",
-		"header": "Settings",
-		"select-language": "Select a language",
-		"show-introduction": "Show introduction",
-		"user-locations": {
-			"create-new-location": "Create new location",
-			"edit-location": "Edit location",
-			"header": "User locations",
-			"show-location-list": "Show current locations",
-			"show-nearest-series-by-default": "Show nearest measurements in diagram"
-		}
-	},
-	"show-geometry": {
-		"header": "Position of the station"
-	},
-	"start": {
-		"forecast-map": {
-			"header": "Forecast map"
-		}
-	},
-	"station-selection": {
-		"show-other-phenomena": "Other pollutant measured on this location"
-	},
-	"style-edit": {
-		"generalize": "Generalise data",
-		"header": "Change style of this timeseries",
-		"zeroBasedYAxe": "Timeseries zero based"
-	},
-	"user-location-list": {
-		"header": "Location list"
-	},
-	"user-location": {
-		"creation": {
-			"locate-error": "An error occurred, while determining your current location.",
-			"location-mode-off": "Please activate the location service of your device.",
-			"message": {
-				"added": "User location added",
-				"exists": "User location already exists"
-			}
-		}
-	}
+  "air-quality-index": {
+    "header": "BelAQI index at:"
+  },
+  "air-quality-location-panel": {
+    "error": "Could not get an index value for your location",
+    "hint": "Modelled air quality index for your location",
+    "loading": "Loading BelAQI for your location"
+  },
+  "annual-map": {
+    "header": "Annual mean map",
+    "legend": {
+      "link-more": "Show more",
+      "link-more-url": "http://www.irceline.be/en"
+    }
+  },
+  "annual-phenomenon-buttons": "Modelled annual mean value for this location:",
+  "belaqi-chart": {
+    "error": "Unfortunately, an error occurred while determining the graph."
+  },
+  "belaqi-user-location-slider": {
+    "create-new-location": "Create new location",
+    "current-location": "Current location",
+    "current-location-description": "Activate this option to display air quality data for your current location.",
+    "current-location-error-1": "You could change the settings of the location service of your device to high accuracy mode.",
+    "current-location-error-2": "If you previously configured personal user locations, these should be available if you swipe this screen to the left.",
+    "current-location-error-3": "Otherwise you can configure a location manually:",
+    "current-location-error-header": "Your device was not able to establish your current location.",
+    "loading-current-location": "Your device is determining your current location",
+    "locate-delayed-information": "Your device was not able to establish your current location.",
+    "open-user-location": "Edit current locations"
+  },
+  "belaqi-wheel": {
+    "error-occured": "It is taking longer than usual to fetch the data. Please try again later.",
+    "loading": "Loading the BelAQI index...",
+    "modelled-hint": "Modelled air quality index for this location",
+    "no-index-ascertained": "No BelAQI index could be ascertained. This can be the case that the location is not in Belgium."
+  },
+  "belaqi": {
+    "level-split": {
+      "bad": "Bad",
+      "excellent": "Excellent",
+      "fairly-good": "Fairly good",
+      "good": "Good",
+      "horrible": "Horrible",
+      "moderate": "Moderate",
+      "poor": "Poor",
+      "very-bad": "Very bad",
+      "very-good": "Very good",
+      "very-poor": "Very poor"
+    },
+    "level": {
+      "bad": "Bad",
+      "excellent": "Excellent",
+      "fairly-good": "Fairly good",
+      "good": "Good",
+      "horrible": "Horrible",
+      "moderate": "Moderate",
+      "poor": "Poor",
+      "very-bad": "Very bad",
+      "very-good": "Very good",
+      "very-poor": "Very poor"
+    }
+  },
+  "change-timespan": {
+    "custom": {
+      "end": "End",
+      "header": "Custom timespan",
+      "start": "Start"
+    },
+    "header": "Change timespan",
+    "predefined": {
+      "current-month": "Current month",
+      "current-week": "Current week",
+      "current-year": "Current year",
+      "header": "Predefined timespan",
+      "last-hour": "Last hour",
+      "last-month": "Last month",
+      "last-week": "Last week",
+      "last-year": "Last year",
+      "today": "Today",
+      "today-yesterday": "Today & Yesterday",
+      "yesterday": "Yesterday"
+    }
+  },
+  "controls": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "ok": "Ok"
+  },
+  "customize-personal-alerts": {
+    "active": "Activate",
+    "alert-index-level": "Notification above BelAQI level",
+    "alert-period": "Verification interval alert",
+    "alert-sensitive-active": "Health advice for people sensitive to air pollution",
+    "header": "Personal alerts",
+    "hint": "To use this functionality, the app needs to keep running in the background. Your location is only determined once for the choosen verification interval if you want to have the air quality checked for your current location. All personally configured locations will also be checked."
+  },
+  "diagram": {
+    "header": "Diagram",
+    "loading": "loading",
+    "no-timeseries-selected": "No timeseries selected!",
+    "select-timeseries": "Please select a timeseries"
+  },
+  "home": {
+    "header": "Home",
+    "noAlert": "no official messages concerning periods of increased air pollution",
+    "noAlertheader": "Currently no warnings:"
+  },
+  "info": {
+    "chart": {
+      "message": "This chart shows the evolution of the BelAQI air quality index. The vertical blue line indicates the current value."
+    },
+    "moreInfo": "More info",
+    "wheel": {
+      "link": "http://www.irceline.be/en/belaqi",
+      "message": "This dial shows the current BelAQI air quality index for your location. This index combines the modelled concentrations of different pollutants depending on their health effects."
+    }
+  },
+  "intro": {
+    "close-introduction": "Close",
+    "four": {
+      "header": "Personalised notifications"
+    },
+    "header": "Introduction",
+    "next-step": "Next",
+    "one": {
+      "header": "Choose a language",
+      "option": {
+        "dutch": "Nederlands",
+        "english": "English",
+        "french": "Français",
+        "german": "Deutsch"
+      }
+    },
+    "prev-step": "Previous",
+    "three": {
+      "addLocationToList": "Add to the list of locations",
+      "baseOnCurrentLocation": "Use current location",
+      "header": "Choose the locations for which you want to receive personalised notifications",
+      "locationLabelHint": "Change the location label",
+      "locationLabelPlaceholder": "e.g. \"Home\", \"Work\", \"School\"",
+      "showLocationList": "Show current locations"
+    },
+    "two": {
+      "header": "For which region would you like to receive official notifications?"
+    }
+  },
+  "legend": {
+    "first-value-at": "First value at",
+    "header": "Legend",
+    "last-value-at": "Last value at"
+  },
+  "located-value-notification": {
+    "title": "BelAQI index"
+  },
+  "map": {
+    "configured-location": "Your configured location",
+    "current-location": "Your current location",
+    "dataset-selection-hint": "Please select one or more timeseries to display in diagram",
+    "error": "An error occured. It is not possible to determine data for the selected pollutant.",
+    "geosearch": {
+      "placeholder": "Search location..."
+    },
+    "header": "Map",
+    "index": "BelAQI index",
+    "interpolated-map": "interpolated map",
+    "nearest-station": "Nearest station",
+    "no-legend": "No legend available",
+    "pollutant": {
+      "other": "other"
+    },
+    "show-in-diagram": "Show {{value}} timeseries in diagram",
+    "time": {
+      "current": "Current",
+      "today": "Today",
+      "today+2": "+2 days",
+      "today+3": "+3 days",
+      "tomorrow": "Tomorrow"
+    }
+  },
+  "menu": {
+    "lastUpdate": "Last update"
+  },
+  "nearest-measuring-station-panel": {
+    "header": "Nearest measuring station",
+    "information-popup": {
+      "list-bc": "or black carbon",
+      "list-no2": "or nitrogen dioxide",
+      "list-o3": "or ozone",
+      "list-pm10": "or particulate matter with a diameter below 10 micrometer",
+      "list-pm25": "or particulate matter with a diameter below 2,5 micrometer",
+      "text": "The actual measured concentrations of the nearest monitoring stations are given here. The different pollutants are:"
+    }
+  },
+  "nearest-series-legend-slider": {
+    "show-nearest-series": "Show nearest measurements"
+  },
+  "network": {
+    "geolocationDenied": "You have not allowed the use of your location to the app.",
+    "geolocationDeniedExplanation": "If you want to make use of the \"current position\" functionalities, you can activate the location service of your device here.",
+    "geolocationDisabled": "Geolocation is disabled",
+    "geolocationDisabledExplanation": "If you want to make use of the \"current position\" functionalities, please enable the location service of your device.",
+    "geolocationEnabled": "Geolocation is enabled",
+    "geolocationEnabledExplanation": "The \"current position\" functionalities are available to you.",
+    "geolocationPartial": "Geolocation without \"high accuracy\".",
+    "geolocationPartialExplanation": "To have an optimal geolocation, please activate the location method \"high accuracy\".",
+    "offline": "Your device is offline",
+    "online": "Your device is online"
+  },
+  "no-network-connection": {
+    "body": "Your device has no data network connection. The BelAir app heavily depends on fresh data being fetched from our servers. Please activate a data network (mobile data or wifi connection) and refresh the app or try again when you are in range of a data network you have access to.",
+    "close": "Close",
+    "header": "No data connection"
+  },
+  "personal-alert": {
+    "index-1": {
+      "non-sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure.",
+      "sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure."
+    },
+    "index-10": {
+      "non-sensitive": "Consider reducing heavy/long physical exertion.",
+      "sensitive": "Limit physical exertion. Consult your doctor about appropriate changes to medication you might be taking."
+    },
+    "index-2": {
+      "non-sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure.",
+      "sensitive": "It is very healthy today to be physically active outside. By reducing emissions, we get more of these healthy days and also decrease the effects of the low-term exposure."
+    },
+    "index-3": {
+      "non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
+      "sensitive": "If you experience discomfort, you can reduce heavy/long physical effort."
+    },
+    "index-4": {
+      "non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
+      "sensitive": "If you experience discomfort, you can reduce heavy/long physical effort."
+    },
+    "index-5": {
+      "non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
+      "sensitive": "Reduce your physical effort. Consult your doctor about appropriate changes to medication you might be taking."
+    },
+    "index-6": {
+      "non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
+      "sensitive": "Reduce your physical effort. Consult your doctor about appropriate changes to medication you might be taking."
+    },
+    "index-7": {
+      "non-sensitive": "You do not have to adjust your usual physical activities because of the air quality.",
+      "sensitive": "Reduce your physical effort. Consult your doctor about appropriate changes to medication you might be taking."
+    },
+    "index-8": {
+      "non-sensitive": "Consider reducing heavy/long physical exertion.",
+      "sensitive": "Limit physical exertion. Consult your doctor about appropriate changes to medication you might be taking."
+    },
+    "index-9": {
+      "non-sensitive": "Consider reducing heavy/long physical exertion.",
+      "sensitive": "Limit physical exertion. Consult your doctor about appropriate changes to medication you might be taking."
+    }
+  },
+  "personal-alerts": {
+    "background-service": {
+      "hint": "Monitors the configured locations",
+      "title": "App is running in background"
+    }
+  },
+  "phenomenon-selector": {
+    "header": "Choose a pollutant",
+    "hide-some-phenomenons": "Hide pollutants",
+    "list-all-phenomenons": "List all pollutants"
+  },
+  "push-notification-subscription": {
+    "brussels": "Brussels - Brussels Environment - NL/FR",
+    "flanders": "Flanders - Vlaamse Milieumaatschappij (VMM) - NL",
+    "header": "Notifications",
+    "wallonia": "Wallonia - Agence wallonne de l’air et du climat (AwAC) - FR"
+  },
+  "refresh-button": {
+    "message": "Refresh all"
+  },
+  "refresh": {
+    "pull-message": "Pull to refresh",
+    "progress": "busy refreshing"
+  },
+  "settings": {
+    "about": {
+      "header": "About the app",
+      "version": "Version"
+    },
+    "clear-cache": {
+      "button": "Clear cache",
+      "confirm": "Cache is cleared."
+    },
+    "common": "Common",
+    "header": "Settings",
+    "select-language": "Select a language",
+    "show-introduction": "Show introduction",
+    "user-locations": {
+      "create-new-location": "Create new location",
+      "edit-location": "Edit location",
+      "header": "User locations",
+      "show-location-list": "Show current locations",
+      "show-nearest-series-by-default": "Show nearest measurements in diagram"
+    }
+  },
+  "show-geometry": {
+    "header": "Position of the station"
+  },
+  "start": {
+    "forecast-map": {
+      "header": "Forecast map"
+    }
+  },
+  "station-selection": {
+    "show-other-phenomena": "Other pollutant measured on this location"
+  },
+  "style-edit": {
+    "generalize": "Generalise data",
+    "header": "Change style of this timeseries",
+    "zeroBasedYAxe": "Timeseries zero based"
+  },
+  "user-location-list": {
+    "header": "Location list"
+  },
+  "user-location": {
+    "creation": {
+      "locate-error": "An error occurred, while determining your current location.",
+      "location-mode-off": "Please activate the location service of your device.",
+      "message": {
+        "added": "User location added",
+        "exists": "User location already exists"
+      }
+    }
+  }
 }

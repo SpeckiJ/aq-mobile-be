@@ -284,6 +284,10 @@
       "header": "Über die App",
       "version": "Version"
     },
+    "clear-cache": {
+      "button": "Lösche den Cache",
+      "confirm": "Der Cache ist gelöscht."
+    },
     "common": "Allgemein",
     "header": "Einstellungen",
     "select-language": "Wähle eine Sprache",

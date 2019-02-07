@@ -284,6 +284,10 @@
 			"header": "A propos de l'application",
 			"version": "Version"
 		},
+		"clear-cache": {
+			"button": "",
+			"confirm": ""
+		},
 		"common": "Paramètres généraux",
 		"header": "Paramètres",
 		"select-language": "Sélectionnez une langue",

@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HelgolandCachingModule } from '@helgoland/caching';
-import { DatasetApiInterface, SettingsService, SplittedDataDatasetApiInterface } from '@helgoland/core';
+import { DatasetApiInterface, SettingsService } from '@helgoland/core';
 import { HelgolandD3Module } from '@helgoland/d3';
 import { HelgolandDatasetlistModule } from '@helgoland/depiction';
 import {
@@ -28,6 +28,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonAffixModule } from 'ion-affix';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { CacheModule } from 'ionic-cache';
 
 import { ComponentsModule } from '../components/components.module';
 import { DiagramModule } from '../pages/diagram/diagram.module';
@@ -39,7 +40,7 @@ import { AirQualityIndexProvider } from '../providers/air-quality-index/air-qual
 import { AnnualMeanProvider } from '../providers/annual-mean/annual-mean';
 import { BelaqiIndexProvider } from '../providers/belaqi/belaqi';
 import { CategorizeValueToIndexProvider } from '../providers/categorize-value-to-index/categorize-value-to-index';
-import { ForecastValueProvider } from '../providers/forecast-value/forecast-value';
+import { CustomDatasetApiInterface } from '../providers/custom-dataset-api-interface/custom-dataset-api-interface';
 import { GeoLabelsProvider } from '../providers/geo-labels/geo-labels';
 import { IrcelineSettingsProvider } from '../providers/irceline-settings/irceline-settings';
 import { LanguageHandlerProvider, languageInitializerFactory } from '../providers/language-handler/language-handler';
@@ -95,7 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ComponentsModule,
     SettingsModule,
     DiagramModule,
-    MapModule
+    MapModule,
+    CacheModule.forRoot({ keyPrefix: 'belair-cache_' })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -104,7 +106,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     StartPage
   ],
   providers: [
-    { provide: DatasetApiInterface, useClass: SplittedDataDatasetApiInterface },
+    { provide: DatasetApiInterface, useClass: CustomDatasetApiInterface },
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: GeoSearch, useClass: NominatimGeoSearchService },
     { provide: SettingsService, useClass: JSSONSettingsService },
@@ -123,7 +125,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     DatasetOptionsModifier,
     Diagnostic,
     FCM,
-    ForecastValueProvider,
     GeoLabelsProvider,
     Geolocation,
     InAppBrowser,
@@ -147,7 +148,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatusBar,
     TimeseriesService,
     UserLocationListProvider,
-    UserTimeseriesService
+    UserTimeseriesService,
+    CustomDatasetApiInterface
   ]
 })
 export class AppModule { }

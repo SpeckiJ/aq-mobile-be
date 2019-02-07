@@ -81,30 +81,36 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
       phenomenon: this.filter.phenomenon,
       expanded: true
     };
-    this.apiInterface.getTimeseries(this.serviceUrl, tempFilter).subscribe((timeseries: Timeseries[]) => {
-      this.markerFeatureGroup = featureGroup();
-      timeseries.forEach(ts => {
-        if ((ts.lastValue.timestamp) > new Date().getTime() - this.ignoreStatusIntervalIfBeforeDuration) {
-          const phenomenon = getMainPhenomenonForID(ts.parameters.phenomenon.id);
-          const index = this.categorizer.categorize(ts.lastValue.value, phenomenon);
-          const color = this.belaqi.getColorForIndex(index);
-          let marker;
-          if (color) { marker = this.createColoredMarker(ts.station, color); }
-          if (!marker) { marker = this.createDefaultColoredMarker(ts.station); }
-          if (marker) {
-            marker.on('click', () => {
-              this.onSelected.emit(ts.station);
-            });
-            this.markerFeatureGroup.addLayer(marker);
+    this.apiInterface.getTimeseries(this.serviceUrl, tempFilter).subscribe(
+      timeseries => {
+        this.markerFeatureGroup = featureGroup();
+        timeseries.forEach(ts => {
+          if ((ts.lastValue.timestamp) > new Date().getTime() - this.ignoreStatusIntervalIfBeforeDuration) {
+            const phenomenon = getMainPhenomenonForID(ts.parameters.phenomenon.id);
+            const index = this.categorizer.categorize(ts.lastValue.value, phenomenon);
+            const color = this.belaqi.getColorForIndex(index);
+            let marker;
+            if (color) { marker = this.createColoredMarker(ts.station, color); }
+            if (!marker) { marker = this.createDefaultColoredMarker(ts.station); }
+            if (marker) {
+              marker.on('click', () => {
+                this.onSelected.emit(ts.station);
+              });
+              this.markerFeatureGroup.addLayer(marker);
+            }
           }
+        });
+        if (!this.avoidZoomToSelection) {
+          this.zoomToMarkerBounds(this.markerFeatureGroup.getBounds());
         }
-      });
-      if (!this.avoidZoomToSelection) {
-        this.zoomToMarkerBounds(this.markerFeatureGroup.getBounds());
+        this.isContentLoading(false);
+        if (this.map) { this.markerFeatureGroup.addTo(this.map); }
+      },
+      error => {
+        this.markerFeatureGroup = featureGroup();
+        if (this.map) { this.markerFeatureGroup.addTo(this.map); }
       }
-      this.isContentLoading(false);
-      if (this.map) { this.markerFeatureGroup.addTo(this.map); }
-    });
+    );
   }
 
   private createColoredMarker(station: Station, color: string): Layer {

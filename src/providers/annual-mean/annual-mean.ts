@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@helgoland/core';
+import { CacheService } from 'ionic-cache';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,19 +17,23 @@ export enum AnnualPhenomenonMapping {
   BC = 'bc_anmean_'
 }
 
+const TTL_ANNUAL_YEAR_REQUEST = 60 * 60 * 24; // one day
+
 @Injectable()
 export class AnnualMeanProvider extends ValueProvider {
 
   constructor(
     public http: HttpService,
-    public belaqi: BelaqiIndexProvider
+    public belaqi: BelaqiIndexProvider,
+    private cacheService: CacheService
   ) {
     super(http);
   }
 
   public getYear(): Observable<string> {
-    return this.http.client().get(ANNUAL_MEAN_URL, { responseType: 'text' })
-      .pipe(map(res => {
+    let request = this.http.client({ forceUpdate: true }).get(ANNUAL_MEAN_URL, { responseType: 'text' });
+    return this.cacheService.loadFromObservable(ANNUAL_MEAN_URL, request, null, TTL_ANNUAL_YEAR_REQUEST).pipe(
+      map(res => {
         const framechar = '\'';
         const first = res.indexOf(framechar) + 1;
         return res.substring(first, res.indexOf(framechar, first));
@@ -61,12 +66,16 @@ export class AnnualMeanProvider extends ValueProvider {
       X: '1',
       Y: '1'
     };
-    return this.http.client().get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
+
+    let request = this.http.client().get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
       {
         responseType: 'json',
         params: params
       }
-    ).pipe(
+    );
+
+    let cacheKey = url + "_" + JSON.stringify(params) + year;
+    return this.cacheService.loadFromObservable(cacheKey, request).pipe(
       map((res) => {
         if (res && res.features && res.features.length === 1) {
           if (res.features[0].properties['GRAY_INDEX']) {

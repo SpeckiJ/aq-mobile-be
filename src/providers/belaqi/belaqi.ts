@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@helgoland/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CacheService } from 'ionic-cache';
 import moment from 'moment';
 import { forkJoin, Observable, Observer, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { MainPhenomenon } from '../../model/phenomenon';
 import { CategorizeValueToIndexProvider } from '../categorize-value-to-index/categorize-value-to-index';
+import { IrcelineSettingsProvider } from '../irceline-settings/irceline-settings';
 import { ModelledValueProvider } from '../modelled-value/modelled-value';
 import { ValueProvider } from '../value-provider';
 
@@ -36,7 +38,9 @@ export class BelaqiIndexProvider extends ValueProvider {
     http: HttpService,
     private modelledValueProvider: ModelledValueProvider,
     private categorizeValueToIndex: CategorizeValueToIndexProvider,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private cacheService: CacheService,
+    private ircelineSettings: IrcelineSettingsProvider
   ) {
     super(http);
   }
@@ -60,12 +64,15 @@ export class BelaqiIndexProvider extends ValueProvider {
     if (time) {
       params['time'] = time.toISOString();
     }
-    return this.http.client().get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
+
+    let request = this.http.client({ forceUpdate: true }).get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
       {
         responseType: 'json',
         params: params
       }
-    ).pipe(
+    );
+    let cacheKey = (url + "_" + JSON.stringify(params)) + params['time'];
+    return this.cacheService.loadFromObservable(cacheKey, request).pipe(
       map((res) => {
         if (res && res.features && res.features.length === 1) {
           if (res.features[0].properties['GRAY_INDEX']) {
@@ -186,7 +193,7 @@ export class BelaqiIndexProvider extends ValueProvider {
       time
     ]
     return forkJoin(
-      timestamps.map(ts => this.getValue(latitude, longitude, ts).pipe(map(res => res), catchError(e => of(null))))
+      timestamps.map(ts => this.getValue(latitude, longitude, ts).pipe(map(res => res), catchError(() => of(null))))
     ).pipe(
       map(res => {
         const timelineEntries: BelaqiTimelineEntry[] = [];
@@ -256,17 +263,25 @@ export class BelaqiIndexProvider extends ValueProvider {
   }
 
   private getTrends(): Observable<TrendResult> {
-    return this.http.client().get<TrendResult>('https://www.irceline.be/tables/forecast/model/trend.php').pipe(
-      map(res => {
-        res["latest observations"].o3.forEach(e => e[0] = moment(e[0]).toDate());
-        res["latest observations"].pm10.forEach(e => e[0] = moment(e[0]).toDate());
-        res["latest observations"].pm25.forEach(e => e[0] = moment(e[0]).toDate());
-        res.trend.o3.forEach(e => e[0] = moment(e[0]).toDate());
-        res.trend.pm10.forEach(e => e[0] = moment(e[0]).toDate());
-        res.trend.pm25.forEach(e => e[0] = moment(e[0]).toDate());
-        return res;
+    let trendUrl = 'https://www.irceline.be/tables/forecast/model/trend.php';
+    return new Observable((observer: Observer<TrendResult>) => {
+      this.ircelineSettings.getSettings().subscribe(settings => {
+        const request = this.http.client().get<TrendResult>(trendUrl);
+        this.cacheService.loadFromObservable(trendUrl, request).subscribe(
+          res => {
+            res["latest observations"].o3.forEach(e => e[0] = moment(e[0]).toDate());
+            res["latest observations"].pm10.forEach(e => e[0] = moment(e[0]).toDate());
+            res["latest observations"].pm25.forEach(e => e[0] = moment(e[0]).toDate());
+            res.trend.o3.forEach(e => e[0] = moment(e[0]).toDate());
+            res.trend.pm10.forEach(e => e[0] = moment(e[0]).toDate());
+            res.trend.pm25.forEach(e => e[0] = moment(e[0]).toDate());
+            observer.next(res);
+          },
+          error => observer.error(error),
+          () => observer.complete()
+        );
       })
-    )
+    });
   }
 
   private findMatchingTime(list: [Date, number][], time: Date): number {

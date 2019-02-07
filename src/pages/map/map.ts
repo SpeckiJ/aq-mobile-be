@@ -1,11 +1,19 @@
 import './boundary-canvas';
 
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { DatasetApiInterface, ParameterFilter, Phenomenon, Platform, SettingsService, Station } from '@helgoland/core';
+import {
+  DatasetApiInterface,
+  HttpService,
+  ParameterFilter,
+  Phenomenon,
+  Platform,
+  SettingsService,
+  Station,
+} from '@helgoland/core';
 import { GeoSearchOptions, LayerOptions, MapCache } from '@helgoland/map';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { CacheService } from 'ionic-cache';
 import L, {
   BoundaryCanvasOptions,
   CircleMarker,
@@ -127,7 +135,8 @@ export class MapPage {
     protected api: DatasetApiInterface,
     protected cdr: ChangeDetectorRef,
     protected translateSrvc: TranslateService,
-    protected httpClient: HttpClient
+    protected http: HttpService,
+    protected cacheService: CacheService
   ) {
     const settings = this.settingsSrvc.getSettings();
     this.providerUrl = settings.datasetApis[0].url;
@@ -344,7 +353,14 @@ export class MapPage {
   }
 
   private getPhenomenonFromAPI(phenId: string) {
-    this.api.getPhenomenon(phenId, this.providerUrl).subscribe(phenomenon => this.setPhenomenon(phenomenon));
+    this.api.getPhenomenon(phenId, this.providerUrl).subscribe(
+      phenomenon => this.setPhenomenon(phenomenon),
+      error => {
+        this.selectedPhenomenon = null;
+        this.phenomenonFilter = { phenomenon: '' };
+        this.phenomenonLabel = this.getPhenomenonLabel(phenId);
+      }
+    );
   }
 
   private setPhenomenon(selectedPhenomenon: Phenomenon) {
@@ -354,7 +370,8 @@ export class MapPage {
   }
 
   private showLayer() {
-    this.httpClient.get('./assets/multipolygon.json').subscribe((geojson: GeoJSON.GeoJsonObject) => {
+    const request = this.http.client({ forceUpdate: true }).get('./assets/multipolygon.json');
+    this.cacheService.loadFromObservable('multipolygon', request, null, 60 * 60 * 24).subscribe((geojson: GeoJSON.GeoJsonObject) => {
       this.overlayMaps = new Map<string, LayerOptions>();
       let layerId: string;
       let wmsUrl: string;
