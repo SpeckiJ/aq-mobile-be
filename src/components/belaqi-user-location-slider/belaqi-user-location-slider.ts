@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalController, NavController, PopoverController, Slides, Toggle } from 'ionic-angular';
+import { Subscription } from 'rxjs';
 
 import { SettingsPage } from '../../pages/settings/settings';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
@@ -36,7 +37,7 @@ export interface BelaqiSelection {
   selector: 'belaqi-user-location-slider',
   templateUrl: 'belaqi-user-location-slider.html'
 })
-export class BelaqiUserLocationSliderComponent implements AfterViewInit {
+export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('slider')
   slider: Slides;
@@ -60,6 +61,11 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
   public waitForChart: boolean;
   public waitForNearestStations: boolean;
 
+  private refresherSubscriber: Subscription;
+  private locationStatusSubscriber: Subscription;
+  private locChangedSubscriber: Subscription;
+  private networkSubscriber: Subscription;
+
   constructor(
     private userLocationProvider: UserLocationListProvider,
     private locatedTimeseriesProvider: LocatedTimeseriesService,
@@ -69,17 +75,13 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     private nav: NavController,
     protected translateSrvc: TranslateService,
     protected modalCtrl: ModalController,
-    protected refresher: RefreshHandler,
+    protected refreshHandler: RefreshHandler,
     private popoverCtrl: PopoverController
   ) {
-    this.locate.getLocationStatusAsObservable().subscribe(locationStatus => {
-      if (locationStatus != LocationStatus.DENIED) {
-        this.loadBelaqis(false);
-      }
-    });
-    this.refresher.onRefresh.subscribe(() => this.loadBelaqis(true));
-    this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
-    this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
+    this.locationStatusSubscriber = this.locate.getLocationStatusAsObservable().subscribe(() => this.loadBelaqis(false));
+    this.refresherSubscriber = this.refreshHandler.onRefresh.subscribe(() => this.loadBelaqis(true));
+    this.locChangedSubscriber = this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
+    this.networkSubscriber = this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
   }
 
   public ngAfterViewInit(): void {
@@ -87,6 +89,13 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     if (this.slider) {
       this.slider.autoHeight = true;
     }
+  }
+
+  public ngOnDestroy(): void {
+    if (this.refresherSubscriber) { this.refresherSubscriber.unsubscribe(); }
+    if (this.locationStatusSubscriber) { this.locationStatusSubscriber.unsubscribe(); }
+    if (this.locChangedSubscriber) { this.locChangedSubscriber.unsubscribe(); }
+    if (this.networkSubscriber) { this.networkSubscriber.unsubscribe(); }
   }
 
   public selectPhenomenon(selection: PhenomenonLocationSelection, userlocation: UserLocation) {

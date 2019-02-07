@@ -17,25 +17,25 @@ export class NetworkPanelComponent implements OnInit {
   public offline: boolean = false;
   public backOnline: boolean = false;
 
-  private networkChange: Subscription;
+  private networkSubscriber: Subscription;
+  private refreshSubscriber: Subscription;
 
   constructor(
     private ircelineSettings: IrcelineSettingsProvider,
     private network: Network,
     private platform: Platform,
-    private refresh: RefreshHandler,
+    private refreshHandler: RefreshHandler,
     protected translate: TranslateService,
   ) { }
 
   public ngOnInit(): void {
     this.runChecks();
-    this.refresh.onRefresh.subscribe(() => this.runChecks());
+    this.refreshSubscriber = this.refreshHandler.onRefresh.subscribe(() => this.runChecks());
   }
 
   public ngOnDestroy() {
-    if (this.networkChange) {
-      this.networkChange.unsubscribe();
-    }
+    if (this.networkSubscriber) { this.networkSubscriber.unsubscribe(); }
+    if (this.refreshSubscriber) { this.refreshSubscriber.unsubscribe(); }
   }
 
   private runChecks() {
@@ -46,7 +46,7 @@ export class NetworkPanelComponent implements OnInit {
       if (this.network.type === 'none') {
         this.offline = true;
       }
-      this.networkChange = this.network.onchange().subscribe(() => this.updateNetworkStatus());
+      this.networkSubscriber = this.network.onchange().subscribe(() => this.updateNetworkStatus());
     }
   }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { LocateProvider, LocationStatus } from '../../providers/locate/locate';
 
@@ -6,32 +7,38 @@ import { LocateProvider, LocationStatus } from '../../providers/locate/locate';
   selector: 'geolocation-enabled',
   templateUrl: 'geolocation-enabled.html'
 })
-export class GeolocationEnabledComponent implements OnInit {
+export class GeolocationEnabledComponent implements OnInit, OnDestroy {
 
-  public locationMode: LocationStatus;
+  public locStatus: LocationStatus;
+  
+  private locationStatusSubscriber: Subscription;
 
   constructor(
     private locate: LocateProvider
   ) { }
 
   public ngOnInit(): void {
-    this.locate.getLocationStatusAsObservable().subscribe(res => this.locationMode = res);
+    this.locationStatusSubscriber = this.locate.getLocationStatusAsObservable().subscribe(res => this.locStatus = res);
+  }
+
+  public ngOnDestroy(): void {
+    if (this.locationStatusSubscriber) { this.locationStatusSubscriber.unsubscribe() };
   }
 
   public isActive(): boolean {
-    return this.locationMode === LocationStatus.HIGH_ACCURACY;
+    return this.locStatus === LocationStatus.HIGH_ACCURACY;
   }
 
   public isDeactive(): boolean {
-    return this.locationMode === LocationStatus.OFF;
+    return this.locStatus === LocationStatus.OFF;
   }
 
   public isPartial(): boolean {
-    return this.locationMode === LocationStatus.BATTERY_SAVING || this.locationMode === LocationStatus.DEVICE_ONLY;
+    return this.locStatus === LocationStatus.BATTERY_SAVING || this.locStatus === LocationStatus.DEVICE_ONLY;
   }
 
   public isDenied(): boolean {
-    return this.locationMode === LocationStatus.DENIED;
+    return this.locStatus === LocationStatus.DENIED;
   }
 
   public activateHighAccMode() {
