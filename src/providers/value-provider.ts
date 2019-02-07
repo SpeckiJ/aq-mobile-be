@@ -1,9 +1,9 @@
-import { HttpService } from '@helgoland/core';
+import { HttpClient } from '@angular/common/http';
 
 export abstract class ValueProvider {
 
     constructor(
-        protected http: HttpService
+        protected http: HttpClient
     ) { }
 
     protected calculateRequestBbox(latitude: number, longitude: number): string {

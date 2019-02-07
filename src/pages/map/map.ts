@@ -1,15 +1,8 @@
 import './boundary-canvas';
 
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import {
-  DatasetApiInterface,
-  HttpService,
-  ParameterFilter,
-  Phenomenon,
-  Platform,
-  SettingsService,
-  Station,
-} from '@helgoland/core';
+import { DatasetApiInterface, ParameterFilter, Phenomenon, Platform, SettingsService, Station } from '@helgoland/core';
 import { GeoSearchOptions, LayerOptions, MapCache } from '@helgoland/map';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
@@ -135,7 +128,7 @@ export class MapPage {
     protected api: DatasetApiInterface,
     protected cdr: ChangeDetectorRef,
     protected translateSrvc: TranslateService,
-    protected http: HttpService,
+    protected http: HttpClient,
     protected cacheService: CacheService
   ) {
     const settings = this.settingsSrvc.getSettings();
@@ -370,7 +363,7 @@ export class MapPage {
   }
 
   private showLayer() {
-    const request = this.http.client({ forceUpdate: true }).get('./assets/multipolygon.json');
+    const request = this.http.get('./assets/multipolygon.json');
     this.cacheService.loadFromObservable('multipolygon', request, null, 60 * 60 * 24).subscribe((geojson: GeoJSON.GeoJsonObject) => {
       this.overlayMaps = new Map<string, LayerOptions>();
       let layerId: string;

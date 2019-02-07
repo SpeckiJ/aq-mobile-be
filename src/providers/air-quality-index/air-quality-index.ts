@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpService, SettingsService } from '@helgoland/core';
+import { SettingsService } from '@helgoland/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -28,13 +29,13 @@ export interface AirQualityIndex {
 export class AirQualityIndexProvider {
 
   constructor(
-    private http: HttpService,
+    private http: HttpClient,
     private translate: TranslateService,
     private settings: SettingsService<MobileSettings>
   ) { }
 
   public getAirQualityIndex(reload: boolean): Observable<AirQualityEntity> {
-    return this.http.client({ forceUpdate: reload }).get<{ entity: AirQualityEntity }>(this.settings.getSettings().ircelineAQIndexUrl,
+    return this.http.get<{ entity: AirQualityEntity }>(this.settings.getSettings().ircelineAQIndexUrl,
       {
         responseType: 'json',
         params: {

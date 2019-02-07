@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpService } from '@helgoland/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CacheService } from 'ionic-cache';
 import moment from 'moment';
@@ -35,7 +35,7 @@ interface TrendResult {
 export class BelaqiIndexProvider extends ValueProvider {
 
   constructor(
-    http: HttpService,
+    http: HttpClient,
     private modelledValueProvider: ModelledValueProvider,
     private categorizeValueToIndex: CategorizeValueToIndexProvider,
     private translate: TranslateService,
@@ -65,7 +65,7 @@ export class BelaqiIndexProvider extends ValueProvider {
       params['time'] = time.toISOString();
     }
 
-    let request = this.http.client({ forceUpdate: true }).get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
+    let request = this.http.get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
       {
         responseType: 'json',
         params: params
@@ -266,7 +266,7 @@ export class BelaqiIndexProvider extends ValueProvider {
     let trendUrl = 'https://www.irceline.be/tables/forecast/model/trend.php';
     return new Observable((observer: Observer<TrendResult>) => {
       this.ircelineSettings.getSettings().subscribe(settings => {
-        const request = this.http.client().get<TrendResult>(trendUrl);
+        const request = this.http.get<TrendResult>(trendUrl);
         this.cacheService.loadFromObservable(trendUrl, request).subscribe(
           res => {
             res["latest observations"].o3.forEach(e => e[0] = moment(e[0]).toDate());

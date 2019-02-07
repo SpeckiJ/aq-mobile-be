@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   HttpRequestOptions,
@@ -22,7 +23,8 @@ export class CustomDatasetApiInterface extends SplittedDataDatasetApiInterface {
     protected internalDatasetId: InternalIdHandler,
     protected translate: TranslateService,
     protected cacheService: CacheService,
-    protected ircelineSettings: IrcelineSettingsProvider
+    protected ircelineSettings: IrcelineSettingsProvider,
+    protected http: HttpClient
   ) {
     super(httpservice, internalDatasetId, translate);
   }
@@ -44,7 +46,7 @@ export class CustomDatasetApiInterface extends SplittedDataDatasetApiInterface {
     options.forceUpdate = true;
     return new Observable((observer: Observer<T>) => {
       this.ircelineSettings.getSettings().subscribe(settings => {
-        const request = this.httpService.client(options).get<T>(url, {
+        const request = this.http.get<T>(url, {
           params: this.prepareParams(params),
           headers: this.createBasicAuthHeader(options.basicAuthToken)
         })

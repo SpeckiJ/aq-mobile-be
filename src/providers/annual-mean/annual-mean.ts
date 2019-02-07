@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpService } from '@helgoland/core';
 import { CacheService } from 'ionic-cache';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -23,7 +23,7 @@ const TTL_ANNUAL_YEAR_REQUEST = 60 * 60 * 24; // one day
 export class AnnualMeanProvider extends ValueProvider {
 
   constructor(
-    public http: HttpService,
+    public http: HttpClient,
     public belaqi: BelaqiIndexProvider,
     private cacheService: CacheService
   ) {
@@ -31,7 +31,7 @@ export class AnnualMeanProvider extends ValueProvider {
   }
 
   public getYear(): Observable<string> {
-    let request = this.http.client({ forceUpdate: true }).get(ANNUAL_MEAN_URL, { responseType: 'text' });
+    let request = this.http.get(ANNUAL_MEAN_URL, { responseType: 'text' });
     return this.cacheService.loadFromObservable(ANNUAL_MEAN_URL, request, null, TTL_ANNUAL_YEAR_REQUEST).pipe(
       map(res => {
         const framechar = '\'';
@@ -67,7 +67,7 @@ export class AnnualMeanProvider extends ValueProvider {
       Y: '1'
     };
 
-    let request = this.http.client().get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
+    let request = this.http.get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
       {
         responseType: 'json',
         params: params

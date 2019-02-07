@@ -78,7 +78,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
     HelgolandDatasetlistModule,
-    HelgolandCachingModule,
     HelgolandMapViewModule,
     HelgolandD3Module,
     TranslateModule.forRoot({

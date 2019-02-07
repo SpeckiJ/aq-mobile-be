@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpService } from '@helgoland/core';
 import { CacheService } from 'ionic-cache';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,7 +18,7 @@ enum ModelledPhenomenon {
 export class ModelledValueProvider extends ValueProvider {
 
   constructor(
-    public http: HttpService,
+    public http: HttpClient,
     private cacheService: CacheService
   ) {
     super(http);
@@ -43,7 +43,7 @@ export class ModelledValueProvider extends ValueProvider {
       X: '1',
       Y: '1'
     };
-    let request = this.http.client({ forceUpdate: true }).get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url, { params });
+    let request = this.http.get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url, { params });
     let cacheKey = url + "_" + JSON.stringify(params) + params.time;
     return this.cacheService.loadFromObservable(cacheKey, request).pipe(
       map(res => {
