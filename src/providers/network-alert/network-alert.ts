@@ -43,12 +43,14 @@ export class NetworkAlertProvider {
   }
 
   private showAlertDialog() {
-    this.alert = this.alertCtrl.create({
-      title: this.translate.instant('no-network-connection.header'),
-      message: this.translate.instant('no-network-connection.body'),
-      enableBackdropDismiss: false,
-      buttons: [this.translate.instant('no-network-connection.close')]
-    });
-    this.alert.present();
+    this.translate.get('no-network-connection.header').subscribe(res => {
+      this.alert = this.alertCtrl.create({
+        title: this.translate.instant('no-network-connection.header'),
+        message: this.translate.instant('no-network-connection.body'),
+        enableBackdropDismiss: false,
+        buttons: [this.translate.instant('no-network-connection.close')]
+      });
+      this.alert.present();
+    })
   }
 }
