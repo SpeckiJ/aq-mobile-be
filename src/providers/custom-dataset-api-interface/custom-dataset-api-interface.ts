@@ -43,6 +43,16 @@ export class CustomDatasetApiInterface extends SplittedDataDatasetApiInterface {
     ));
   }
 
+  public getSingleTimeseries(id: string, apiUrl: string, params?: ParameterFilter): Observable<Timeseries> {
+    const url = this.createRequestUrl(apiUrl, 'timeseries', id);
+    return this.requestApi(url, params).pipe(map((result: any) => {
+      const timeseries = this.createInstanceFromJson(Timeseries, result);
+      timeseries.url = apiUrl;
+      this.internalDatasetId.generateInternalId(timeseries);
+      return timeseries;
+    }));
+  }
+
   protected requestApi<T>(url: string, params: ParameterFilter = {}, options: HttpRequestOptions = {}): Observable<T> {
     options.forceUpdate = true;
     return new Observable((observer: Observer<T>) => {
@@ -58,5 +68,26 @@ export class CustomDatasetApiInterface extends SplittedDataDatasetApiInterface {
         );
       });
     });
+  }
+
+  private createInstanceFromJson<T>(objType: { new(): T; }, json: any): T {
+    const newObj = new objType();
+    const relationships = objType["relationships"] || {};
+    for (const prop in json) {
+      if (json.hasOwnProperty(prop)) {
+        if (newObj[prop] == null) {
+          if (relationships[prop] == null) {
+            newObj[prop] = json[prop];
+          }
+          else {
+            newObj[prop] = this.createInstanceFromJson(relationships[prop], json[prop]);
+          }
+        }
+        else {
+          console.warn(`Property ${prop} not set because it already existed on the object.`);
+        }
+      }
+    }
+    return newObj;
   }
 }
