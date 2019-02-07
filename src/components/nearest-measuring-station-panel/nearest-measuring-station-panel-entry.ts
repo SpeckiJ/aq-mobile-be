@@ -43,6 +43,9 @@ export class NearestMeasuringStationPanelEntryComponent implements OnChanges {
   @Output()
   public onClicked: EventEmitter<PhenomenonLocationSelection> = new EventEmitter<PhenomenonLocationSelection>();
 
+  @Output()
+  public onReady: EventEmitter<void> = new EventEmitter();
+
   constructor(
     private statusIntervalResolver: StatusIntervalResolverService,
     protected nearestTimeseries: NearestTimeseriesProvider,
@@ -83,8 +86,10 @@ export class NearestMeasuringStationPanelEntryComponent implements OnChanges {
         this.uom = nearestSeries.series.uom;
       }
       this.loadingStationValue = false;
+      this.onReady.emit();
     }, (error) => {
       this.loadingStationValue = false;
+      this.onReady.emit();
     });
   }
 

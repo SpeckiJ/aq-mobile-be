@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { PopoverController } from 'ionic-angular';
 
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
@@ -13,10 +13,13 @@ interface PanelEntry {
   selector: 'nearest-measuring-station-panel',
   templateUrl: 'nearest-measuring-station-panel.html'
 })
-export class NearestMeasuringStationPanelComponent {
+export class NearestMeasuringStationPanelComponent implements OnChanges {
 
   @Output()
   public onSelect: EventEmitter<string> = new EventEmitter();
+
+  @Output()
+  public onReady: EventEmitter<void> = new EventEmitter();
 
   @Input()
   public location: UserLocation;
@@ -44,9 +47,17 @@ export class NearestMeasuringStationPanelComponent {
     }
   ];
 
+  private readyCounter: number;
+
   constructor(
     private popoverCtrl: PopoverController
   ) { }
+
+  public ngOnChanges(changes: SimpleChanges) {
+    if (changes.location) {
+      this.readyCounter = this.entries.length;
+    }
+  }
 
   public select(id: string) {
     this.onSelect.emit(id);
@@ -54,6 +65,13 @@ export class NearestMeasuringStationPanelComponent {
 
   public presentPopover(myEvent) {
     this.popoverCtrl.create(NearestMeasuringStationPanelInformationPopupComponent).present({ ev: myEvent });
+  }
+
+  public entryReady() {
+    this.readyCounter--;
+    if (this.readyCounter === 0) {
+      this.onReady.emit();
+    }
   }
 
 }
