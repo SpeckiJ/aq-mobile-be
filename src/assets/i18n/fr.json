@@ -293,8 +293,8 @@
       "edit-location": "Modifier la localisation",
       "header": "Localisations",
       "show-location-list": "Voir les localisations",
-			"show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
-			"show-nearest-stations": ""
+      "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
+      "show-nearest-stations": ""
     }
   },
   "show-geometry": {
@@ -312,6 +312,9 @@
     "generalize": "Généraliser les données",
     "header": "Changer le style de cette série",
     "zeroBasedYAxe": "Axe Y à zéro"
+  },
+  "sub-index-panel": {
+    "header": ""
   },
   "user-location-list": {
     "header": "Liste des localisations"

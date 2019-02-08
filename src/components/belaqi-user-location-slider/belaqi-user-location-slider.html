@@ -7,8 +7,11 @@
       <div class="chart">
         <belaqi-chart [location]="loc" (onReady)="resizeSlide()"></belaqi-chart>
       </div>
+      <div>
+        <sub-index-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc)"></sub-index-panel>
+      </div>
       <div *ngIf="showNearestStationsPanel">
-        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenon($event, loc)" (onReady)="resizeSlide()"></nearest-measuring-station-panel>
+        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenonLocation($event, loc)" (onReady)="resizeSlide()"></nearest-measuring-station-panel>
       </div>
     </div>
     <div *ngIf="!currentLocationError && !loc.latitude" style="height: 300px;">

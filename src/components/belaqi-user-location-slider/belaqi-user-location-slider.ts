@@ -22,8 +22,12 @@ export interface HeaderContent {
 }
 
 export interface BelaqiSelection {
-  phenomenonStation: PhenomenonLocationSelection,
-  location: {
+  stationlocation?: {
+    longitude: number;
+    latitude: number;
+  }
+  phenomenonID: string;
+  userlocation: {
     longitude: number;
     latitude: number;
     label: string;
@@ -93,16 +97,32 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     }
   }
 
-  public selectPhenomenon(selection: PhenomenonLocationSelection, userlocation: UserLocation) {
+  public selectPhenomenonLocation(selection: PhenomenonLocationSelection, userlocation: UserLocation) {
     this.phenomenonSelected.emit({
-      phenomenonStation: selection,
-      location: {
+      phenomenonID: selection.phenomenonId,
+      stationlocation: {
+        latitude: selection.latitude,
+        longitude: selection.longitude
+      },
+      userlocation: {
         latitude: userlocation.latitude,
         longitude: userlocation.longitude,
         label: userlocation.label,
         type: userlocation.type
       }
     });
+  }
+
+  public selectPhenomenon(phenId: string, userlocation: UserLocation) {
+    this.phenomenonSelected.emit({
+      phenomenonID: phenId,
+      userlocation: {
+        latitude: userlocation.latitude,
+        longitude: userlocation.longitude,
+        label: userlocation.label,
+        type: userlocation.type
+      }
+    })
   }
 
   public createNewLocation() {

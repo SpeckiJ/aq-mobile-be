@@ -313,6 +313,9 @@
     "header": "Zeitreihenerscheinung ändern",
     "zeroBasedYAxe": "Zeitreihe null-basiert"
   },
+  "sub-index-panel": {
+    "header": "Phänomenindex an diesem Standort"
+  },
   "user-location-list": {
     "header": "Standortliste"
   },
