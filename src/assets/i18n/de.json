@@ -293,7 +293,8 @@
       "edit-location": "Editiere Standort",
       "header": "Nutzer Standorte",
       "show-location-list": "Zeige vorhandene Standorte",
-      "show-nearest-series-by-default": "Zeige nächste Messungen im Diagram"
+      "show-nearest-series-by-default": "Zeige nächste Messungen im Diagram",
+      "show-nearest-stations": "Zeige nächste Stationen auf der Startseite"
     }
   },
   "show-geometry": {

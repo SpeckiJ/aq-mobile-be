@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalController, NavController, PopoverController, Slides, Toggle } from 'ionic-angular';
+import { Subscription } from 'rxjs';
 
 import { SettingsPage } from '../../pages/settings/settings';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
@@ -30,13 +31,11 @@ export interface BelaqiSelection {
   }
 }
 
-// const LOCATION_DELAYED_NOTIFICATION_IN_MILLISECONDS = 3000;
-
 @Component({
   selector: 'belaqi-user-location-slider',
   templateUrl: 'belaqi-user-location-slider.html'
 })
-export class BelaqiUserLocationSliderComponent implements AfterViewInit {
+export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('slider')
   slider: Slides;
@@ -56,9 +55,9 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
 
   public currentLocationError: string;
 
-  public waitForWheel: boolean;
-  public waitForChart: boolean;
-  public waitForNearestStations: boolean;
+  public showNearestStationsPanel: boolean;
+  private showNearestStationsSubscriber: Subscription;
+
 
   constructor(
     private userLocationProvider: UserLocationListProvider,
@@ -73,16 +72,21 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     private popoverCtrl: PopoverController
   ) {
     this.locate.getLocationStatusAsObservable().subscribe(locationStatus => {
-      if (locationStatus != LocationStatus.DENIED) {
+      if (locationStatus !== LocationStatus.DENIED) {
         this.loadBelaqis();
       }
     });
     this.refresher.onRefresh.subscribe(() => this.loadBelaqis());
     this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis());
     this.networkAlert.onConnected.subscribe(() => this.loadBelaqis());
+    this.showNearestStationsSubscriber = this.userLocationProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
   }
 
-  public ngAfterViewInit(): void {
+  public ngOnDestroy() {
+    this.showNearestStationsSubscriber.unsubscribe();
+  }
+
+  public ngAfterViewInit() {
     this.setHeight();
     if (this.slider) {
       this.slider.autoHeight = true;
@@ -168,9 +172,6 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
 
   private loadBelaqis() {
     if (this.userLocationProvider.hasLocations()) {
-      this.waitForChart = true;
-      this.waitForWheel = true;
-      this.waitForNearestStations = true;
       this.currentLocationError = null;
       const previousActiveIndex = this.slider.getActiveIndex();
       this.ircelineSettings.getSettings(false).subscribe(ircelineSettings => {
@@ -233,29 +234,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit {
     }
   }
 
-  public wheelReady() {
-    this.waitForWheel = false;
-    this.resizeSlide();
-  }
-
-  public chartReady() {
-    this.waitForChart = false;
-    this.resizeSlide();
-  }
-
-  public nearestStationsReady() {
-    this.waitForNearestStations = false;
-    this.resizeSlide();
-  }
-
-  private allReady(): boolean {
-    return !this.waitForChart && !this.waitForNearestStations && !this.waitForWheel;
-  }
-
-  private resizeSlide() {
-    if (this.allReady()) {
-      document.querySelector('.swiper-wrapper')['style'].height = 'auto';
-    }
+  public resizeSlide() {
+    document.querySelector('.swiper-wrapper')['style'].height = 'auto';
   }
 
 }

@@ -293,7 +293,8 @@
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
-      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram"
+			"show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
+			"show-nearest-stations": ""
     }
   },
   "show-geometry": {

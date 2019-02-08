@@ -293,7 +293,8 @@
       "edit-location": "Modifier la localisation",
       "header": "Localisations",
       "show-location-list": "Voir les localisations",
-      "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique"
+			"show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
+			"show-nearest-stations": ""
     }
   },
   "show-geometry": {
