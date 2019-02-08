@@ -1,0 +1,8 @@
+<ion-grid no-padding>
+  <ion-row class="header">
+    <ion-col text-center text-wrap>{{'sub-index-panel.header' | translate}}</ion-col>
+  </ion-row>
+  <ion-row nowrap>
+    <ion-col *ngFor="let entry of entries" sub-index-panel-entry [entry]="entry" [location]="location" (onSelect)="select($event)" (onReady)="entryReady()"></ion-col>
+  </ion-row>
+</ion-grid>

@@ -13,6 +13,7 @@ export interface MobileSettings extends Settings {
     personalAlert: PersonalAlert[];
     colorizedMarkerForLastMilliseconds: number;
     nearestStationTimeBufferInMillseconds: number;
+    limitOfAllowedUserLocations: number;
 }
 
 export interface PersonalAlert {
@@ -39,6 +40,7 @@ export class JSSONSettingsService extends SettingsService<MobileSettings> {
         super();
         const settings: MobileSettings = require('../../assets/settings.json');
         if (settings.clusterStationsOnMap === undefined) { settings.clusterStationsOnMap = true };
+        if (settings.limitOfAllowedUserLocations === undefined) { settings.limitOfAllowedUserLocations = 5 };
         this.setSettings(settings);
     }
 

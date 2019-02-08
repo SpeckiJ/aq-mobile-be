@@ -1,20 +1,19 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { PopoverController } from 'ionic-angular';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 import { PhenomenonSeriesID } from '../../model/phenomenon';
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
-import { NearestMeasuringStationPanelInformationPopupComponent } from './nearest-measuring-station-panel-information-popup';
 
-interface PanelEntry {
-  label: string;
-  id: string;
+export interface SubIndexEntry {
+  label: string,
+  id: string,
+  index?: string
 }
 
 @Component({
-  selector: 'nearest-measuring-station-panel',
-  templateUrl: 'nearest-measuring-station-panel.html'
+  selector: 'sub-index-panel',
+  templateUrl: 'sub-index-panel.html'
 })
-export class NearestMeasuringStationPanelComponent implements OnChanges {
+export class SubIndexPanelComponent {
 
   @Output()
   public onSelect: EventEmitter<string> = new EventEmitter();
@@ -25,11 +24,7 @@ export class NearestMeasuringStationPanelComponent implements OnChanges {
   @Input()
   public location: UserLocation;
 
-  public entries: PanelEntry[] = [
-    {
-      label: 'BC',
-      id: PhenomenonSeriesID.BC
-    },
+  public entries: SubIndexEntry[] = [
     {
       label: 'NO2',
       id: PhenomenonSeriesID.NO2
@@ -50,9 +45,7 @@ export class NearestMeasuringStationPanelComponent implements OnChanges {
 
   private readyCounter: number;
 
-  constructor(
-    private popoverCtrl: PopoverController
-  ) { }
+  constructor() { }
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.location) {
@@ -62,10 +55,6 @@ export class NearestMeasuringStationPanelComponent implements OnChanges {
 
   public select(id: string) {
     this.onSelect.emit(id);
-  }
-
-  public presentPopover(myEvent) {
-    this.popoverCtrl.create(NearestMeasuringStationPanelInformationPopupComponent).present({ ev: myEvent });
   }
 
   public entryReady() {

@@ -60,6 +60,8 @@ import { PushNotificationComponent } from './push-notification/push-notification
 import { RefreshButtonComponent } from './refresh-button/refresh-button';
 import { SimpleLegendEntryComponent } from './simple-legend-entry/simple-legend-entry';
 import { StationSelectorComponent } from './station-selector/station-selector';
+import { SubIndexPanelComponent } from './sub-index-panel/sub-index-panel';
+import { SubIndexPanelEntryComponent } from './sub-index-panel/sub-index-panel-entry';
 import { UserLocationCreationComponent } from './user-location-creation/user-location-creation';
 
 @NgModule({
@@ -110,6 +112,8 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		RefreshButtonComponent,
 		SimpleLegendEntryComponent,
 		StationSelectorComponent,
+		SubIndexPanelComponent,
+		SubIndexPanelEntryComponent,
 		UserLocationCreationComponent,
 	],
 	imports: [
@@ -169,6 +173,8 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		RefreshButtonComponent,
 		SimpleLegendEntryComponent,
 		StationSelectorComponent,
+		SubIndexPanelComponent,
+		SubIndexPanelEntryComponent,
 		UserLocationCreationComponent,
 	],
 	entryComponents: [

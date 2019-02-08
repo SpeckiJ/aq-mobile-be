@@ -1,25 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ModalController } from 'ionic-angular';
+import { Subscription } from 'rxjs';
 
 import {
-    ModalUserLocationCreationComponent,
+  ModalUserLocationCreationComponent,
 } from '../../../components/modal-user-location-creation/modal-user-location-creation';
 import { ModalUserLocationListComponent } from '../../../components/modal-user-location-list/modal-user-location-list';
 import { LocatedTimeseriesService } from '../../../providers/timeseries/located-timeseries';
+import { UserLocationListProvider } from '../../../providers/user-location-list/user-location-list';
 
 @Component({
   selector: 'user-locations-settings',
   templateUrl: 'user-locations-settings.html'
 })
-export class UserLocationsSettingsComponent {
+export class UserLocationsSettingsComponent implements OnDestroy {
 
   public nearestSeriesByDefault: boolean;
+  public showNearestStations: boolean;
+  private showNearestStationsSubscriber: Subscription;
 
   constructor(
     protected modalCtrl: ModalController,
-    protected locatedTsSrvc: LocatedTimeseriesService
+    protected locatedTsSrvc: LocatedTimeseriesService,
+    protected userLocationListProvider: UserLocationListProvider
   ) {
     this.nearestSeriesByDefault = this.locatedTsSrvc.getShowNearestSeriesByDefault();
+    this.showNearestStationsSubscriber = this.userLocationListProvider.getShowNearestStations()
+      .subscribe(val => this.showNearestStations = val);
+  }
+
+  public ngOnDestroy() {
+    this.showNearestStationsSubscriber.unsubscribe();
   }
 
   public createNewLocation() {
@@ -32,6 +43,10 @@ export class UserLocationsSettingsComponent {
 
   public toggleNearestSeries() {
     this.locatedTsSrvc.setShowNearestSeriesByDefault(this.nearestSeriesByDefault);
+  }
+
+  public toggleShowNearestStations() {
+    this.userLocationListProvider.setShowNearestStations(this.showNearestStations);
   }
 
 
