@@ -21,18 +21,17 @@
 	"belaqi-user-location-slider": {
 		"create-new-location": "Ajouter une nouvelle localisation",
 		"current-location": "Localisation actuelle",
-		"current-location-description": "Activez cette option pour afficher les données sur la qualité de l’air pour votre position actuelle.",
-		"current-location-error-1": "Vous pouvez modifier les paramètres du service de localisation de votre appareil en mode haute précision.",
-		"current-location-error-2": "Si vous avez précédemment configuré des localisations personnalisées, ceux-ci devraient être disponibles en glissant cet écran vers la gauche.",
-		"current-location-error-3": "Sinon, vous pouvez configurer un emplacement manuellement:",
+		"current-location-description": "Activez cette option pour afficher les données de qualité de l’air pour votre position actuelle.",
+		"current-location-error-1": "Vous pouvez modifier les paramètres du service de localisation de votre appareil pour une plus grande précision.",
+		"current-location-error-3": "Vous pouvez configurer une localisation manuellement:",
 		"current-location-error-header": "Votre appareil n'a pas pu établir votre position actuelle.",
 		"loading-current-location": "Votre appareil cherche actuellement votre position",
 		"locate-delayed-information": "Votre appareil n'a pas pu établir votre position actuelle.",
 		"open-user-location": "Modifier les localisations"
 	},
 	"belaqi-wheel": {
-		"error-occured": "Il faut plus de temps que d'habitude pour récupérer les données. Veuillez réessayer plus tard.",
-		"loading": "En train de charger l'index BelAQI ...",
+		"error-occured": "La récupération des données prend trop de temps. Veuillez réessayer plus tard.",
+		"loading": "Chargement de l'indice BelAQI ...",
 		"modelled-hint": "Indice de qualité de l'air modélisé pour cette position",
 		"no-index-ascertained": "Aucun indice BelAQI n'a pu être déterminé. Cela peut être le cas si votre localisation n'est pas en Belgique."
 	},
@@ -91,10 +90,10 @@
 	"customize-personal-alerts": {
 		"active": "Activer",
 		"alert-index-level": "Notification à partir de l'indice BelAQI",
-		"alert-period": "Intervalle de vérification d'alerte",
+		"alert-period": "Intervalle de vérification de dépassement",
 		"alert-sensitive-active": "Conseils de santé pour les personnes sensibles à la pollution de l'air",
-		"header": "Alertes personnalisées",
-		"hint": "Pour utiliser cette fonctionnalité, l'application doit continuer à fonctionner en arrière-plan. Votre emplacement n'est déterminé qu'une fois pour l'intervalle de vérification choisi si vous souhaitez que la qualité de l'air soit vérifiée pour votre emplacement actuel. Tous les emplacements configurés personnellement seront également vérifiés."
+		"header": "Notifications personnalisées",
+		"hint": "Pour utiliser cette fonctionnalité, l'application doit continuer à fonctionner en arrière-plan. Les dépassements des seuils définis seront vérifiés pour les localisations configurées à la fin de chaque intervalle de vérification défini."
 	},
 	"diagram": {
 		"header": "Graphique",
@@ -157,7 +156,7 @@
 	"map": {
 		"configured-location": "Votre position configurée",
 		"current-location": "Votre position actuelle",
-		"dataset-selection-hint": "Veuillez sélectionner une ou plusieurs séries à afficher",
+		"dataset-selection-hint": "Veuillez sélectionner un ou plusieurs polluants à afficher",
 		"error": "Une erreur s'est produite. Il n'est pas possible de déterminer les données pour le polluant sélectionné.",
 		"geosearch": {
 			"placeholder": "Recherche la localisation ..."
@@ -197,7 +196,7 @@
 		"show-nearest-series": "Afficher les mesures les plus proches"
 	},
 	"network": {
-		"geolocationDenied": "Vous n'avez pas autorisé l'utilisation de votre position sur l'application.",
+		"geolocationDenied": "Vous n'avez pas autorisé l'utilisation de votre géolocalisation dans l'application.",
 		"geolocationDeniedExplanation": "Si vous souhaitez utiliser les fonctionnalités \"position actuelle\", vous pouvez activer le service de localisation de votre appareil ici.",
 		"geolocationDisabled": "La géolocalisation est désactivée",
 		"geolocationDisabledExplanation": "Si vous souhaitez utiliser les fonctionnalités \"position actuelle\", activez le service de localisation de votre appareil.",
@@ -209,7 +208,7 @@
 		"online": "Votre appareil est online"
 	},
 	"no-network-connection": {
-		"body": "Votre appareil n'a pas de connexion réseau de données. L'application BelAir dépend énormément des nouvelles données extraites de nos serveurs. Activez un réseau de données (données mobiles ou connexion wifi) et actualisez l'application ou essayez à nouveau lorsque vous êtes à portée d'un réseau de données auquel vous avez accès.",
+		"body": "Votre appareil n'a pas de connexion réseau. L'application BelAir dépend des nouvelles données extraites de nos serveurs. Veuillez active votre connexion aux données mobiles ou à un réseau wifi et actualiser l'application.",
 		"close": "Fermer",
 		"header": "Pas de connexion de données"
 	},
@@ -276,8 +275,8 @@
 		"message": "Actualiser"
 	},
 	"refresh": {
-		"pull-message": "Tirer pour rafraîchir",
-		"progress": "occupé à rafraîchir"
+		"pull-message": "Glissez l'écran vers le bas pour actualiser",
+		"progress": "actualisation"
 	},
 	"settings": {
 		"about": {
@@ -301,7 +300,7 @@
 		}
 	},
 	"show-geometry": {
-		"header": "Position de la station"
+		"header": "Localisation de la station"
 	},
 	"start": {
 		"forecast-map": {
