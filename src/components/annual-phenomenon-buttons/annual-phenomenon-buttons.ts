@@ -31,11 +31,11 @@ export class AnnualPhenomenonButtonsComponent implements OnInit {
       this.annualMeanProvider.getYear().subscribe(year => {
         const lat = this.location.coordinates[1];
         const lon = this.location.coordinates[0];
-        this.setColor(lat, lon, year, AnnualPhenomenonMapping.NO2).subscribe(c => this.colorNO2 = c);
-        this.setColor(lat, lon, year, AnnualPhenomenonMapping.BC).subscribe(c => this.colorBC = c);
-        this.setColor(lat, lon, year, AnnualPhenomenonMapping.O3).subscribe(c => this.colorO3 = c);
-        this.setColor(lat, lon, year, AnnualPhenomenonMapping.PM10).subscribe(c => this.colorPM10 = c);
-        this.setColor(lat, lon, year, AnnualPhenomenonMapping.PM25).subscribe(c => this.colorPM25 = c);
+        this.setColor(lat, lon, year, AnnualPhenomenonMapping.NO2).subscribe(c => this.colorNO2 = c, () => this.colorNO2 = '');
+        this.setColor(lat, lon, year, AnnualPhenomenonMapping.BC).subscribe(c => this.colorBC = c, () => this.colorBC = '');
+        this.setColor(lat, lon, year, AnnualPhenomenonMapping.O3).subscribe(c => this.colorO3 = c, () => this.colorO3 = '');
+        this.setColor(lat, lon, year, AnnualPhenomenonMapping.PM10).subscribe(c => this.colorPM10 = c, () => this.colorPM10 = '');
+        this.setColor(lat, lon, year, AnnualPhenomenonMapping.PM25).subscribe(c => this.colorPM25 = c, () => this.colorPM25 = '');
       });
     }
   }
