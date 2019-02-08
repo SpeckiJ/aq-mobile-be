@@ -297,8 +297,8 @@
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
-			"show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
-			"show-nearest-stations": ""
+      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
+      "show-nearest-stations": ""
     }
   },
   "show-geometry": {
@@ -316,6 +316,9 @@
     "generalize": "gegeneraliseerde gegevens",
     "header": "Verander de kleur van de tijdsreeks",
     "zeroBasedYAxe": "tijdsreeks nul gebaseerd"
+  },
+  "sub-index-panel": {
+    "header": ""
   },
   "user-location-list": {
     "header": "Lijst van de locaties"

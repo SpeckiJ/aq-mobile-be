@@ -317,6 +317,9 @@
 		"header": "Changer le style de cette série",
 		"zeroBasedYAxe": "Axe Y à zéro"
 	},
+  "sub-index-panel": {
+    "header": ""
+  },
 	"user-location-list": {
 		"header": "Liste des localisations"
 	},

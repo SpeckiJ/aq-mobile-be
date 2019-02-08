@@ -143,7 +143,7 @@ export class MapPage {
     this.belaqiSelection = this.navParams.get('belaqiSelection') as BelaqiSelection;
 
     if (this.belaqiSelection) {
-      const phenId = this.belaqiSelection.phenomenonStation.phenomenonId;
+      const phenId = this.belaqiSelection.phenomenonID;
       this.phenomenonLabel = this.getPhenomenonLabel(phenId);
     } else {
       this.phenomenonLabel = PhenomenonLabel.BelAQI;
@@ -165,19 +165,25 @@ export class MapPage {
       const map = this.mapCache.getMap(this.mapId);
       const selection = this.navParams.get('belaqiSelection') as BelaqiSelection;
       if (selection) {
-        const station = { lat: selection.phenomenonStation.latitude, lng: selection.phenomenonStation.longitude } as LatLngExpression;
-        const location = { lat: selection.location.latitude, lng: selection.location.longitude } as LatLngExpression;
-        this.nextStationPopup = popup({ autoPan: false })
-          .setLatLng(station)
-          .setContent(this.translateSrvc.instant('map.nearest-station'));
-        map.addLayer(this.nextStationPopup);
-        const label = selection.location.type === 'user' ? this.translateSrvc.instant('map.configured-location') : this.translateSrvc.instant('map.current-location');
+        const location = { lat: selection.userlocation.latitude, lng: selection.userlocation.longitude } as LatLngExpression;
+        const label = selection.userlocation.type === 'user' ? this.translateSrvc.instant('map.configured-location') : this.translateSrvc.instant('map.current-location');
         map.addLayer(
           popup({ autoPan: false })
             .setLatLng(location)
             .setContent(label)
         )
-        map.fitBounds(latLngBounds(station, station).extend(location), { padding: [70, 70] });
+        const bounds = latLngBounds(location, location);
+
+        if (selection.stationlocation) {
+          const station = { lat: selection.stationlocation.latitude, lng: selection.stationlocation.longitude } as LatLngExpression;
+          this.nextStationPopup = popup({ autoPan: false })
+            .setLatLng(station)
+            .setContent(this.translateSrvc.instant('map.nearest-station'));
+          map.addLayer(this.nextStationPopup);
+          bounds.extend(station)
+        }
+
+        map.fitBounds(bounds, { padding: [70, 70], maxZoom: 14 });
       } else {
         map.fitBounds(this.settingsSrvc.getSettings().defaultBbox);
       }

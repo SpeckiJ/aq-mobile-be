@@ -317,6 +317,9 @@
     "header": "Change style of this timeseries",
     "zeroBasedYAxe": "Timeseries zero based"
   },
+  "sub-index-panel": {
+    "header": "Sub index at this location"
+  },
   "user-location-list": {
     "header": "Location list"
   },
