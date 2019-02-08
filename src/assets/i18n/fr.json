@@ -285,8 +285,8 @@
 			"version": "Version"
 		},
 		"clear-cache": {
-			"button": "",
-			"confirm": ""
+			"button": "Vider le cache",
+			"confirm": "Le cache est effacé."
 		},
 		"common": "Paramètres généraux",
 		"header": "Paramètres",
