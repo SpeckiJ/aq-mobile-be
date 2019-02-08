@@ -31,8 +31,6 @@ export interface BelaqiSelection {
   }
 }
 
-// const LOCATION_DELAYED_NOTIFICATION_IN_MILLISECONDS = 3000;
-
 @Component({
   selector: 'belaqi-user-location-slider',
   templateUrl: 'belaqi-user-location-slider.html'
@@ -57,9 +55,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
 
   public currentLocationError: string;
 
-  public waitForWheel: boolean;
-  public waitForChart: boolean;
-  public waitForNearestStations: boolean;
+  public showNearestStationsPanel: boolean;
+  private showNearestStationsSubscriber: Subscription;
 
   private refresherSubscriber: Subscription;
   private locationStatusSubscriber: Subscription;
@@ -78,13 +75,18 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     protected refreshHandler: RefreshHandler,
     private popoverCtrl: PopoverController
   ) {
-    this.locationStatusSubscriber = this.locate.getLocationStatusAsObservable().subscribe(() => this.loadBelaqis(false));
-    this.refresherSubscriber = this.refreshHandler.onRefresh.subscribe(() => this.loadBelaqis(true));
-    this.locChangedSubscriber = this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
-    this.networkSubscriber = this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
+    this.locate.getLocationStatusAsObservable().subscribe(locationStatus => {
+      if (locationStatus !== LocationStatus.DENIED) {
+        this.loadBelaqis(false);
+      }
+    });
+    this.refreshHandler.onRefresh.subscribe(() => this.loadBelaqis(true));
+    this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
+    this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
+    this.showNearestStationsSubscriber = this.userLocationProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     this.setHeight();
     if (this.slider) {
       this.slider.autoHeight = true;
@@ -96,6 +98,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     if (this.locationStatusSubscriber) { this.locationStatusSubscriber.unsubscribe(); }
     if (this.locChangedSubscriber) { this.locChangedSubscriber.unsubscribe(); }
     if (this.networkSubscriber) { this.networkSubscriber.unsubscribe(); }
+    if (this.showNearestStationsSubscriber) { this.showNearestStationsSubscriber.unsubscribe(); }
   }
 
   public selectPhenomenon(selection: PhenomenonLocationSelection, userlocation: UserLocation) {
@@ -177,9 +180,6 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
 
   private loadBelaqis(reload: boolean) {
     if (this.userLocationProvider.hasLocations()) {
-      this.waitForChart = true;
-      this.waitForWheel = true;
-      this.waitForNearestStations = true;
       this.currentLocationError = null;
       const previousActiveIndex = this.slider.getActiveIndex();
       this.ircelineSettings.getSettings(reload).subscribe(ircelineSettings => {
@@ -242,29 +242,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     }
   }
 
-  public wheelReady() {
-    this.waitForWheel = false;
-    this.resizeSlide();
-  }
-
-  public chartReady() {
-    this.waitForChart = false;
-    this.resizeSlide();
-  }
-
-  public nearestStationsReady() {
-    this.waitForNearestStations = false;
-    this.resizeSlide();
-  }
-
-  private allReady(): boolean {
-    return !this.waitForChart && !this.waitForNearestStations && !this.waitForWheel;
-  }
-
-  private resizeSlide() {
-    if (this.allReady()) {
-      document.querySelector('.swiper-wrapper')['style'].height = 'auto';
-    }
+  public resizeSlide() {
+    document.querySelector('.swiper-wrapper')['style'].height = 'auto';
   }
 
 }

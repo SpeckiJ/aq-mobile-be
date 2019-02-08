@@ -297,7 +297,8 @@
       "edit-location": "Editiere Standort",
       "header": "Nutzer Standorte",
       "show-location-list": "Zeige vorhandene Standorte",
-      "show-nearest-series-by-default": "Zeige nächste Messungen im Diagram"
+      "show-nearest-series-by-default": "Zeige nächste Messungen im Diagram",
+      "show-nearest-stations": "Zeige nächste Stationen auf der Startseite"
     }
   },
   "show-geometry": {
@@ -323,10 +324,9 @@
     "creation": {
       "locate-error": "Bei der Standortermittlung ist ein Fehler aufgetreten.",
       "location-mode-off": "Bitte aktivieren sie die Standortermittlung Ihres Geräts.",
-      "message": {
-        "added": "Nutzerstandort erstellt",
-        "exists": "Nutzerstandort existiert bereits"
-      }
+      "limit-reached": "Du kannst nicht mehr als 5 Nutzerstandorte erstellen. Bitte entferne zuvor erstellte.",
+      "message-added": "Nutzerstandort erstellt",
+      "message-exists": "Nutzerstandort existiert bereits"
     }
   }
 }

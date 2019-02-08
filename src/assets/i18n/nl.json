@@ -297,7 +297,8 @@
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
-      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram"
+			"show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
+			"show-nearest-stations": ""
     }
   },
   "show-geometry": {
@@ -323,10 +324,9 @@
     "creation": {
       "locate-error": "Er is een fout opgetreden bij het bepalen van uw huidige locatie.",
       "location-mode-off": "Activeer alstublieft de locatiedienst van uw apparaat.",
-      "message": {
-        "added": "Locatie toegevoegd",
-        "exists": "Locatie bestaat al"
-      }
+      "limit-reached": "",
+      "message-added": "Locatie toegevoegd",
+      "message-exists": "Locatie bestaat al"
     }
   }
 }

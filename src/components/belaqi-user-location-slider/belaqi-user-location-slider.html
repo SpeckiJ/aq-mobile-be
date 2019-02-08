@@ -2,13 +2,13 @@
   <ion-slide *ngFor="let loc of belaqiLocations" [ngStyle]="{'min-height': slidesHeight}">
     <div *ngIf="loc.latitude">
       <div class="wheel">
-        <belaqi-wheel [latitude]="loc.latitude" [longitude]="loc.longitude" (onReady)="wheelReady()"></belaqi-wheel>
+        <belaqi-wheel [latitude]="loc.latitude" [longitude]="loc.longitude" (onReady)="resizeSlide()"></belaqi-wheel>
       </div>
       <div class="chart">
-        <belaqi-chart [location]="loc" (onReady)="chartReady()"></belaqi-chart>
+        <belaqi-chart [location]="loc" (onReady)="resizeSlide()"></belaqi-chart>
       </div>
-      <div>
-        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenon($event, loc)" (onReady)="nearestStationsReady()"></nearest-measuring-station-panel>
+      <div *ngIf="showNearestStationsPanel">
+        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenon($event, loc)" (onReady)="resizeSlide()"></nearest-measuring-station-panel>
       </div>
     </div>
     <div *ngIf="!currentLocationError && !loc.latitude" style="height: 300px;">

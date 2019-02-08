@@ -4,7 +4,7 @@ import { Geoposition } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { Point } from 'geojson';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, ReplaySubject } from 'rxjs';
 
 import { GeoLabelsProvider } from '../geo-labels/geo-labels';
 import { LocateProvider, LocationStatus } from '../locate/locate';
@@ -20,6 +20,7 @@ export interface UserLocation {
 }
 
 const STORAGE_USER_LOCATIONS_KEY = 'userlocation';
+const STORAGE_SHOW_NEAREST_STATIONS_KEY = 'showNearestStations';
 
 @Injectable()
 export class UserLocationListProvider {
@@ -29,6 +30,8 @@ export class UserLocationListProvider {
   public phenomenonIDs = ['391', '8', '7', '5', '6001'];
 
   public locationsChanged: EventEmitter<void> = new EventEmitter();
+
+  private showNearestStationsReplay: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     protected storage: Storage,
@@ -41,6 +44,7 @@ export class UserLocationListProvider {
       this.userLocations = locations || [{ type: 'current', isCurrentVisible: false }];
       this.locationsChanged.emit();
     })
+    this.loadShowNearestStations();
   }
 
   public addUserLocation(label: string, point: Point) {
@@ -104,7 +108,11 @@ export class UserLocationListProvider {
     return this.userLocations.filter(e => (e.type === 'current' && e.isCurrentVisible && this.locationModeAllows()) || e.type === 'user');
   }
 
-  private locationModeAllows(): any {
+  public getLocationListLength(): number {
+    return this.userLocations.filter(e => e.type === 'user').length;
+  }
+
+  private locationModeAllows(): boolean {
     return this.locate.getLocationStatus() !== LocationStatus.DENIED && this.locate.getLocationStatus() !== LocationStatus.OFF;
   }
 
@@ -142,6 +150,22 @@ export class UserLocationListProvider {
     const index = this.userLocations.findIndex(res => res.id === userLocation.id);
     this.userLocations[index] = userLocation;
     this.storeLocations();
+  }
+
+  // show nearest stations
+  public setShowNearestStations(show: boolean) {
+    this.storage.set(STORAGE_SHOW_NEAREST_STATIONS_KEY, show);
+    this.showNearestStationsReplay.next(show);
+  }
+
+  public getShowNearestStations(): Observable<boolean> {
+    return this.showNearestStationsReplay.asObservable();
+  }
+
+  private loadShowNearestStations() {
+    this.storage.get(STORAGE_SHOW_NEAREST_STATIONS_KEY)
+      .then(res => this.showNearestStationsReplay.next(res))
+      .catch(error => console.error(error))
   }
 
   private storeLocations() {
