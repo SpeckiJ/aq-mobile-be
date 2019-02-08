@@ -55,29 +55,17 @@ export class UserLocationCreationComponent {
   }
 
   public getCurrentLocation() {
-    // const locationMode = this.locate.getLocationStatus();
-    // if (locationMode === LocationStatus.OFF) {
-    //   this.toast.create(
-    //     {
-    //       message: this.translate.instant('user-location.creation.location-mode-off'),
-    //       duration: 3000
-    //     }).present();
-    // } else {
     this.loadCurrentLocation = true;
     this.resetLocation();
-    // console.error(`Try get current location`);
     this.locate.determineGeoLocation(true).subscribe(location => {
-      // console.error(`Get Location ${location}`);
       const lat = parseFloat(location.lat);
       const lon = parseFloat(location.lon);
       this.location = { type: 'Point', coordinates: [lon, lat] }
       this.locationLabel = this.geolabels.createLabelOfReverseResult(location);
       this.loadCurrentLocation = false;
     }, (error) => {
-      // console.error(`Error: ${error}`);
       this.loadCurrentLocation = false;
     })
-    // }
   }
 
   public resetLocation() {
@@ -86,17 +74,13 @@ export class UserLocationCreationComponent {
   }
 
   public addLocationToList() {
-    if (this.locationList.hasLocation(this.locationLabel, this.location)) {
-      this.toast.create(
-        {
-          message: this.translate.instant('user-location.creation.message.exists'),
-          duration: 3000
-        }).present();
+    if (this.locationList.getLocationListLength() >= this.settingsSrvc.getSettings().limitOfAllowedUserLocations) {
+      this.toast.create({ message: this.translate.instant('user-location.creation.limit-reached'), duration: 5000 }).present();
+    } else if (this.locationList.hasLocation(this.locationLabel, this.location)) {
+      this.toast.create({ message: this.translate.instant('user-location.creation.message-exists'), duration: 3000 }).present();
     } else {
-      this.locationList.addUserLocation(this.locationLabel, this.location); this.toast.create({
-        message: this.translate.instant('user-location.creation.message.added'),
-        duration: 3000
-      }).present();
+      this.locationList.addUserLocation(this.locationLabel, this.location);
+      this.toast.create({ message: this.translate.instant('user-location.creation.message-added'), duration: 3000 }).present();
     }
   }
 

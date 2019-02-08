@@ -104,7 +104,11 @@ export class UserLocationListProvider {
     return this.userLocations.filter(e => (e.type === 'current' && e.isCurrentVisible && this.locationModeAllows()) || e.type === 'user');
   }
 
-  private locationModeAllows(): any {
+  public getLocationListLength(): number {
+    return this.userLocations.filter(e => e.type === 'user').length;
+  }
+
+  private locationModeAllows(): boolean {
     return this.locate.getLocationStatus() !== LocationStatus.DENIED && this.locate.getLocationStatus() !== LocationStatus.OFF;
   }
 

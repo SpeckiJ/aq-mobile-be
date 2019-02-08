@@ -167,5 +167,6 @@
         }
       }]
     }
-  ]
+  ],
+  "limitOfAllowedUserLocations": 5
 }
