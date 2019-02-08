@@ -23,6 +23,7 @@
 		"current-location": "Localisation actuelle",
 		"current-location-description": "Activez cette option pour afficher les données de qualité de l’air pour votre position actuelle.",
 		"current-location-error-1": "Vous pouvez modifier les paramètres du service de localisation de votre appareil pour une plus grande précision.",
+		"current-location-error-2": "Si vous avez précédemment configuré des localisations, celles-ci sont disponibles en glissant cet écran vers la gauche.",
 		"current-location-error-3": "Vous pouvez configurer une localisation manuellement:",
 		"current-location-error-header": "Votre appareil n'a pas pu établir votre position actuelle.",
 		"loading-current-location": "Votre appareil cherche actuellement votre position",
