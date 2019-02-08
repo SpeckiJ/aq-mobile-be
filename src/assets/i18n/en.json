@@ -298,7 +298,7 @@
       "header": "User locations",
       "show-location-list": "Show current locations",
 	 		"show-nearest-series-by-default": "Show nearest measurements in diagram",
-			"show-nearest-stations": "Show nearest stations on start page"
+			"show-nearest-stations": "Show nearest measuring stations on start page"
     }
   },
   "show-geometry": {
@@ -318,7 +318,7 @@
     "zeroBasedYAxe": "Timeseries zero based"
   },
   "sub-index-panel": {
-    "header": "Sub index at this location"
+    "header": "Subindex at this location"
   },
   "user-location-list": {
     "header": "Location list"
@@ -327,7 +327,7 @@
     "creation": {
       "locate-error": "An error occurred, while determining your current location.",
       "location-mode-off": "Please activate the location service of your device.",
-			"limit-reached": "You can not create more than 5 locations. Please first remove one of the locations.",
+			"limit-reached": "You can not create more than 5 locations. Please first remove one of the exiting locations.",
 			"message-added": "User location added",
 			"message-exists": "User location already exists"
     }

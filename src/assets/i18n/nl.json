@@ -298,7 +298,7 @@
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
       "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
-      "show-nearest-stations": ""
+      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op startpagina"
     }
   },
   "show-geometry": {
@@ -318,7 +318,7 @@
     "zeroBasedYAxe": "tijdsreeks nul gebaseerd"
   },
   "sub-index-panel": {
-    "header": ""
+    "header": "Subindex op deze locatie"
   },
   "user-location-list": {
     "header": "Lijst van de locaties"
@@ -327,7 +327,7 @@
     "creation": {
       "locate-error": "Er is een fout opgetreden bij het bepalen van uw huidige locatie.",
       "location-mode-off": "Activeer alstublieft de locatiedienst van uw apparaat.",
-      "limit-reached": "",
+      "limit-reached": "U kunt niet meer dan 5 locaties opslaan. Verwijder eerst een van de bestaande locaties.",
       "message-added": "Locatie toegevoegd",
       "message-exists": "Locatie bestaat al"
     }

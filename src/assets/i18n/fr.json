@@ -298,7 +298,7 @@
 			"header": "Localisations",
 			"show-location-list": "Voir les localisations",
 			"show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
-			"show-nearest-stations": ""
+			"show-nearest-stations": "Afficher les stations de mesure les plus proches sur la page d'accueil"
 		}
 	},
 	"show-geometry": {
@@ -318,7 +318,7 @@
 		"zeroBasedYAxe": "Axe Y à zéro"
 	},
   "sub-index-panel": {
-    "header": ""
+    "header": "Sous-index à cette localisation"
   },
 	"user-location-list": {
 		"header": "Liste des localisations"
@@ -327,7 +327,7 @@
 		"creation": {
 			"locate-error": "Une erreur est survenue lors de la détermination de votre position actuelle.",
 			"location-mode-off": "Veuillez activer le service de localisation de votre appareil.",
-      "limit-reached": "",
+      "limit-reached": "Vous ne pouvez pas créer plus de 5 localisations. Veuillez d'abord supprimer une des localisations existantes.",
       "message-added": "Localisation ajoutée",
       "message-exists": "La localisation existe déjà"
 		}
