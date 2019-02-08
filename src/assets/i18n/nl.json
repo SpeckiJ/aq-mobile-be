@@ -285,8 +285,8 @@
       "version": "Versie"
     },
 		"clear-cache": {
-			"button": "",
-			"confirm": ""
+			"button": "Cache wissen",
+			"confirm": "Cache is gewist."
 		},
     "common": "Algemeen",
     "header": "Instellingen",
