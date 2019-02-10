@@ -4,14 +4,6 @@ import { Observer } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { share } from 'rxjs/operators';
 
-// import { HttpEvent, HttpRequest, HttpResponse } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { HttpRequestOptions, HttpServiceHandler, HttpServiceInterceptor } from '@helgoland/core';
-// import { Observable, Observer, of } from 'rxjs';
-// import { share } from 'rxjs/operators';
-
-// import { HttpCache, OnGoingHttpCache } from './model';
-
 @Injectable()
 export class OngoingHttpCache {
 
@@ -52,13 +44,10 @@ export class CachingInterceptor implements HttpInterceptor {
     if (this.ongoingCache.has(req)) {
       return this.ongoingCache.observe(req);
     } else {
-      // No cached response exists. Go to the network, and cache
-      // the response when it arrives.
       return new Observable<HttpEvent<any>>((observer: Observer<HttpEvent<any>>) => {
         const shared = next.handle(req).pipe(share());
         shared.subscribe((res) => {
           if (res instanceof HttpResponse) {
-            // this.cache.put(req, res, metadata.expirationAtMs);
             this.ongoingCache.clear(req);
             observer.next(res);
             observer.complete();
