@@ -1,0 +1,74 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observer } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { share } from 'rxjs/operators';
+
+// import { HttpEvent, HttpRequest, HttpResponse } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+// import { HttpRequestOptions, HttpServiceHandler, HttpServiceInterceptor } from '@helgoland/core';
+// import { Observable, Observer, of } from 'rxjs';
+// import { share } from 'rxjs/operators';
+
+// import { HttpCache, OnGoingHttpCache } from './model';
+
+@Injectable()
+export class OngoingHttpCache {
+
+  private cache: { [key: string]: { request: Observable<HttpEvent<any>> } } = {};
+
+  public has(req: HttpRequest<any>): boolean {
+    return this.cache[req.urlWithParams] !== undefined;
+  }
+
+  public set(req: HttpRequest<any>, request: Observable<HttpEvent<any>>): void {
+    this.cache[req.urlWithParams] = {
+      request
+    };
+  }
+
+  public observe(req: HttpRequest<any>): Observable<HttpEvent<any>> {
+    return this.cache[req.urlWithParams].request;
+  }
+
+  public clear(req: HttpRequest<any>) {
+    delete this.cache[req.urlWithParams];
+  }
+}
+
+@Injectable()
+export class CachingInterceptor implements HttpInterceptor {
+
+  constructor(
+    protected ongoingCache: OngoingHttpCache
+  ) { }
+
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    if (req.method !== 'GET') {
+      return next.handle(req);
+    }
+
+    if (this.ongoingCache.has(req)) {
+      return this.ongoingCache.observe(req);
+    } else {
+      // No cached response exists. Go to the network, and cache
+      // the response when it arrives.
+      return new Observable<HttpEvent<any>>((observer: Observer<HttpEvent<any>>) => {
+        const shared = next.handle(req).pipe(share());
+        shared.subscribe((res) => {
+          if (res instanceof HttpResponse) {
+            // this.cache.put(req, res, metadata.expirationAtMs);
+            this.ongoingCache.clear(req);
+            observer.next(res);
+            observer.complete();
+          }
+        }, (error) => {
+          observer.error(error);
+          observer.complete();
+        });
+        this.ongoingCache.set(req, shared);
+      });
+    }
+  }
+}

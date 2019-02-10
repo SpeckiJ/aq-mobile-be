@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatasetApiInterface, SettingsService } from '@helgoland/core';
@@ -45,6 +45,7 @@ import { NearestTimeseriesManagerProvider } from '../providers/nearest-timeserie
 import { NearestTimeseriesProvider } from '../providers/nearest-timeseries/nearest-timeseries';
 import { NotificationMaintainerProvider } from '../providers/notification-maintainer/notification-maintainer';
 import { NotificationPresenter } from '../providers/notification-presenter/notification-presenter';
+import { CachingInterceptor, OngoingHttpCache } from '../providers/ongoing-http-cache/ongoing-http-cache';
 import { PersonalAlertsProvider } from '../providers/personal-alerts/personal-alerts';
 import { DatasetOptionsModifier } from '../providers/phenomenon-options-mapper/phenomenon-options-mapper';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
@@ -109,12 +110,18 @@ export function HttpLoaderFactory(http: HttpClient) {
       deps: [TranslateService, Injector, LanguageHandlerProvider, SettingsService],
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CachingInterceptor,
+      multi: true
+    },
     AirQualityIndexProvider,
     AnnualMeanProvider,
     AppVersion,
     BackgroundMode,
     BelaqiIndexProvider,
     CategorizeValueToIndexProvider,
+    CustomDatasetApiInterface,
     DatasetOptionsModifier,
     Diagnostic,
     FCM,
@@ -134,6 +141,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     Network,
     NotificationMaintainerProvider,
     NotificationPresenter,
+    OngoingHttpCache,
     PersonalAlertsProvider,
     PushNotificationsProvider,
     RefreshHandler,
@@ -142,7 +150,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeseriesService,
     UserLocationListProvider,
     UserTimeseriesService,
-    CustomDatasetApiInterface
   ]
 })
 export class AppModule { }

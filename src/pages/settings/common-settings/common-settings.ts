@@ -20,7 +20,7 @@ export class CommonSettingsComponent extends LocalSelectorComponent {
   }
 
   public clearCache() {
-    this.cacheService.clearAll()
+    this.cacheService.clearAll();
     this.toast.create({ message: this.translate.instant('settings.clear-cache.confirm'), duration: 3000 });
   }
 }

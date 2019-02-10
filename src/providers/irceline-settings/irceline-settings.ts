@@ -14,8 +14,8 @@ export interface IrcelineSettings {
   top_pollutant_today: string;
 }
 
-const DEFAULT_TTL_CACHE = 60 * 60;
-const DEFAULT_TTL_CACHE_LAST_UPDATE_CHECK = 60;
+const DEFAULT_TTL_CACHE = 60 * 60 * 24 * 3; // 3 days
+const DEFAULT_TTL_CACHE_LAST_UPDATE_CHECK = 60; // 1 minute
 
 @Injectable()
 export class IrcelineSettingsProvider {
@@ -26,6 +26,7 @@ export class IrcelineSettingsProvider {
     private cacheService: CacheService
   ) {
     this.cacheService.setDefaultTTL(DEFAULT_TTL_CACHE);
+    this.cacheService.clearExpired();
   }
 
   public getSettings(reload?: boolean): Observable<IrcelineSettings> {
