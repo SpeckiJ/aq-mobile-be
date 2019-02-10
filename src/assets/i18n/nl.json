@@ -99,6 +99,7 @@
   "diagram": {
     "header": "diagram",
     "loading": "aan het laden",
+    "loading-nearest-stations": "",
     "no-timeseries-selected": "geen tijdsreeks geselecteerd!",
     "select-timeseries": "Selecteer aub een tijdsreeks"
   },
@@ -284,10 +285,10 @@
       "header": "Over de app",
       "version": "Versie"
     },
-		"clear-cache": {
-			"button": "Cache wissen",
-			"confirm": "Cache is gewist."
-		},
+    "clear-cache": {
+      "button": "Cache wissen",
+      "confirm": "Cache is gewist."
+    },
     "common": "Algemeen",
     "header": "Instellingen",
     "select-language": "Kies een taal",

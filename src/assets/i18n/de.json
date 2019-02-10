@@ -99,6 +99,7 @@
   "diagram": {
     "header": "Diagramm",
     "loading": "Lade",
+    "loading-nearest-stations": "Lade nächste Messungen",
     "no-timeseries-selected": "Keine Zeitreihe selektiert!",
     "select-timeseries": "Bitte wähle eine Zeitreihe"
   },

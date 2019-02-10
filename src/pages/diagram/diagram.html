@@ -16,15 +16,19 @@
   <ion-card class="network">
     <network-panel></network-panel>
   </ion-card>
-  <ion-card *ngIf="tsSrvc.datasetIds.length > 0" class="diagram-card">
-    <div class="diagram-container">
+  <ion-card *ngIf="tsSrvc.datasetIds.length > 0 || loadingTimeseries" class="diagram-card">
+    <div *ngIf="loadingTimeseries" class="loading-nearest-stations" text-center>
+      <ion-spinner></ion-spinner>
+      <div text-center>{{'diagram.loading-nearest-stations' | translate}}</div>
+    </div>
+    <div class="diagram-container" *ngIf="tsSrvc.datasetIds.length > 0">
       <div class="diagram-wrapper">
         <div class="diagram">
           <n52-d3-timeseries-graph [datasetIds]="tsSrvc.datasetIds" [datasetOptions]="tsSrvc.datasetOptions"
             [timeInterval]="timespan" [presenterOptions]="diagramOptions" [selectedDatasetIds]="selectedDatasetIds"
-            (onTimespanChanged)="timespanChanged($event)" (onContentLoading)="loading = $event"></n52-d3-timeseries-graph>
+            (onTimespanChanged)="timespanChanged($event)" (onContentLoading)="loadingNewTsData = $event"></n52-d3-timeseries-graph>
         </div>
-        <div class="loading-overlay" *ngIf="loading">
+        <div class="loading-overlay" *ngIf="loadingNewTsData">
           <ion-spinner item-start name="circles"></ion-spinner>
           <span>{{'diagram.loading' | translate}}...</span>
         </div>
@@ -48,7 +52,7 @@
       <ion-icon name="arrow-dropup"></ion-icon>
     </button>
   </ion-fab>
-  <ion-card *ngIf="tsSrvc.datasetIds.length === 0">
+  <ion-card *ngIf="tsSrvc.datasetIds.length === 0 && !loadingTimeseries">
     <ion-card-header text-center>
       {{'diagram.no-timeseries-selected' | translate}}
     </ion-card-header>

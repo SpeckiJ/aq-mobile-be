@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ColorService, DatasetOptions, DatasetService, LocalStorage } from '@helgoland/core';
+import { Observable, Observer } from 'rxjs';
 
 import { NearestTimeseriesManagerProvider } from '../nearest-timeseries-manager/nearest-timeseries-manager';
 import { DatasetOptionsModifier } from '../phenomenon-options-mapper/phenomenon-options-mapper';
@@ -39,13 +40,27 @@ export class LocatedTimeseriesService extends DatasetService<DatasetOptions> {
     });
   }
 
-  public loadNearestSeries() {
-    if (this.showSeries) {
-      const locations = this.userlocation.getVisibleUserLocations();
-      this.nearestTimeseriesManager
-        .getNearestTimeseries(locations[this.selectedIndex])
-        .forEach(e => this.addDataset(e));
-    }
+  public loadNearestSeries(): Observable<void> {
+    return new Observable<void>((observer: Observer<void>) => {
+      if (this.showSeries) {
+        const locations = this.userlocation.getVisibleUserLocations();
+        this.nearestTimeseriesManager
+          .getNearestTimeseries(locations[this.selectedIndex])
+          .subscribe(
+            res => {
+              res.forEach(e => this.addDataset(e));
+              observer.next(null);
+              observer.complete();
+            },
+            error => {
+              observer.error(error);
+              observer.complete();
+            })
+      } else {
+        observer.next(null);
+        observer.complete();
+      }
+    })
   }
 
   public setShowNearestSeriesByDefault(nearestSeriesByDefault: boolean) {

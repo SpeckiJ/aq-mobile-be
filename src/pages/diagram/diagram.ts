@@ -9,6 +9,7 @@ import { LocatedTimeseriesService } from '../../providers/timeseries/located-tim
 import { TimeseriesService } from '../../providers/timeseries/timeseries';
 import { UserTimeseriesService } from '../../providers/timeseries/user-timeseries';
 import { MapPage } from '../map/map';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'page-diagram',
@@ -18,7 +19,9 @@ export class DiagramPage implements OnInit {
 
   public name = 'diagram';
 
-  public loading: boolean;
+  public loadingNewTsData: boolean;
+
+  public loadingTimeseries: boolean = true;
 
   public selectedDatasetIds: string[] = [];
 
@@ -41,7 +44,7 @@ export class DiagramPage implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.locatedTsSrvc.loadNearestSeries();
+    this.locatedTsSrvc.loadNearestSeries().subscribe(() => this.loadingTimeseries = false);
   }
 
   public timespanChanged(timespan: Timespan) {

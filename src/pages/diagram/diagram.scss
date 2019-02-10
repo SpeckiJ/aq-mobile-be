@@ -1,8 +1,9 @@
 page-diagram {
   .toolbar-title {
-     text-overflow: unset;
-     white-space: normal;
+    text-overflow: unset;
+    white-space: normal;
   }
+
   .scroll-content {
     display: flex;
     flex-direction: column;
@@ -10,6 +11,10 @@ page-diagram {
     .diagram-card {
       flex-grow: 1;
       position: relative;
+
+      .loading-nearest-stations {
+        padding-top: 100px;
+      }
 
       .diagram-container {
         position: absolute;
