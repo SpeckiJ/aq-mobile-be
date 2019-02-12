@@ -10,6 +10,8 @@ import { CacheService } from 'ionic-cache';
 })
 export class CommonSettingsComponent extends LocalSelectorComponent {
 
+  public clearingCache: boolean;
+
   constructor(
     public translate: TranslateService,
     public nav: NavController,
@@ -20,7 +22,15 @@ export class CommonSettingsComponent extends LocalSelectorComponent {
   }
 
   public clearCache() {
-    this.cacheService.clearAll();
-    this.toast.create({ message: this.translate.instant('settings.clear-cache.confirm'), duration: 3000 });
+    this.clearingCache = true;
+    this.cacheService.clearAll()
+      .then(() => {
+        this.toast.create({ message: this.translate.instant('settings.clear-cache.confirm'), duration: 3000 }).present();
+        this.clearingCache = false;
+      })
+      .catch(error => {
+        this.toast.create({ message: JSON.stringify(error), duration: 3000 }).present();
+        this.clearingCache = false;
+      })
   }
 }

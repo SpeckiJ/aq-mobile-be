@@ -9,6 +9,7 @@
     </ion-select>
   </ion-item>
   <ion-item (click)="clearCache()">
+    <ion-spinner item-start *ngIf="clearingCache"></ion-spinner>
     <ion-label>{{'settings.clear-cache.button' | translate}}</ion-label>
   </ion-item>
 </ion-list>
