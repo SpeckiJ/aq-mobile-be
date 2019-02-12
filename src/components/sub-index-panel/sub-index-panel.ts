@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { PopoverController } from 'ionic-angular';
 
 import { PhenomenonSeriesID } from '../../model/phenomenon';
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
+import { SubIndexPanelInformationPopupComponent } from './sub-index-panel-information-popup';
 
 export interface SubIndexEntry {
   label: string,
@@ -13,7 +15,7 @@ export interface SubIndexEntry {
   selector: 'sub-index-panel',
   templateUrl: 'sub-index-panel.html'
 })
-export class SubIndexPanelComponent {
+export class SubIndexPanelComponent implements OnChanges {
 
   @Output()
   public onSelect: EventEmitter<string> = new EventEmitter();
@@ -45,7 +47,9 @@ export class SubIndexPanelComponent {
 
   private readyCounter: number;
 
-  constructor() { }
+  constructor(
+    private popoverCtrl: PopoverController
+  ) { }
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.location) {
@@ -55,6 +59,10 @@ export class SubIndexPanelComponent {
 
   public select(id: string) {
     this.onSelect.emit(id);
+  }
+
+  public presentPopover(myEvent) {
+    this.popoverCtrl.create(SubIndexPanelInformationPopupComponent).present({ ev: myEvent });
   }
 
   public entryReady() {
