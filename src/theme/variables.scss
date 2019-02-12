@@ -85,5 +85,29 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+// @import "roboto";
+// @import "noto-sans";
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/opensans/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: bold;
+  font-weight: 700;
+  src: url('../assets/fonts/opensans/OpenSans-Bold.ttf');
+}
+
+$font-family-base: "Open Sans", sans-serif !default;
+body {
+font-family: "Open Sans" !important;
+font-weight: 400;
+}
+
+button, div, h1, h2, p, span  {
+font-family: "Open Sans" !important;
+}

@@ -141,7 +141,7 @@ export class BelaqiWheelComponent extends LanguageChangNotifier implements After
             const offset = radius / 2;
             const pointerColor = '#FFFFFF';
             const borderColor = '#000000';
-            const lineWidth = 3;
+            const lineWidth = 1.9;
 
             const ctx = chartInstance.ctx;
 
@@ -180,11 +180,11 @@ export class BelaqiWheelComponent extends LanguageChangNotifier implements After
             ctx.textAlign = 'center';
 
             // indexLabel
-            ctx.font = "1.2em Roboto";
+            ctx.font = "1.2em Open Sans";
             this.wrapText(ctx, this.belaqi.getLabelForIndexSplit(index), centerX + 2, centerY - 3, 90, 1.2);
 
             // modelledLabel
-            ctx.font = "0.6em Roboto";
+            ctx.font = "0.6em Open Sans";
             this.wrapText(ctx, this.translate.instant('belaqi-wheel.modelled-hint'), centerX, centerY + (radius * 1.7), 90, 0.6);
             this.onReady.emit();
           }
