@@ -183,7 +183,7 @@ export class MapPage {
           bounds.extend(station)
         }
 
-        map.fitBounds(bounds, { padding: [70, 70], maxZoom: 14 });
+        map.fitBounds(bounds, { padding: [70, 70], maxZoom: 12 });
       } else {
         map.fitBounds(this.settingsSrvc.getSettings().defaultBbox);
       }
