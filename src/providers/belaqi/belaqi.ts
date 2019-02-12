@@ -47,6 +47,32 @@ export class BelaqiIndexProvider extends ValueProvider {
   }
 
   public getValue(latitude: number, longitude: number, time?: Date): Observable<number> {
+    return new Observable<number>((observer: Observer<number>) => {
+      if (!time) {
+        this.ircelineSettings.getSettings().subscribe(
+          setts => {
+            this.createValueRequest(latitude, longitude, setts.lastupdate).subscribe(
+              val => observer.next(val),
+              error => observer.error(error),
+              () => observer.complete()
+            )
+          },
+          error => {
+            observer.error(error);
+            observer.complete();
+          }
+        )
+      } else {
+        this.createValueRequest(latitude, longitude, time).subscribe(
+          val => observer.next(val),
+          error => observer.error(error),
+          () => observer.complete()
+        );
+      }
+    })
+  }
+
+  private createValueRequest(latitude: number, longitude: number, time: Date) {
     const url = 'https://geo.irceline.be/rioifdm/belaqi/wms';
     const params = {
       request: 'GetFeatureInfo',
@@ -62,26 +88,19 @@ export class BelaqiIndexProvider extends ValueProvider {
       X: '1',
       Y: '1'
     };
-    if (time) {
-      params['time'] = time.toISOString();
-    }
-
-    let request = this.http.get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url,
-      {
-        responseType: 'json',
-        params: params
-      }
-    );
-    return this.cacheService.loadFromObservable(createCacheKey(url, params, params['time']), request).pipe(
-      map((res) => {
-        if (res && res.features && res.features.length === 1) {
-          if (res.features[0].properties['GRAY_INDEX']) {
-            return res.features[0].properties['GRAY_INDEX'];
-          }
+    let request = this.http.get<GeoJSON.FeatureCollection<GeoJSON.GeometryObject>>(url, {
+      responseType: 'json',
+      params: params
+    });
+    params['time'] = time.toISOString();
+    return this.cacheService.loadFromObservable(createCacheKey(url, params, params['time']), request).pipe(map((res) => {
+      if (res && res.features && res.features.length === 1) {
+        if (res.features[0].properties['GRAY_INDEX']) {
+          return res.features[0].properties['GRAY_INDEX'];
         }
-        return 0;
-      })
-    )
+      }
+      return 0;
+    }));
   }
 
   public getColorForIndex(index: number) {
