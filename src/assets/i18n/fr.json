@@ -99,7 +99,7 @@
   "diagram": {
     "header": "Graphique",
     "loading": "Chargement",
-    "loading-nearest-stations": "",
+    "loading-nearest-stations": "Charger les mesures les plus proches",
     "no-timeseries-selected": "Aucun polluant sélectionné",
     "select-timeseries": "Veuillez sélectionner un polluant"
   },
@@ -300,7 +300,7 @@
       "show-location-list": "Voir les localisations",
       "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
       "show-nearest-stations": "Afficher les stations de mesure les plus proches sur la page d'accueil",
-      "show-sub-index-panel": ""
+      "show-sub-index-panel": "Afficher les sous-indices BelAQI sur la page d'accueil"
     }
   },
   "show-geometry": {
@@ -328,7 +328,7 @@
       "o3": "O3 ou ozone (moyenne horaire)",
       "pm10": "PM10 ou particules d'un diamètre inférieur à 10 micromètres (moyenne glissant sur 24 heures)",
       "pm25": "PM2.5 ou particules d'un diamètre inférieur à 2.5 micromètres (moyenne glissant sur 24 heures)",
-      "text": "Ce sont les \"sous-indices\" calculés pour votre position. L'indice global BelAQI est la valeur d'indice le plus défavorable de ces 4 sous-indices selon une échelle pondérée par leur impact santé. Les 4 sous-indices de l'indice BelAQI sont:"
+      "text": "Ce sont les \"sous-indices\" calculés pour votre position. L'indice BelAQI global est la valeur la plus élevée de ces 4 sous-indices. Les échelles de concentration ont été déterminées en fonction de l’impact à court terme sur la santé. Les 4 polluants utilisés pour calculer BelAQI sont:"
     }
   },
   "user-location-list": {

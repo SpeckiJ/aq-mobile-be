@@ -99,7 +99,7 @@
   "diagram": {
     "header": "Diagramm",
     "loading": "Lade",
-    "loading-nearest-stations": "Lade nächste Messungen",
+    "loading-nearest-stations": "Lade nächstgelegene Überwachungsstation",
     "no-timeseries-selected": "Keine Zeitreihe selektiert!",
     "select-timeseries": "Bitte wähle eine Zeitreihe"
   },
@@ -166,7 +166,7 @@
     "header": "Karte",
     "index": "BelAQI-Index",
     "interpolated-map": "Interpolierte Karte",
-    "nearest-station": "Nächste Station",
+    "nearest-station": "Nächstgelegene Überwachungsstation",
     "no-legend": "Keine Legend verfügbar",
     "pollutant": {
       "other": "andere"
@@ -184,7 +184,7 @@
     "lastUpdate": "Letztes Update"
   },
   "nearest-measuring-station-panel": {
-    "header": "Nächstgelegene Station",
+    "header": "Nächstgelegene Überwachungsstation",
     "information-popup": {
       "list-bc": "oder black carbon",
       "list-no2": "oder Stickstoffdioxid",
@@ -298,13 +298,13 @@
       "edit-location": "Editiere Standort",
       "header": "Nutzer Standorte",
       "show-location-list": "Zeige vorhandene Standorte",
-      "show-nearest-series-by-default": "Zeige nächste Messungen im Diagram",
-      "show-nearest-stations": "Zeige die nächsten Überwachungsstationen auf der Startseite",
+      "show-nearest-series-by-default": "Zeige nächstgelegene Messungen im Diagram",
+      "show-nearest-stations": "Zeige die nächstgelegene Überwachungsstationen auf der Startseite",
       "show-sub-index-panel": "Zeige BelAQI Subindizes auf der Startseite"
     }
   },
   "show-geometry": {
-    "header": "Position der Station"
+    "header": "Position der Überwachungsstation"
   },
   "start": {
     "forecast-map": {
@@ -312,7 +312,7 @@
     }
   },
   "station-selection": {
-    "show-other-phenomena": "Andere Phänomene an dieser Station"
+    "show-other-phenomena": "Andere Phänomene an dieser Überwachungsstation"
   },
   "style-edit": {
     "generalize": "Daten generalisieren",
@@ -328,7 +328,7 @@
       "o3": "O3 oder Ozon (Stundenmittelwert)",
       "pm10": "PM10 oder Partikel mit einem Durchmesser kleiner als 10 Mikrometer (laufender 24 Stundenmittelwert)",
       "pm25": "PM2.5 oder Partikel mit einem Durchmesser kleiner als 2,5 Mikrometer (laufender 24 Stundenmittelwert)",
-      "text": "Dies sind die berechneten \"Subindizes\" für Ihren Standort. Der globale BelAQI-Index ist der höchste Indexwert dieser 4 Subindizes in Abhängigkeit von ihren Auswirkungen auf die Gesundheit. Die 4 Subindizes des BelAQI-Index sind:"
+      "text": "Dies sind die berechneten \"Subindizes\" für Ihren Standort. Der globale BelAQI-Index ist der höchste Wert dieser 4 Subindizes. Die Konzentrationsskalen wurden in Abhängigkeit von den kurzfristigen Auswirkungen auf die Gesundheit bestimmt. Die 4 zur Berechnung des BelAQI-Index verwendeten Schadstoffe sind:"
     }
   },
   "user-location-list": {

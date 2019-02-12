@@ -99,7 +99,7 @@
   "diagram": {
     "header": "Diagram",
     "loading": "loading",
-    "loading-nearest-stations": "Load next measurements",
+    "loading-nearest-stations": "Load nearest measurements",
     "no-timeseries-selected": "No timeseries selected!",
     "select-timeseries": "Please select a timeseries"
   },
@@ -328,7 +328,7 @@
       "o3": "O3 or ozone (hourly mean)",
       "pm10": "PM10 or particulate matter with a diameter below 10 micrometer (running 24 hour mean)",
       "pm25": "PM2.5 or particulate matter with a diameter below 2,5 micrometer (running 24 hour mean)",
-      "text": "These are calculated \"subindices\" for your location. The global BelAQI index is the highest index value of these 4 subindices on a scale weighted depending on their health effects. The 4 subindices of the BelAQI index are:"
+      "text": "These are calculated \"subindices\" for your location. The global BelAQI index is the highest value of these 4 subindices. The concentration scales were determined in function of their short-term health effects. The 4 pollutants used to calculate the BelAQI index are:"
     }
   },
   "user-location-list": {
