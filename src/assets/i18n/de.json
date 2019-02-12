@@ -299,7 +299,8 @@
       "header": "Nutzer Standorte",
       "show-location-list": "Zeige vorhandene Standorte",
       "show-nearest-series-by-default": "Zeige nächste Messungen im Diagram",
-      "show-nearest-stations": "Zeige die nächsten Überwachungsstationen auf der Startseite"
+      "show-nearest-stations": "Zeige die nächsten Überwachungsstationen auf der Startseite",
+      "show-sub-index-panel": "Zeige BelAQI Subindizes auf der Startseite"
     }
   },
   "show-geometry": {
@@ -321,13 +322,13 @@
   "sub-index-panel": {
     "header": "Subindex an diesem Standort",
     "information-popup": {
-      "text": "Dies sind die berechneten \"Subindizes\" für Ihren Standort. Der globale BelAQI-Index ist der höchste Indexwert dieser 4 Subindizes in Abhängigkeit von ihren Auswirkungen auf die Gesundheit. Die 4 Subindizes des BelAQI-Index sind:",
+      "link": "http://www.irceline.be/en/belaqi",
+      "moreInfo": "Mehr Info",
       "no2": "NO2 oder Stickstoffdioxid (Stundenmittelwert)",
       "o3": "O3 oder Ozon (Stundenmittelwert)",
       "pm10": "PM10 oder Partikel mit einem Durchmesser kleiner als 10 Mikrometer (laufender 24 Stundenmittelwert)",
       "pm25": "PM2.5 oder Partikel mit einem Durchmesser kleiner als 2,5 Mikrometer (laufender 24 Stundenmittelwert)",
-      "moreInfo": "Mehr Info",
-      "link": "http://www.irceline.be/en/belaqi"
+      "text": "Dies sind die berechneten \"Subindizes\" für Ihren Standort. Der globale BelAQI-Index ist der höchste Indexwert dieser 4 Subindizes in Abhängigkeit von ihren Auswirkungen auf die Gesundheit. Die 4 Subindizes des BelAQI-Index sind:"
     }
   },
   "user-location-list": {

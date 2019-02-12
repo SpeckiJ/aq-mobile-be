@@ -16,8 +16,12 @@ import { UserLocationListProvider } from '../../../providers/user-location-list/
 export class UserLocationsSettingsComponent implements OnDestroy {
 
   public nearestSeriesByDefault: boolean;
+
   public showNearestStations: boolean;
   private showNearestStationsSubscriber: Subscription;
+
+  public showSubIndexPanel: boolean;
+  private showSubIndexPanelSubscriber: Subscription;
 
   constructor(
     protected modalCtrl: ModalController,
@@ -27,10 +31,13 @@ export class UserLocationsSettingsComponent implements OnDestroy {
     this.nearestSeriesByDefault = this.locatedTsSrvc.getShowNearestSeriesByDefault();
     this.showNearestStationsSubscriber = this.userLocationListProvider.getShowNearestStations()
       .subscribe(val => this.showNearestStations = val);
+    this.showSubIndexPanelSubscriber = this.userLocationListProvider.getShowSubIndexPanel()
+      .subscribe(val => this.showSubIndexPanel = val);
   }
 
   public ngOnDestroy() {
     this.showNearestStationsSubscriber.unsubscribe();
+    this.showSubIndexPanelSubscriber.unsubscribe();
   }
 
   public createNewLocation() {
@@ -49,5 +56,8 @@ export class UserLocationsSettingsComponent implements OnDestroy {
     this.userLocationListProvider.setShowNearestStations(this.showNearestStations);
   }
 
+  public toggleShowSubIndexPanel() {
+    this.userLocationListProvider.setShowShowSubIndexPanel(this.showSubIndexPanel);
+  }
 
 }

@@ -21,6 +21,7 @@ export interface UserLocation {
 
 const STORAGE_USER_LOCATIONS_KEY = 'userlocation';
 const STORAGE_SHOW_NEAREST_STATIONS_KEY = 'showNearestStations';
+const STORAGE_SHOW_SUB_INDEX_PANEL_KEY = 'showSubIndexPanel';
 
 @Injectable()
 export class UserLocationListProvider {
@@ -32,6 +33,7 @@ export class UserLocationListProvider {
   public locationsChanged: EventEmitter<void> = new EventEmitter();
 
   private showNearestStationsReplay: ReplaySubject<boolean> = new ReplaySubject(1);
+  private showSubIndexPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     protected storage: Storage,
@@ -45,6 +47,7 @@ export class UserLocationListProvider {
       this.locationsChanged.emit();
     })
     this.loadShowNearestStations();
+    this.loadShowSubIndexPanel();
   }
 
   public addUserLocation(label: string, point: Point) {
@@ -165,6 +168,22 @@ export class UserLocationListProvider {
   private loadShowNearestStations() {
     this.storage.get(STORAGE_SHOW_NEAREST_STATIONS_KEY)
       .then(res => this.showNearestStationsReplay.next(res))
+      .catch(error => console.error(error))
+  }
+
+  //show sub index panel
+  public setShowShowSubIndexPanel(show: boolean) {
+    this.storage.set(STORAGE_SHOW_SUB_INDEX_PANEL_KEY, show);
+    this.showSubIndexPanelReplay.next(show);
+  }
+
+  public getShowSubIndexPanel(): Observable<boolean> {
+    return this.showSubIndexPanelReplay.asObservable();
+  }
+
+  private loadShowSubIndexPanel() {
+    this.storage.get(STORAGE_SHOW_SUB_INDEX_PANEL_KEY)
+      .then(res => this.showSubIndexPanelReplay.next(res === null ? true : res))
       .catch(error => console.error(error))
   }
 

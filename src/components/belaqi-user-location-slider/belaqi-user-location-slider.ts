@@ -62,6 +62,9 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
   public showNearestStationsPanel: boolean;
   private showNearestStationsSubscriber: Subscription;
 
+  public showSubIndexPanel: boolean;
+  private showSubIndexPanelSubscriber: Subscription;
+
   private refresherSubscriber: Subscription;
   private locationStatusSubscriber: Subscription;
   private locChangedSubscriber: Subscription;
@@ -88,6 +91,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
     this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
     this.showNearestStationsSubscriber = this.userLocationProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
+    this.showSubIndexPanelSubscriber = this.userLocationProvider.getShowSubIndexPanel().subscribe(val => this.showSubIndexPanel = val);
   }
 
   public ngAfterViewInit() {
@@ -103,6 +107,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     if (this.locChangedSubscriber) { this.locChangedSubscriber.unsubscribe(); }
     if (this.networkSubscriber) { this.networkSubscriber.unsubscribe(); }
     if (this.showNearestStationsSubscriber) { this.showNearestStationsSubscriber.unsubscribe(); }
+    if (this.showSubIndexPanelSubscriber) { this.showSubIndexPanelSubscriber.unsubscribe(); }
   }
 
   public selectPhenomenonLocation(selection: PhenomenonLocationSelection, userlocation: UserLocation) {

@@ -299,7 +299,8 @@
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
       "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
-      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op startpagina"
+      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op startpagina",
+      "show-sub-index-panel": ""
     }
   },
   "show-geometry": {
@@ -321,13 +322,13 @@
   "sub-index-panel": {
     "header": "Subindex op deze locatie",
     "information-popup": {
-      "text": "Dit zijn de berekende \"subindexen\" voor uw locatie. De globale BelAQI index is de hoogste index waarde van deze 4 subindexen op een schaal gewogen door hun kortetermijnimpact op de gezondheid. De 4 subindexen van de BelAQI-index zijn:",
+      "link": "http://www.irceline.be/nl/belaqi",
+      "moreInfo": "Meer info",
       "no2": "NO2 of stikstofdioxide (uurgemiddelde)",
       "o3": "O3 of ozon (uurgemiddelde)",
       "pm10": "PM10 of fijn stof met een diameter kleiner dan 10 micrometer (glijdend 24-uurgemiddelde)",
       "pm25": "PM2.5 of fijn stof met een diameter kleiner dan 2,5 micrometer (glijdend 24-uurgemiddelde)",
-      "moreInfo": "Meer info",
-      "link": "http://www.irceline.be/nl/belaqi"
+      "text": "Dit zijn de berekende \"subindexen\" voor uw locatie. De globale BelAQI index is de hoogste index waarde van deze 4 subindexen op een schaal gewogen door hun kortetermijnimpact op de gezondheid. De 4 subindexen van de BelAQI-index zijn:"
     }
   },
   "user-location-list": {

@@ -7,7 +7,7 @@
       <div class="chart">
         <belaqi-chart [location]="loc" (onReady)="resizeSlide()"></belaqi-chart>
       </div>
-      <div>
+      <div *ngIf="showSubIndexPanel">
         <sub-index-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc)"></sub-index-panel>
       </div>
       <div *ngIf="showNearestStationsPanel">
