@@ -62,6 +62,9 @@ import { SimpleLegendEntryComponent } from './simple-legend-entry/simple-legend-
 import { StationSelectorComponent } from './station-selector/station-selector';
 import { SubIndexPanelComponent } from './sub-index-panel/sub-index-panel';
 import { SubIndexPanelEntryComponent } from './sub-index-panel/sub-index-panel-entry';
+import {
+	SubIndexPanelInformationPopupComponent,
+} from './sub-index-panel/sub-index-panel-information-popup';
 import { UserLocationCreationComponent } from './user-location-creation/user-location-creation';
 
 @NgModule({
@@ -114,6 +117,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		StationSelectorComponent,
 		SubIndexPanelComponent,
 		SubIndexPanelEntryComponent,
+		SubIndexPanelInformationPopupComponent,
 		UserLocationCreationComponent,
 	],
 	imports: [
@@ -175,6 +179,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		StationSelectorComponent,
 		SubIndexPanelComponent,
 		SubIndexPanelEntryComponent,
+		SubIndexPanelInformationPopupComponent,
 		UserLocationCreationComponent,
 	],
 	entryComponents: [
@@ -197,6 +202,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		PhenomenonSelectorPopoverComponent,
 		PushNotificationComponent,
 		StationSelectorComponent,
+		SubIndexPanelInformationPopupComponent,
 	]
 })
 export class ComponentsModule { }

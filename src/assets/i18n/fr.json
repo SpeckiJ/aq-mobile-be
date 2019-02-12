@@ -319,7 +319,16 @@
     "zeroBasedYAxe": "Axe Y à zéro"
   },
   "sub-index-panel": {
-    "header": "Sous-index à cette localisation"
+    "header": "Sous-index à cette localisation",
+    "information-popup": {
+      "text": "Ce sont les \"sous-indices\" calculés pour votre position. L'indice global BelAQI est la valeur d'indice le plus défavorable de ces 4 sous-indices selon une échelle pondérée par leur impact santé. Les 4 sous-indices de l'indice BelAQI sont:",
+      "no2": "NO2 ou dioxyde d'azote (moyenne horaire)",
+      "o3": "O3 ou ozone (moyenne horaire)",
+      "pm10": "PM10 ou particules d'un diamètre inférieur à 10 micromètres (moyenne glissant sur 24 heures)",
+      "pm25": "PM2.5 ou particules d'un diamètre inférieur à 2.5 micromètres (moyenne glissant sur 24 heures)",
+      "moreInfo": "Plus d'info",
+      "link": "http://www.irceline.be/fr/belaqi"
+    }
   },
   "user-location-list": {
     "header": "Liste des localisations"
