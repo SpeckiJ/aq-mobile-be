@@ -14,10 +14,10 @@ import {
   ParameterFilter,
   Station,
   StatusIntervalResolverService,
-  Timeseries,
 } from '@helgoland/core';
 import { MapCache, MapSelectorComponent } from '@helgoland/map';
 import { CircleMarker, circleMarker, featureGroup, geoJSON, Layer, markerClusterGroup } from 'leaflet';
+import { Subscription } from 'rxjs';
 
 import { getMainPhenomenonForID } from '../../model/phenomenon';
 import { BelaqiIndexProvider } from '../../providers/belaqi/belaqi';
@@ -46,6 +46,7 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
   public ignoreStatusIntervalIfBeforeDuration = Infinity;
 
   private markerFeatureGroup: L.FeatureGroup;
+  private ongoingTimeseriesSubscriber: Subscription;
 
   constructor(
     protected statusIntervalResolver: StatusIntervalResolverService,
@@ -70,6 +71,7 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
 
   protected drawGeometries() {
     this.isContentLoading(true);
+    if (this.ongoingTimeseriesSubscriber) { this.ongoingTimeseriesSubscriber.unsubscribe(); }
     if (this.map && this.markerFeatureGroup) { this.map.removeLayer(this.markerFeatureGroup); }
     if (this.statusIntervals && this.filter && this.filter.phenomenon) {
       this.createValuedMarkers();
@@ -81,7 +83,7 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
       phenomenon: this.filter.phenomenon,
       expanded: true
     };
-    this.apiInterface.getTimeseries(this.serviceUrl, tempFilter).subscribe(
+    this.ongoingTimeseriesSubscriber = this.apiInterface.getTimeseries(this.serviceUrl, tempFilter).subscribe(
       timeseries => {
         this.markerFeatureGroup = featureGroup();
         timeseries.forEach(ts => {

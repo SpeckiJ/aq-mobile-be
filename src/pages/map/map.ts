@@ -106,7 +106,8 @@ export class MapPage {
   public overlayMaps: Map<string, LayerOptions> = new Map<string, LayerOptions>();
   public fitBounds: L.LatLngBoundsExpression;
   public clusterStations: boolean;
-  public selectedPhenomenon: Phenomenon;
+  public selectedPhenomenonId: string;
+  public selectedPhenomenonLabel: string;
   public nextStationPopup: L.Popup;
   public disabled: boolean;
   public markerSelectorGenerator: MarkerSelectorGenerator;
@@ -272,16 +273,26 @@ export class MapPage {
     if (this.nextStationPopup) { this.nextStationPopup.remove(); }
     const phenID = this.getPhenomenonID(this.phenomenonLabel);
     if (phenID) {
-      this.getPhenomenonFromAPI(phenID)
+      this.getPhenomenonFromAPI(phenID);
+      this.setSelectedPhenomenonId(phenID);
     } else {
-      this.selectedPhenomenon = null;
-      this.phenomenonFilter = { phenomenon: '' }
+      this.clearSelectedPhenomenon();
     }
     if (this.phenomenonLabel == PhenomenonLabel.BC) {
       this.time = TimeLabel.current;
     }
     if (this.legendVisible) { this.legendVisible = false }
     this.setDisabled();
+  }
+
+  private clearSelectedPhenomenon() {
+    this.setSelectedPhenomenonId(null);
+    this.selectedPhenomenonLabel = null;
+  }
+
+  private setSelectedPhenomenonId(id: string) {
+    this.selectedPhenomenonId = id;
+    this.phenomenonFilter = { phenomenon: this.selectedPhenomenonId };
   }
 
   private setDisabled() {
@@ -311,10 +322,10 @@ export class MapPage {
   }
 
   private setPhenomenonFilter() {
-    if (this.time != TimeLabel.current || !this.selectedPhenomenon) {
+    if (this.time != TimeLabel.current || !this.selectedPhenomenonId) {
       this.phenomenonFilter = { phenomenon: '' };
     } else {
-      this.phenomenonFilter = { phenomenon: this.selectedPhenomenon.id };
+      this.phenomenonFilter = { phenomenon: this.selectedPhenomenonId };
       this.updateLegend();
     }
   }
@@ -339,7 +350,7 @@ export class MapPage {
       {
         platform,
         providerUrl: this.providerUrl,
-        phenomenonId: this.selectedPhenomenon.id
+        phenomenonId: this.selectedPhenomenonId
       }
     );
     modal.onDidDismiss(data => { if (data) { this.navCtrl.push(DiagramPage) } });
@@ -355,17 +366,14 @@ export class MapPage {
     this.api.getPhenomenon(phenId, this.providerUrl).subscribe(
       phenomenon => this.setPhenomenon(phenomenon),
       error => {
-        this.selectedPhenomenon = null;
-        this.phenomenonFilter = { phenomenon: '' };
+        this.clearSelectedPhenomenon();
         this.phenomenonLabel = this.getPhenomenonLabel(phenId);
       }
     );
   }
 
   private setPhenomenon(selectedPhenomenon: Phenomenon) {
-    this.selectedPhenomenon = selectedPhenomenon;
-    this.setPhenomenonFilter();
-    this.phenomenonLabel = this.getPhenomenonLabel(selectedPhenomenon.id);
+    this.selectedPhenomenonLabel = selectedPhenomenon.label;
   }
 
   private showLayer() {
