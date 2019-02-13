@@ -100,12 +100,12 @@
     "header": "diagram",
     "loading": "aan het laden",
     "loading-nearest-stations": "Laad dichtstbijgelegen metingen",
-    "no-timeseries-selected": "geen tijdsreeks geselecteerd!",
+    "no-timeseries-selected": "Geen tijdsreeks geselecteerd!",
     "select-timeseries": "Selecteer aub een tijdsreeks"
   },
   "home": {
     "header": "Start",
-    "noAlert": "geen officiële waarschuwingen over verhoogde luchtvervuiling",
+    "noAlert": "Geen officiële waarschuwingen over verhoogde luchtvervuiling",
     "noAlertheader": "Momenteel geen waarschuwingen:"
   },
   "info": {
@@ -167,7 +167,7 @@
     "index": "BelAQI index",
     "interpolated-map": "Geïnterpoleerde kaart",
     "nearest-station": "Dichtstbijgelegen meetstation",
-    "no-legend": "geen legende beschikbaar",
+    "no-legend": "Geen legende beschikbaar",
     "pollutant": {
       "other": "andere"
     },
@@ -198,7 +198,7 @@
     "show-nearest-series": "Toon dichtstbijzijnde metingen"
   },
   "network": {
-    "geolocationDenied": "U hebt het gebruik van u locatie niet toegestaan de app.",
+    "geolocationDenied": "U hebt het gebruik van uw locatie niet toegestaan de app.",
     "geolocationDeniedExplanation": "Als u de \"huidige locatie\"-functionaliteiten wilt gebruiken, kunt u hier de locatieservice van uw apparaat activeren.",
     "geolocationDisabled": "Geolocatie is uitgeschakeld",
     "geolocationDisabledExplanation": "Als u de \"huidige locatie\"-functionaliteiten wilt gebruiken, schakel dan de locatiedienst van uw apparaat in.",
@@ -277,8 +277,8 @@
     "message": "Vernieuw alles"
   },
   "refresh": {
-    "pull-message": "Trek om te vernieuwen",
-    "progress": "bezig om te vernieuwen"
+    "pull-message": "Trek naar beneden om te vernieuwen",
+    "progress": "Bezig om te vernieuwen"
   },
   "settings": {
     "about": {
@@ -315,9 +315,9 @@
     "show-other-phenomena": "Andere polluenten die op deze locatie worden gemeten"
   },
   "style-edit": {
-    "generalize": "gegeneraliseerde gegevens",
+    "generalize": "Gegeneraliseerde gegevens",
     "header": "Verander de kleur van de tijdsreeks",
-    "zeroBasedYAxe": "tijdsreeks nul gebaseerd"
+    "zeroBasedYAxe": "Tijdsreeks nul gebaseerd"
   },
   "sub-index-panel": {
     "header": "Subindex op deze locatie",
