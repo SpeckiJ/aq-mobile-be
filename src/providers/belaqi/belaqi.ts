@@ -286,7 +286,8 @@ export class BelaqiIndexProvider extends ValueProvider {
     return new Observable((observer: Observer<TrendResult>) => {
       this.ircelineSettings.getSettings().subscribe(settings => {
         const request = this.http.get<TrendResult>(trendUrl);
-        this.cacheService.loadFromObservable(trendUrl, request).subscribe(
+        const cacheKey = createCacheKey(trendUrl, null, settings.lastupdate);
+        this.cacheService.loadFromObservable(cacheKey, request).subscribe(
           res => {
             res["latest observations"].o3.forEach(e => e[0] = moment(e[0]).toDate());
             res["latest observations"].pm10.forEach(e => e[0] = moment(e[0]).toDate());
