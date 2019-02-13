@@ -42,7 +42,7 @@ export class AnnualMeanProvider extends ValueProvider {
   }
 
   public getLayerId(year: string, phenomenon: AnnualPhenomenonMapping): string {
-    return phenomenon.toString() + year;
+    return phenomenon.toString() + year + "_atmostreet";
   }
 
   public getWMSUrl(year: string, phenomenon: AnnualPhenomenonMapping): string {
