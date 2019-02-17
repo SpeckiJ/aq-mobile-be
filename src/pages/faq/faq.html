@@ -1,0 +1,447 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>{{'faq.header' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-title text-wrap>{{'faq.header' | translate}}</ion-title>
+  <ion-item>
+    <header text-wrap>{{'faq.calculatedHow.title' | translate}}</header>
+    <p class="subtile" text-wrap>{{'faq.calculatedHow.summary' | translate}}</p>
+    <button ion-button (click)="showMe1=true">{{'faq.readMore' | translate}}</button>
+    <div *ngIf="showMe1">
+      <button ion-button (click)="showMe1=false">{{'faq.hide' | translate}}</button>
+      <ion-list>
+        <ion-item>
+          <p text-wrap>{{'faq.calculatedHow.p1' | translate}}</p>
+          <p text-wrap>{{'faq.calculatedHow.p2' | translate}}</p>
+          <div class="more-info">
+            <div color="primary" small (click)="showMoreInfoCalculatedHow()" text-wrap>{{'faq.calculatedHow.moreInfo' | translate}}</div>
+          </div>
+          <p text-wrap>{{'faq.calculatedHow.p3' | translate}}</p>
+          <ion-grid class="table_belaqi">
+            <ion-row class="row_table_belaqi">
+              <ion-col class="col1">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.classification' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div text-wrap>
+                   PM<sub>10</sub> <div text-nowrap>{{'faq.calculatedHow.24hmean' | translate}}</div> (µg/m³)
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div text-wrap>
+                  PM<sub>2.5</sub> <div text-nowrap>{{'faq.calculatedHow.24hmean' | translate}}</div> (µg/m³)
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div text-wrap>
+                  O<sub>3</sub> <div text-nowrap>{{'faq.calculatedHow.hmean' | translate}}</div> (µg/m³)
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div text-wrap>
+                  NO<sub>2</sub> <div text-nowrap>{{'faq.calculatedHow.hmean' | translate}}</div> (µg/m³)
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#0000FF;text-align:center;color:#FFFFFF;">
+                  1
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index1' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  0 - 10
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  0 - 5
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  0 - 25
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  0 - 20
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#0099FF;text-align:center;color:#000000;">
+                  2
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index2' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  11 - 20
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  6 - 10
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  26 - 50
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  21 - 50
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#009900;text-align:center;color:#000000;">
+                  3
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index3' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  21 - 30
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  11 - 15
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  51 - 70
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  51 - 70
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#00FF00;text-align:center;color:#000000;">
+                  4
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index4' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  31 - 40
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  16 - 25
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  71 - 120
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  71 - 120
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#FFFF00;text-align:center;color:#000000;">
+                  5
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index5' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  41 - 50
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  26 - 35
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  121 - 160
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  121 - 150
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#FFBB00;text-align:center;color:#000000;">
+                  6
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index6' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  51 - 60
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  36 - 40
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  161 - 180
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  151 - 180
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#FF6600;text-align:center;color:#000000;">
+                  7
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index7' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  61 - 70
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  41 - 50
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  181 - 240
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  181 - 200
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#FF0000;text-align:center;color:#000000;">
+                  8
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index8' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  71 - 80
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  51 - 60
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  241 - 280
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  201 - 250
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#990000;text-align:center;color:#FFFFFF;">
+                  9
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index9' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  81 - 100
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  61 - 70
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  281 - 320
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  251 - 300
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col1">
+                <div style="background-color:#660000;text-align:center;color:#FFFFFF;">
+                  10
+                </div>
+              </ion-col>
+              <ion-col class="col2">
+                <div text-wrap>
+                  {{'faq.calculatedHow.index10' | translate}}
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  > 100
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  > 70
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  > 320
+                </div>
+              </ion-col>
+              <ion-col class="col3">
+                <div>
+                  > 300
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <p text-wrap>{{'faq.calculatedHow.p4' | translate}}</p>
+        </ion-item>
+      </ion-list>
+      <button ion-button (click)="showMe1 = false">{{'faq.hide' | translate}}</button>
+    </div>
+  </ion-item>
+  <ion-item>
+    <header text-wrap>{{'faq.accuracy.title' | translate}}</header>
+    <p class="subtile" text-wrap>{{'faq.accuracy.summary' | translate}}</p>
+    <button ion-button (click)="showMe2 = true">{{'faq.readMore' | translate}}</button>
+    <div *ngIf="showMe2">
+      <button ion-button (click)="showMe2 = false">{{'faq.hide' | translate}}</button>
+      <ion-list>
+        <ion-item>
+          <p text-wrap>{{'faq.accuracy.p1' | translate}}</p>
+          <div class="more-info">
+            <div color="primary" small (click)="showMoreInfoAccuracy()" text-wrap>{{'faq.accuracy.moreInfo' | translate}}</div>
+          </div>
+          <p text-wrap>{{'faq.accuracy.p2' | translate}}</p>
+          <p text-wrap>{{'faq.accuracy.p3' | translate}}</p>
+          <p text-wrap>{{'faq.accuracy.p4' | translate}}</p>
+        </ion-item>
+      </ion-list>
+      <button ion-button (click)="showMe2 = false">{{'faq.hide' | translate}}</button>
+    </div>
+  </ion-item>
+  <ion-item>
+    <header text-wrap>{{'faq.compareCurieuzeneuzen.title' | translate}}</header>
+    <p class="subtile" text-wrap>{{'faq.compareCurieuzeneuzen.summary' | translate}}</p>
+    <button ion-button (click)="showMe3 = true">{{'faq.readMore' | translate}}</button>
+    <div *ngIf="showMe3">
+      <button ion-button (click)="showMe3 = false">{{'faq.hide' | translate}}</button>
+      <ion-list>
+        <ion-item>
+          <p text-wrap>{{'faq.compareCurieuzeneuzen.p1' | translate}}</p>
+          <p text-wrap>{{'faq.compareCurieuzeneuzen.p2' | translate}}</p>
+          <p text-wrap>{{'faq.compareCurieuzeneuzen.p3' | translate}}</p>
+          <div class="more-info">
+            <div color="primary" small (click)="showMoreInfoCompareCurieuzeneuzen()" text-wrap>{{'faq.compareCurieuzeneuzen.moreInfo' | translate}}</div>
+          </div>
+          <br />
+          <button ion-button (click)="showMe3 = false">{{'faq.hide' | translate}}</button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-item>
+  <ion-item>
+    <header text-wrap>{{'faq.longtermShortterm.title' | translate}}</header>
+    <p class="subtile" text-wrap>{{'faq.longtermShortterm.summary' | translate}}</p>
+    <button ion-button (click)="showMe4 = true">{{'faq.readMore' | translate}}</button>
+    <div *ngIf="showMe4">
+      <button ion-button (click)="showMe4 = false">{{'faq.hide' | translate}}</button>
+      <ion-list>
+        <ion-item>
+          <p text-wrap>{{'faq.longtermShortterm.p1' | translate}}</p>
+          <p text-wrap>{{'faq.longtermShortterm.p2' | translate}}</p>
+          <p text-wrap>{{'faq.longtermShortterm.list' | translate}}</p>
+            <ul text-wrap>
+              <li text-wrap>{{'faq.longtermShortterm.item1' | translate}}</li>
+              <li text-wrap>{{'faq.longtermShortterm.item2' | translate}}</li>
+            </ul>
+          <p text-wrap>{{'faq.longtermShortterm.p3' | translate}}</p>
+          <p text-wrap>{{'faq.longtermShortterm.p4' | translate}}</p>
+          <p text-wrap>{{'faq.longtermShortterm.p5' | translate}}</p>
+          <p text-wrap>{{'faq.longtermShortterm.p6' | translate}}</p>
+          <button ion-button (click)="showMe4 = false">{{'faq.hide' | translate}}</button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-item>
+</ion-content>

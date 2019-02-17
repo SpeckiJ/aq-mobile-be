@@ -8,6 +8,7 @@ import { DiagramPage } from '../pages/diagram/diagram';
 import { IntroPage } from '../pages/intro/intro';
 import { MapPage } from '../pages/map/map';
 import { SettingsPage } from '../pages/settings/settings';
+import { FAQPage } from '../pages/faq/faq';
 import { StartPage } from '../pages/start/start';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../providers/irceline-settings/irceline-settings';
 import { PersonalAlertsProvider } from '../providers/personal-alerts/personal-alerts';
@@ -116,6 +117,8 @@ export class MyApp implements AfterViewInit {
         return DiagramPage;
       case 'settings':
         return SettingsPage;
+      case 'faq':
+        return FAQPage;
     }
   }
 

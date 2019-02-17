@@ -4,6 +4,7 @@ import { ModalController, NavController, PopoverController, Slides, Toggle } fro
 import { Subscription } from 'rxjs';
 
 import { SettingsPage } from '../../pages/settings/settings';
+import { FAQPage } from '../../pages/faq/faq';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
 import { LocateProvider, LocationStatus } from '../../providers/locate/locate';
 import { NetworkAlertProvider } from '../../providers/network-alert/network-alert';
@@ -157,6 +158,10 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
 
   public navigateSettings() {
     this.nav.push(SettingsPage);
+  }
+
+  public navigateFAQ() {
+    this.nav.push(FAQPage);
   }
 
   public isLocateDenied(): boolean {

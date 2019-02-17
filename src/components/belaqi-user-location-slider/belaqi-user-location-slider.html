@@ -32,6 +32,13 @@
     <p></p>
   </ion-slide>
   <ion-slide [ngStyle]="{'min-height': slidesHeight}">
+    <div class="faq-slide">
+      <div>
+        <button ion-button outline text-wrap (click)="navigateFAQ()">
+          {{'belaqi-user-location-slider.faq' | translate}}
+        </button>
+      </div>
+    </div>
     <div class="create-new-location-slide">
       <div>
         <button ion-button outline text-wrap (click)="createNewLocation()">

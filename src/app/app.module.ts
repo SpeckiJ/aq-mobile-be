@@ -28,6 +28,7 @@ import { DiagramModule } from '../pages/diagram/diagram.module';
 import { IntroPage } from '../pages/intro/intro';
 import { MapModule } from '../pages/map/map.module';
 import { SettingsModule } from '../pages/settings/settings.module';
+import { FAQModule } from '../pages/faq/faq.module';
 import { StartPage } from '../pages/start/start';
 import { AirQualityIndexProvider } from '../providers/air-quality-index/air-quality-index';
 import { AnnualMeanProvider } from '../providers/annual-mean/annual-mean';
@@ -89,6 +90,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IonAffixModule,
     ComponentsModule,
     SettingsModule,
+    FAQModule,
     DiagramModule,
     MapModule,
     CacheModule.forRoot({ keyPrefix: 'belair-cache_' })

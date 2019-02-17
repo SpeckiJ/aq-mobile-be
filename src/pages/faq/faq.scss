@@ -1,0 +1,42 @@
+page-faq {
+  .toolbar-title {
+     text-overflow: unset;
+     white-space: normal;
+  }
+  p {
+    text-align: justify;
+    padding: 0.6em 0;
+  }
+  .subtile header {
+    font-size: 1.1em;
+  }
+  ion-title {
+    padding-top: 5em;
+  }
+  ul {
+    font-size: 0.875em;
+    color: rgb(102, 102, 102);
+  }
+  .more-info {
+    text-align: center;
+    color: color($colors, primary);
+  }
+  .table_belaqi {
+  }
+  .row_table_belaqi {
+  }
+  .col1 {
+    min-width: 4em !important;
+    max-width: 4em !important;
+    font-size: 0.6em;
+  }
+  .col2 {
+    min-width: 7.5em !important;
+    max-width: 8em !important;
+    font-size: 0.6em;
+  }
+  .col3 {
+    overflow-x: scroll !important;
+    font-size: 0.6em;
+  }
+}
