@@ -9,7 +9,7 @@
   <ion-item>
     <header text-wrap>{{'faq.calculatedHow.title' | translate}}</header>
     <p class="subtile" text-wrap>{{'faq.calculatedHow.summary' | translate}}</p>
-    <button ion-button (click)="showMe1=true">{{'faq.readMore' | translate}}</button>
+    <button *ngIf="!showMe1" ion-button (click)="showMe1=true">{{'faq.readMore' | translate}}</button>
     <div *ngIf="showMe1">
       <button ion-button (click)="showMe1=false">{{'faq.hide' | translate}}</button>
       <ion-list>
@@ -383,7 +383,7 @@
   <ion-item>
     <header text-wrap>{{'faq.accuracy.title' | translate}}</header>
     <p class="subtile" text-wrap>{{'faq.accuracy.summary' | translate}}</p>
-    <button ion-button (click)="showMe2 = true">{{'faq.readMore' | translate}}</button>
+    <button *ngIf="!showMe2" ion-button (click)="showMe2 = true">{{'faq.readMore' | translate}}</button>
     <div *ngIf="showMe2">
       <button ion-button (click)="showMe2 = false">{{'faq.hide' | translate}}</button>
       <ion-list>
@@ -403,7 +403,7 @@
   <ion-item>
     <header text-wrap>{{'faq.compareCurieuzeneuzen.title' | translate}}</header>
     <p class="subtile" text-wrap>{{'faq.compareCurieuzeneuzen.summary' | translate}}</p>
-    <button ion-button (click)="showMe3 = true">{{'faq.readMore' | translate}}</button>
+    <button *ngIf="!showMe3" ion-button (click)="showMe3 = true">{{'faq.readMore' | translate}}</button>
     <div *ngIf="showMe3">
       <button ion-button (click)="showMe3 = false">{{'faq.hide' | translate}}</button>
       <ion-list>
@@ -423,7 +423,7 @@
   <ion-item>
     <header text-wrap>{{'faq.longtermShortterm.title' | translate}}</header>
     <p class="subtile" text-wrap>{{'faq.longtermShortterm.summary' | translate}}</p>
-    <button ion-button (click)="showMe4 = true">{{'faq.readMore' | translate}}</button>
+    <button *ngIf="!showMe4" ion-button (click)="showMe4 = true">{{'faq.readMore' | translate}}</button>
     <div *ngIf="showMe4">
       <button ion-button (click)="showMe4 = false">{{'faq.hide' | translate}}</button>
       <ion-list>
