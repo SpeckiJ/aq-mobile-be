@@ -232,6 +232,10 @@
     "header": "Karte",
     "index": "BelAQI-Index",
     "interpolated-map": "Interpolierte Karte",
+    "mean": {
+      "daily": "Laufender 24 Stunde Mittelwert",
+      "hourly": "Stündlicher Mittelwert"
+    },
     "nearest-station": "Nächstgelegene Überwachungsstation",
     "no-legend": "Keine Legend verfügbar",
     "pollutant": {

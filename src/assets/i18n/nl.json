@@ -232,6 +232,10 @@
     "header": "Kaart",
     "index": "BelAQI index",
     "interpolated-map": "Geïnterpoleerde kaart",
+    "mean": {
+      "daily": "",
+      "hourly": ""
+    },
     "nearest-station": "Dichtstbijgelegen meetstation",
     "no-legend": "Geen legende beschikbaar",
     "pollutant": {

@@ -22,6 +22,7 @@ import { Subscription } from 'rxjs';
 import { getMainPhenomenonForID } from '../../model/phenomenon';
 import { BelaqiIndexProvider } from '../../providers/belaqi/belaqi';
 import { CategorizeValueToIndexProvider } from '../../providers/categorize-value-to-index/categorize-value-to-index';
+import { IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
 
 @Component({
   selector: 'customized-station-map-selector',
@@ -55,7 +56,8 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
     protected differs: KeyValueDiffers,
     protected cd: ChangeDetectorRef,
     protected categorizer: CategorizeValueToIndexProvider,
-    protected belaqi: BelaqiIndexProvider
+    protected belaqi: BelaqiIndexProvider,
+    protected ircelineSettings: IrcelineSettingsProvider
   ) {
     super(mapCache, differs, cd);
   }
@@ -83,36 +85,38 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
       phenomenon: this.filter.phenomenon,
       expanded: true
     };
-    this.ongoingTimeseriesSubscriber = this.apiInterface.getTimeseries(this.serviceUrl, tempFilter).subscribe(
-      timeseries => {
-        this.markerFeatureGroup = featureGroup();
-        timeseries.forEach(ts => {
-          if ((ts.lastValue.timestamp) > new Date().getTime() - this.ignoreStatusIntervalIfBeforeDuration) {
-            const phenomenon = getMainPhenomenonForID(ts.parameters.phenomenon.id);
-            const index = this.categorizer.categorize(ts.lastValue.value, phenomenon);
-            const color = this.belaqi.getColorForIndex(index);
-            let marker;
-            if (color) { marker = this.createColoredMarker(ts.station, color); }
-            if (!marker) { marker = this.createDefaultColoredMarker(ts.station); }
-            if (marker) {
-              marker.on('click', () => {
-                this.onSelected.emit(ts.station);
-              });
-              this.markerFeatureGroup.addLayer(marker);
+    this.ircelineSettings.getSettings().subscribe(res => {
+      this.ongoingTimeseriesSubscriber = this.apiInterface.getTimeseries(this.serviceUrl, tempFilter).subscribe(
+        timeseries => {
+          this.markerFeatureGroup = featureGroup();
+          timeseries.forEach(ts => {
+            if ((ts.lastValue.timestamp) > res.lastupdate.getTime() - this.ignoreStatusIntervalIfBeforeDuration) {
+              const phenomenon = getMainPhenomenonForID(ts.parameters.phenomenon.id);
+              const index = this.categorizer.categorize(ts.lastValue.value, phenomenon);
+              const color = this.belaqi.getColorForIndex(index);
+              let marker;
+              if (color) { marker = this.createColoredMarker(ts.station, color); }
+              if (!marker) { marker = this.createDefaultColoredMarker(ts.station); }
+              if (marker) {
+                marker.on('click', () => {
+                  this.onSelected.emit(ts.station);
+                });
+                this.markerFeatureGroup.addLayer(marker);
+              }
             }
+          });
+          if (!this.avoidZoomToSelection) {
+            this.zoomToMarkerBounds(this.markerFeatureGroup.getBounds());
           }
-        });
-        if (!this.avoidZoomToSelection) {
-          this.zoomToMarkerBounds(this.markerFeatureGroup.getBounds());
+          this.isContentLoading(false);
+          if (this.map) { this.markerFeatureGroup.addTo(this.map); }
+        },
+        error => {
+          this.markerFeatureGroup = featureGroup();
+          if (this.map) { this.markerFeatureGroup.addTo(this.map); }
         }
-        this.isContentLoading(false);
-        if (this.map) { this.markerFeatureGroup.addTo(this.map); }
-      },
-      error => {
-        this.markerFeatureGroup = featureGroup();
-        if (this.map) { this.markerFeatureGroup.addTo(this.map); }
-      }
-    );
+      );
+    })
   }
 
   private createColoredMarker(station: Station, color: string): Layer {

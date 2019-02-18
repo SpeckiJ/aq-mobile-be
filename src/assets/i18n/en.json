@@ -232,6 +232,10 @@
     "header": "Map",
     "index": "BelAQI index",
     "interpolated-map": "interpolated map",
+    "mean": {
+      "daily": "running 24-hourly mean",
+      "hourly": "hourly mean"
+    },
     "nearest-station": "Nearest station",
     "no-legend": "No legend available",
     "pollutant": {

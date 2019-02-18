@@ -93,7 +93,7 @@ export class BelaqiIndexProvider extends ValueProvider {
       params: params
     });
     params['time'] = time.toISOString();
-    return this.cacheService.loadFromObservable(createCacheKey(url, params, params['time']), request).pipe(map((res) => {
+    return this.cacheService.loadFromObservable(createCacheKey(url, params, time), request).pipe(map((res) => {
       if (res && res.features && res.features.length === 1) {
         if (res.features[0].properties['GRAY_INDEX']) {
           return res.features[0].properties['GRAY_INDEX'];

@@ -54,6 +54,16 @@
       </div>
     </div>
     <div>
+      <ion-segment class="time" [(ngModel)]="mean" (tap)="onMeanChange($event, mean)">
+        <ion-segment-button value="hourly">
+          {{'map.mean.hourly' | translate}}
+        </ion-segment-button>
+        <ion-segment-button value="daily" *ngIf="showDailyMean">
+          {{'map.mean.daily' | translate}}
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div>
       <ion-segment class="time" [(ngModel)]="time" (ngModelChange)="onTimeChange()">
         <ion-segment-button value="current">
           {{'map.time.current' | translate}}

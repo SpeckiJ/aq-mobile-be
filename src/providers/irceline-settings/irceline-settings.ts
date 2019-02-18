@@ -26,7 +26,8 @@ export class IrcelineSettingsProvider {
     private cacheService: CacheService
   ) {
     this.cacheService.setDefaultTTL(DEFAULT_TTL_CACHE);
-    this.cacheService.clearExpired();
+    this.cacheService.clearExpired()
+      .catch(error => console.log(error));
   }
 
   public getSettings(reload?: boolean): Observable<IrcelineSettings> {
