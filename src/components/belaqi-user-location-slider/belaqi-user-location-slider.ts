@@ -33,7 +33,8 @@ export interface BelaqiSelection {
     latitude: number;
     label: string;
     type: 'user' | 'current';
-  }
+  };
+  yearly: boolean;
 }
 
 @Component({
@@ -112,7 +113,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     if (this.showSubIndexPanelSubscriber) { this.showSubIndexPanelSubscriber.unsubscribe(); }
   }
 
-  public selectPhenomenonLocation(selection: PhenomenonLocationSelection, userlocation: UserLocation) {
+  public selectPhenomenonLocation(selection: PhenomenonLocationSelection, userlocation: UserLocation, yearly: boolean) {
     this.phenomenonSelected.emit({
       phenomenonID: selection.phenomenonId,
       stationlocation: {
@@ -124,11 +125,12 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
         longitude: userlocation.longitude,
         label: userlocation.label,
         type: userlocation.type
-      }
+      },
+      yearly
     });
   }
 
-  public selectPhenomenon(phenId: string, userlocation: UserLocation) {
+  public selectPhenomenon(phenId: string, userlocation: UserLocation, yearly: boolean) {
     this.phenomenonSelected.emit({
       phenomenonID: phenId,
       userlocation: {
@@ -136,7 +138,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
         longitude: userlocation.longitude,
         label: userlocation.label,
         type: userlocation.type
-      }
+      },
+      yearly
     })
   }
 

@@ -46,7 +46,8 @@ enum TimeLabel {
 
 enum MeanLabel {
   hourly = 'hourly',
-  daily = 'daily'
+  daily = 'daily',
+  yearly = 'yearly'
 }
 
 const phenomenonMapping = [
@@ -106,6 +107,7 @@ export class MapPage {
 
   public mean: string;
   public showDailyMean: boolean = true;
+  public showYearlyMean: boolean = true;
 
   public legend: L.Control;
   private legendVisible: boolean = false;
@@ -141,6 +143,9 @@ export class MapPage {
     if (this.belaqiSelection) {
       const phenId = this.belaqiSelection.phenomenonID;
       this.phenomenonLabel = this.getPhenomenonLabel(phenId);
+      if (this.belaqiSelection.yearly) {
+        this.mean = MeanLabel.yearly;
+      }
     } else {
       this.phenomenonLabel = PhenomenonLabel.BelAQI;
       this.showDailyMean = false;
@@ -346,29 +351,25 @@ export class MapPage {
               layerId = 'belaqi';
               break;
             case PhenomenonLabel.BC:
-              layerId = 'bc_hmean';
+              if (this.mean === MeanLabel.hourly) { layerId = 'bc_hmean'; }
+              if (this.mean === MeanLabel.yearly) { layerId = 'bc_anmean_2017_atmostreet'; }
               break;
             case PhenomenonLabel.NO2:
-              layerId = 'no2_hmean';
+              if (this.mean === MeanLabel.hourly) { layerId = 'no2_hmean'; }
+              if (this.mean === MeanLabel.yearly) { layerId = 'no2_anmean_2017_atmostreet'; }
               break;
             case PhenomenonLabel.O3:
-              layerId = 'o3_hmean';
+              if (this.mean === MeanLabel.hourly) { layerId = 'o3_hmean'; }
               break;
             case PhenomenonLabel.PM10:
-              if (this.mean === 'daily') {
-                layerId = 'pm10_24hmean';
-              }
-              else {
-                layerId = 'pm10_hmean';
-              }
+              if (this.mean === MeanLabel.hourly) { layerId = 'pm10_hmean'; }
+              if (this.mean === MeanLabel.daily) { layerId = 'pm10_24hmean'; }
+              if (this.mean === MeanLabel.yearly) { layerId = 'pm10_anmean_2017_atmostreet'; }
               break;
             case PhenomenonLabel.PM25:
-              if (this.mean === 'daily') {
-                layerId = 'pm25_24hmean';
-              }
-              else {
-                layerId = 'pm25_hmean';
-              }
+              if (this.mean === MeanLabel.hourly) { layerId = 'pm25_hmean'; }
+              if (this.mean === MeanLabel.daily) { layerId = 'pm25_24hmean'; }
+              if (this.mean === MeanLabel.yearly) { layerId = 'pm25_anmean_2017_atmostreet'; }
               break;
             default:
               break;

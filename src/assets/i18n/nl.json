@@ -241,7 +241,8 @@
 		"interpolated-map": "Geïnterpoleerde kaart",
 		"mean": {
 			"daily": "",
-			"hourly": ""
+			"hourly": "",
+			"yearly": ""
 		},
 		"nearest-station": "Dichtstbijgelegen meetstation",
 		"no-legend": "Geen legende beschikbaar",

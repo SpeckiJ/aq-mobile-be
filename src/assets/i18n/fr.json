@@ -241,7 +241,8 @@
 		"interpolated-map": "Carte interpolée",
 		"mean": {
 			"daily": "",
-			"hourly": ""
+			"hourly": "",
+			"yearly": ""
 		},
 		"nearest-station": "Station de mesure la plus proche",
 		"no-legend": "Aucune légende disponible",
