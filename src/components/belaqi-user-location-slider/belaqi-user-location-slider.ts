@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ModalController, NavController, PopoverController, Slides, Toggle } from 'ionic-angular';
+import { ModalController, NavController, PopoverController, Slides, ToastController } from 'ionic-angular';
 import { Subscription } from 'rxjs';
 
-import { SettingsPage } from '../../pages/settings/settings';
 import { FAQPage } from '../../pages/faq/faq';
+import { SettingsPage } from '../../pages/settings/settings';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
 import { LocateProvider, LocationStatus } from '../../providers/locate/locate';
 import { NetworkAlertProvider } from '../../providers/network-alert/network-alert';
@@ -81,7 +81,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     protected translateSrvc: TranslateService,
     protected modalCtrl: ModalController,
     protected refreshHandler: RefreshHandler,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private toast: ToastController
   ) {
     this.locate.getLocationStatusAsObservable().subscribe(locationStatus => {
       if (locationStatus !== LocationStatus.DENIED) {
@@ -152,8 +153,33 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     this.updateLocationSelection(currentIndex);
   }
 
-  public toggle(toggle: Toggle) {
-    this.userLocationProvider.setCurrentLocationVisisble(toggle.value);
+  public changeCurrentLocation() {
+    if (this.showCurrentLocation) {
+      if (this.locate.getLocationStatus() === LocationStatus.DENIED) {
+        this.locate.askForPermission()
+          .then(permission => {
+            if (permission) {
+              this.updateShowCurrentLocation(true);
+            } else {
+              this.showCurrentLocation = false;
+            }
+          })
+          .catch(error => this.presentError(error))
+      } else {
+        this.updateShowCurrentLocation(true);
+      }
+    } else {
+      this.updateShowCurrentLocation(false);
+    }
+  }
+
+  private presentError(error: any) {
+    this.toast.create({ message: `Error occured: ${JSON.stringify(error)}`, duration: 3000 }).present();
+  }
+
+  private updateShowCurrentLocation(value: boolean) {
+    this.userLocationProvider.setCurrentLocationVisisble(value);
+    this.showCurrentLocation = value;
   }
 
   public navigateSettings() {

@@ -13,7 +13,7 @@
   <p>{{'network.geolocationPartialExplanation' | translate}}</p>
 </div>
 
-<div *ngIf="isDenied()" text-wrap (click)="activateHighAccMode()">
+<div *ngIf="isDenied()" text-wrap (click)="askForPermission()">
   <h2 class="disabled">{{'network.geolocationDenied' | translate}}</h2>
   <p>{{'network.geolocationDeniedExplanation' | translate}}</p>
 </div>

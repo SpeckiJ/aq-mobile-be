@@ -56,6 +56,29 @@ export class LocateProvider {
     return this.locationStatus;
   }
 
+  public askForPermission(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.diagnostic.isLocationAuthorized()
+        .then(auth => {
+          if (auth) {
+            resolve(true);
+          } else {
+            this.diagnostic.requestLocationAuthorization()
+              .then(res => {
+                if (res === 'DENIED') {
+                  resolve(false)
+                } else {
+                  resolve(true);
+                }
+                resolve(res);
+              })
+              .catch(error => reject(error))
+          }
+        })
+        .catch(error => reject(error));
+    })
+  }
+
   public askForHighAccuracy(): Promise<void> {
     // do not hear on resume while ask the user for high accuracy mode
     this.unsubscribeToResume();

@@ -45,4 +45,8 @@ export class GeolocationEnabledComponent implements OnInit, OnDestroy {
     this.locate.askForHighAccuracy();
   }
 
+  public askForPermission() {
+    this.locate.askForPermission();
+  }
+
 }
