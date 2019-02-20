@@ -105,26 +105,23 @@
     "select-timeseries": "Please select a timeseries"
   },
   "faq": {
-    "header": "Frequently asked questions (FAQ)",
-    "readMore": "read more",
-    "hide": "hide",
+    "accuracy": {
+      "link": "http://www.irceline.be/en/documentation/models/rio-ifdm",
+      "moreInfo": "More info about RIO-IFDM",
+      "p1": "The model calculation of which the app shows you the result is a combination of two air quality models: RIO and IFDM. Both models have been thoroughly tested on the basis of additional measurements and are constantly fed with up-to-date air quality data.",
+      "p2": "With each model calculation there is a chance of over- or underestimation of the actual situation. These 2 models, for example, do not yet take into account obstacles along roads (noise barriers, closed rows of houses, etc.). For example, an underestimation can be shown for street canyons.",
+      "p3": "Meanwhile, a third model (OSPM) has already been built into the model chain that better assesses air quality in narrow streets. This is already being applied to the air quality maps that show the long-term impact. But the OSPM model requires a lot of calculations and we can not apply to current air quality results for the time being. To add the OSPM result to the app, a number of technical thresholds must first be overcome.",
+      "p4": "We are constantly working on improving the quality of the air quality models and the results you see in the app.",
+      "summary": "Comparisons with measurement results show that the model can estimate the air quality with a sufficiently high reliability according to current scientific quality requirements. However, a model can never fully correctly calculate the air quality. In a number of places, an over- or underestimation of the actual air quality can still be shown.",
+      "title": "How reliable is the model calculation behind the app?"
+    },
     "calculatedHow": {
-      "title": "How is the air quality calculated for my location?",
-      "summary": "The app shows the result of a model calculation for your location that is refreshed every hour. To assess the air quality, we use an air quality index. This shows one representative figure for the various relevant pollutants.",
-      "p1": "The index given by the app is not only based on the result of all monitoring stations in our monitoring networks, where the nearest station is possibly several kilometers away. The concentrations measured at all government monitoring stations are added to a computer model, which also takes into account emission data (traffic, industry and shipping) and meteorological conditions (wind direction and wind speed). This computer model then calculates detailed air quality maps for the geese country. The combination of the result for nitrogen dioxide, particulate matter and ozone is shown as one index in the app.",
-      "p2": "The index that the app shows also gives you an estimate of the health impact in the short term.",
-      "moreInfo": "Read here how the index takes short term health effects into account.",
-      "link": "http://www.irceline.be/en/belaqi",
-      "p3": "For the calculation of the air quality index, the indices for each pollutant are calculated separately on the basis of the scale classification in the table below. The highest (\"worst\") subindex then determines the index number that the app shows for your location.",
-      "index": "Index",
-      "classification": "Classification",
       "24hmean": "24-hours",
+      "classification": "Classification",
       "hmean": "1-hour",
-      "pm10_dmean": "PM10 24-hours (µg/m³)",
-      "pm25_dmean": "PM2.5 24-hours (µg/m³)",
-      "o3_maxhmean": "O3 1-hour (µg/m³)",
-      "no2_maxhmean": "NO2 1-hour (µg/m³)",
+      "index": "Index",
       "index1": "Excellent",
+      "index10": "Horrible",
       "index2": "Very good",
       "index3": "Good",
       "index4": "Fairly good",
@@ -133,41 +130,40 @@
       "index7": "Very poor",
       "index8": "Bad",
       "index9": "Very bad",
-      "index10": "Horrible",
-      "p4": "The impact of very local emissions (eg wood stoves, fireplaces, non-structural traffic jams, etc.) or accidental emissions (residential fire, etc.) is not shown by the app."
-    },
-    "accuracy": {
-      "title": "How reliable is the model calculation behind the app?",
-      "summary": "Comparisons with measurement results show that the model can estimate the air quality with a sufficiently high reliability according to current scientific quality requirements. However, a model can never fully correctly calculate the air quality. In a number of places, an over- or underestimation of the actual air quality can still be shown.",
-      "p1": "The model calculation of which the app shows you the result is a combination of two air quality models: RIO and IFDM. Both models have been thoroughly tested on the basis of additional measurements and are constantly fed with up-to-date air quality data.",
-      "moreInfo": "More info about RIO-IFDM",
-      "link": "http://www.irceline.be/en/documentation/models/rio-ifdm",
-      "p2": "With each model calculation there is a chance of over- or underestimation of the actual situation. These 2 models, for example, do not yet take into account obstacles along roads (noise barriers, closed rows of houses, etc.). For example, an underestimation can be shown for street canyons.",
-      "p3": "Meanwhile, a third model (OSPM) has already been built into the model chain that better assesses air quality in narrow streets. This is already being applied to the air quality maps that show the long-term impact. But the OSPM model requires a lot of calculations and we can not apply to current air quality results for the time being. To add the OSPM result to the app, a number of technical thresholds must first be overcome.",
-      "p4": "We are constantly working on improving the quality of the air quality models and the results you see in the app."
+      "link": "http://www.irceline.be/en/belaqi",
+      "moreInfo": "Read here how the index takes short term health effects into account.",
+      "p1": "The index given by the app is not only based on the result of all monitoring stations in our monitoring networks, where the nearest station is possibly several kilometers away. The concentrations measured at all government monitoring stations are added to a computer model, which also takes into account emission data (traffic, industry and shipping) and meteorological conditions (wind direction and wind speed). This computer model then calculates detailed air quality maps for the geese country. The combination of the result for nitrogen dioxide, particulate matter and ozone is shown as one index in the app.",
+      "p2": "The index that the app shows also gives you an estimate of the health impact in the short term.",
+      "p3": "For the calculation of the air quality index, the indices for each pollutant are calculated separately on the basis of the scale classification in the table below. The highest (\"worst\") subindex then determines the index number that the app shows for your location.",
+      "p4": "The impact of very local emissions (eg wood stoves, fireplaces, non-structural traffic jams, etc.) or accidental emissions (residential fire, etc.) is not shown by the app.",
+      "summary": "The app shows the result of a model calculation for your location that is refreshed every hour. To assess the air quality, we use an air quality index. This shows one representative figure for the various relevant pollutants.",
+      "title": "How is the air quality calculated for my location?"
     },
     "compareCurieuzeneuzen": {
-      "title": "CurieuzeNeuzen gave a different result than the app?",
-      "summary": "This is possible. In the case of CurieuzeNeuzen, only nitrogen dioxide was measured for a month. The result was converted to an annual average and compared with the long-term target for nitrogen dioxide.",
+      "link": "https://curieuzeneuzen.be/in-english/",
+      "moreInfo": "More info about CurieuzeNeuzen",
       "p1": "Your CurieuzeNeuzen result gives you an idea of ​​the air quality on the long term and the chronic health effects.",
       "p2": "In the app, on the other hand, we show the model calculation based on the current air quality results for various parameters (particulate matter, ozone, nitrogen dioxide, etc.). The results can vary from day to day and even hour to hour. The results are checked against the short-term objectives for air quality. For example, the app estimates the impact on the health of air pollution in the short term (= acute health effects).",
       "p3": "Your result of CurieuzeNeuzen and the calculation of the current situation in the app can therefore vary considerably.",
-      "moreInfo": "More info about CurieuzeNeuzen",
-      "link": "https://curieuzeneuzen.be/in-english/"
+      "summary": "This is possible. In the case of CurieuzeNeuzen, only nitrogen dioxide was measured for a month. The result was converted to an annual average and compared with the long-term target for nitrogen dioxide.",
+      "title": "CurieuzeNeuzen gave a different result than the app?"
     },
+    "header": "Frequently asked questions (FAQ)",
+    "hide": "hide",
     "longtermShortterm": {
-      "title": "What is the difference between short and long-term effects of air pollution?",
-      "summary": "The BelAIR app gives an idea of ​​the short-term impact (the acute effects) of the current air pollution. It can change from hour to hour. But in addition to acute short-term effects, air pollution also causes long-term or chronic effects.",
-      "p1": "Acute effects are for example an asthma or heart attack. Chronic effects are, for example, a higher risk of heart and lung diseases or lung cancer.",
-      "p2": "For nitrogen dioxide (NO2), the World Health Organization has recommended exposure limits to protect us from the long-term and short-term effects. NO2 is a good traffic-related indicator (better than particulate matter) and is one of the air pollutants that is included in the air quality index that the BelAir app shows.",
-      "list": "The WHO recommended values ​​are:",
       "item1": "hourly limit (short term): 200 µg/m³",
       "item2": "annual limit (long term): 40 µg/m³",
+      "list": "The WHO recommended values ​​are:",
+      "p1": "Acute effects are for example an asthma or heart attack. Chronic effects are, for example, a higher risk of heart and lung diseases or lung cancer.",
+      "p2": "For nitrogen dioxide (NO2), the World Health Organization has recommended exposure limits to protect us from the long-term and short-term effects. NO2 is a good traffic-related indicator (better than particulate matter) and is one of the air pollutants that is included in the air quality index that the BelAir app shows.",
       "p3": "The app gives an idea of ​​the short-term effects. If a concentration of 100 µg/m³ NO2 (half of the WHO hourly limit) is calculated at a certain location, the app gives index 4 (good).",
       "p4": "But if the annual average in the same location is 50 µg/m³ (higher than the WHO annual limit), this is classified as poorly.",
       "p5": "Acute (short-term) effects therefore occur at significantly higher concentrations. Chronic effects are the result of prolonged exposure. Compare it with smoking: a smoker will experience few acute health effects by smoking a couple of cigarettes a day. The acute effects will only occur by smoking a lot of cigarettes in a short time. But by smoking a few cigarettes every day, the risk of getting lung cancer nonetheless increases.",
-      "p6": "Due to the different assessment for the short-term and long-term impact, it is possible that the BelAir app shows good air quality at a certain time and location, while the annual average air quality there is poor."
-    }
+      "p6": "Due to the different assessment for the short-term and long-term impact, it is possible that the BelAir app shows good air quality at a certain time and location, while the annual average air quality there is poor.",
+      "summary": "The BelAIR app gives an idea of ​​the short-term impact (the acute effects) of the current air pollution. It can change from hour to hour. But in addition to acute short-term effects, air pollution also causes long-term or chronic effects.",
+      "title": "What is the difference between short and long-term effects of air pollution?"
+    },
+    "readMore": "read more"
   },
   "home": {
     "header": "Home",

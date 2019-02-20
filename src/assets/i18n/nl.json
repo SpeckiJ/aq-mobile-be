@@ -105,26 +105,23 @@
     "select-timeseries": "Selecteer aub een tijdsreeks"
   },
   "faq": {
-    "header": "Veelgestelde vragen (FAQ)",
-    "readMore": "lees meer",
-    "hide": "verbergen",
+    "accuracy": {
+      "link": "http://www.irceline.be/nl/documentatie/modellen/rio-ifdm",
+      "moreInfo": "Meer info over RIO-IFDM",
+      "p1": "De modelberekening waarvan de app je het resultaat toont, is een combinatie van twee luchtkwaliteitsmodellen: RIO en IFDM.  Beide modellen zijn grondig uitgetest aan de hand van bijkomende metingen en worden voortdurend gevoed met actuele luchtkwaliteitsdata.",
+      "p2": "Bij elke modelberekening is er een kans op over- of onderschatting van de werkelijke situatie. Deze 2 modellen houden bv. nog geen rekening met obstakels langs wegen (geluidsschermen, gesloten huizenrijen, etc.). Zo kan er een onderschatting getoond worden voor street canyons.",
+      "p3": "Er werd ondertussen al een derde model (OSPM) ingebouwd in de modelketen dat de luchtkwaliteit in smalle straten beter inschat. Dat wordt al toegepast op de luchtkwaliteitskaarten die de langetermijnimpact tonen. Maar het OSPM-model vergt heel wat berekeningen en kunnen we voorlopig niet toepassen op de actuele luchtkwaliteitsresultaten. Om ook het OSPM-resultaat aan de app toe te voegen, moeten eerst nog een aantal technische drempels overwonnen worden.",
+      "p4": "Er wordt voortdurend verder gewerkt om de kwaliteit van de luchtkwaliteitsmodellen en de resultaten die u in de app ziet te verbeteren.",
+      "summary": "Vergelijkingen met meetresultaten tonen aan dat het model de luchtkwaliteit met een voldoende hoge betrouwbaarheid kan inschatten volgens gangbare wetenschappelijke kwaliteitseisen. Een model kan echter nooit helemaal correct de luchtkwaliteit berekenen. Op een aantal plaatsen kan nog een over- of onderschatting getoond worden van de werkelijke luchtkwaliteit.",
+      "title": "Hoe betrouwbaar is de modelberekening achter de app?"
+    },
     "calculatedHow": {
-      "title": "Hoe wordt de luchtkwaliteit voor mijn locatie berekend?",
-      "summary": "De app toont het resultaat van een modelberekening voor je locatie die elk uur wordt vernieuwd. Om de luchtkwaliteit te beoordelen maken we gebruik van een luchtkwaliteitsindex. Die toont één representatief cijfer voor de verschillende relevante verontreinigende stoffen.",
-      "p1": "Het indexcijfer dat de app geeft is niet enkel gebaseerd op het resultaat van alle meetstations in onze meetnetten, waarbij het dichtstbijgelegen station mogelijk ettelijke kilometers verder ligt. De concentraties gemeten in alle meetstations van de overheid worden toegevoegd aan een computermodel, dat ook rekening houdt met emissiegegevens (verkeer, industrie en scheepvaart) en meteorologische omstandigheden (windrichting en windsnelheid). Dit computermodel berekent dan gedetailleerde luchtkwaliteitskaarten voor het ganse land. De combinatie van het resultaat voor stikstofdioxide, fijn stof en ozon zie je als één indexcijfer in de app.",
-      "p2": "Het indexcijfer dat de app toont, geeft je daarbij ook een inschatting van de gezondheidsimpact op korte termijn.",
-      "moreInfo": "Lees hier hoe de index rekening houdt met de gezondheidseffecten op korte termijn.",
-      "link": "http://www.irceline.be/nl/belaqi",
-      "p3": "Voor het berekenen van luchtkwaliteitsindex worden de indexen voor elke polluent apart berekend op basis van de schaalindeling in onderstaande tabel. De hoogste (\"slechtste\") subindex bepaalt dan het indexcijfer dat de app voor je locatie toont.",
-      "index": "Index",
-      "classification": "Classificatie",
       "24hmean": "24-uur",
+      "classification": "Classificatie",
       "hmean": "1-uur",
-      "pm10_dmean": "PM10 24-uur (µg/m³)",
-      "pm25_dmean": "PM2.5 24-uur (µg/m³)",
-      "o3_maxhmean": "O3 1-uur (µg/m³)",
-      "no2_maxhmean": "NO2 1-uur (µg/m³)",
+      "index": "Index",
       "index1": "uitstekend",
+      "index10": "uitermate slecht",
       "index2": "zeer goed",
       "index3": "goed",
       "index4": "vrij goed",
@@ -133,41 +130,40 @@
       "index7": "vrij slecht",
       "index8": "slecht",
       "index9": "zeer slecht",
-      "index10": "uitermate slecht",
-      "p4": "De impact van zeer lokale uitstoot (bv. houtkachels, open haarden, niet structurele files, etc.) of accidentele uitstoot (woningbrand, etc.) wordt niet weergegeven door de app."
-    },
-    "accuracy": {
-      "title": "Hoe betrouwbaar is de modelberekening achter de app?",
-      "summary": "Vergelijkingen met meetresultaten tonen aan dat het model de luchtkwaliteit met een voldoende hoge betrouwbaarheid kan inschatten volgens gangbare wetenschappelijke kwaliteitseisen. Een model kan echter nooit helemaal correct de luchtkwaliteit berekenen. Op een aantal plaatsen kan nog een over- of onderschatting getoond worden van de werkelijke luchtkwaliteit.",
-      "p1": "De modelberekening waarvan de app je het resultaat toont, is een combinatie van twee luchtkwaliteitsmodellen: RIO en IFDM.  Beide modellen zijn grondig uitgetest aan de hand van bijkomende metingen en worden voortdurend gevoed met actuele luchtkwaliteitsdata.",
-      "moreInfo": "Meer info over RIO-IFDM",
-      "link": "http://www.irceline.be/nl/documentatie/modellen/rio-ifdm",
-      "p2": "Bij elke modelberekening is er een kans op over- of onderschatting van de werkelijke situatie. Deze 2 modellen houden bv. nog geen rekening met obstakels langs wegen (geluidsschermen, gesloten huizenrijen, etc.). Zo kan er een onderschatting getoond worden voor street canyons.",
-      "p3": "Er werd ondertussen al een derde model (OSPM) ingebouwd in de modelketen dat de luchtkwaliteit in smalle straten beter inschat. Dat wordt al toegepast op de luchtkwaliteitskaarten die de langetermijnimpact tonen. Maar het OSPM-model vergt heel wat berekeningen en kunnen we voorlopig niet toepassen op de actuele luchtkwaliteitsresultaten. Om ook het OSPM-resultaat aan de app toe te voegen, moeten eerst nog een aantal technische drempels overwonnen worden.",
-      "p4": "Er wordt voortdurend verder gewerkt om de kwaliteit van de luchtkwaliteitsmodellen en de resultaten die u in de app ziet te verbeteren."
+      "link": "http://www.irceline.be/nl/belaqi",
+      "moreInfo": "Lees hier hoe de index rekening houdt met de gezondheidseffecten op korte termijn.",
+      "p1": "Het indexcijfer dat de app geeft is niet enkel gebaseerd op het resultaat van alle meetstations in onze meetnetten, waarbij het dichtstbijgelegen station mogelijk ettelijke kilometers verder ligt. De concentraties gemeten in alle meetstations van de overheid worden toegevoegd aan een computermodel, dat ook rekening houdt met emissiegegevens (verkeer, industrie en scheepvaart) en meteorologische omstandigheden (windrichting en windsnelheid). Dit computermodel berekent dan gedetailleerde luchtkwaliteitskaarten voor het ganse land. De combinatie van het resultaat voor stikstofdioxide, fijn stof en ozon zie je als één indexcijfer in de app.",
+      "p2": "Het indexcijfer dat de app toont, geeft je daarbij ook een inschatting van de gezondheidsimpact op korte termijn.",
+      "p3": "Voor het berekenen van luchtkwaliteitsindex worden de indexen voor elke polluent apart berekend op basis van de schaalindeling in onderstaande tabel. De hoogste (\"slechtste\") subindex bepaalt dan het indexcijfer dat de app voor je locatie toont.",
+      "p4": "De impact van zeer lokale uitstoot (bv. houtkachels, open haarden, niet structurele files, etc.) of accidentele uitstoot (woningbrand, etc.) wordt niet weergegeven door de app.",
+      "summary": "De app toont het resultaat van een modelberekening voor je locatie die elk uur wordt vernieuwd. Om de luchtkwaliteit te beoordelen maken we gebruik van een luchtkwaliteitsindex. Die toont één representatief cijfer voor de verschillende relevante verontreinigende stoffen.",
+      "title": "Hoe wordt de luchtkwaliteit voor mijn locatie berekend?"
     },
     "compareCurieuzeneuzen": {
-      "title": "CurieuzeNeuzen gaf een ander resultaat dan de app?",
-      "summary": "Dat kan. Bij CurieuzeNeuzen werd namelijk enkel stikstofdioxide een maand lang gemeten. Het resultaat is omgezet naar een jaargemiddelde en afgetoetst aan de lange termijn doelstelling voor stikstofdioxide.",
+      "link": "https://curieuzeneuzen.be/",
+      "moreInfo": "Meer info over CurieuzeNeuzen",
       "p1": "Je CurieuzeNeuzenresultaat geeft zo een idee van de  luchtkwaliteit op de lange termijn en de chronische gezondheidseffecten.",
       "p2": "In de app tonen we daarentegen de modelberekening op basis de actuele luchtkwaliteitsresultaten voor verschillende parameters (fijn stof, ozon, stikstofdioxide, etc.). De resultaten kunnen van dag tot dag en zelfs uur tot uur verschillen. De resultaten worden afgetoetst aan de korte termijn doelstellingen voor luchtkwaliteit. Zo schat de app de impact op de gezondheid van luchtvervuiling op korte termijn in (= acute gezondheidseffecten).",
       "p3": "Je resultaat van CurieuzeNeuzen en de berekening van de actuele situatie in de app kunnen dus grondig verschillen.",
-      "moreInfo": "Meer info over CurieuzeNeuzen",
-      "link": "https://curieuzeneuzen.be/"
+      "summary": "Dat kan. Bij CurieuzeNeuzen werd namelijk enkel stikstofdioxide een maand lang gemeten. Het resultaat is omgezet naar een jaargemiddelde en afgetoetst aan de lange termijn doelstelling voor stikstofdioxide.",
+      "title": "CurieuzeNeuzen gaf een ander resultaat dan de app?"
     },
+    "header": "Veelgestelde vragen (FAQ)",
+    "hide": "verbergen",
     "longtermShortterm": {
-      "title": "Wat is het verschil tussen korte- en langetermijneffecten van luchtvervuiling?",
-      "summary": "De BelAIR app geeft een idee van de kortetermijnimpact (de acute effecten) van de actuele luchtvervuiling. Die kan van uur tot uur wijzigen. Maar naast acute effecten op korte termijn veroorzaakt luchtvervuiling ook langetermijn of chronische effecten.",
-      "p1": "Acute effecten zijn bijvoorbeeld een astma- of hartaanval. Chronische effecten zijn bijvoorbeeld een hoger risico op hart- en longziekten of longkanker.",
-      "p2": "Voor stikstofdioxide (NO2) heeft de Wereldgezondheidsorganisatie advieswaarden om ons te beschermen tegen de lange- en de kortetermijneffecten. NO2 is een goede verkeersgerelateerde indicator (beter dan fijn stof) en is één van de luchtvervuilende stoffen die opgenomen is in de luchtkwaliteitsindex die de BelAir-app toont.",
-      "list": "De WGO advieswaarden zijn:",
       "item1": "uurgrens (korte termijn): 200 µg/m³",
       "item2": "jaargrens (lange termijn): 40 µg/m³",
+      "list": "De WGO advieswaarden zijn:",
+      "p1": "Acute effecten zijn bijvoorbeeld een astma- of hartaanval. Chronische effecten zijn bijvoorbeeld een hoger risico op hart- en longziekten of longkanker.",
+      "p2": "Voor stikstofdioxide (NO2) heeft de Wereldgezondheidsorganisatie advieswaarden om ons te beschermen tegen de lange- en de kortetermijneffecten. NO2 is een goede verkeersgerelateerde indicator (beter dan fijn stof) en is één van de luchtvervuilende stoffen die opgenomen is in de luchtkwaliteitsindex die de BelAir-app toont.",
       "p3": "De app geeft een idee van de kortetermijneffecten. Als op een bepaalde plaats een concentratie van 100 µg/m³ NO2 (de helft van de WGO uurgrens) wordt berekend, geeft de app index 4 (goed) aan.",
       "p4": "Maar als het jaargemiddelde op dezelfde plaats 50 µg/m³ (hoger dan de WGO jaargrens) bedraagt, wordt dat als slecht gecatalogeerd.",
       "p5": "Acute (kortetermijn) effecten treden dus op bij gevoelig hogere concentraties. Chronische effecten zijn het gevolg van langdurige blootstelling. Vergelijk het met roken: een roker zal weinig acute gezondheidseffecten ondervinden door het roken van enkele sigaretten per dag. De acute effecten zullen pas optreden door heel veel sigaretten op korte tijd te roken.  Maar door alle dagen een paar sigaretten te roken, stijgt het risico op het krijgen van longkanker gevoelig.",
-      "p6": "Door de verschillende beoordeling voor de korte- en langetermijnimpact kan het dus zijn dat de BelAir-app een goede luchtkwaliteit toont op een bepaalde tijdstip en locatie, terwijl de jaargemiddelde luchtkwaliteit daar slecht is."
-    }
+      "p6": "Door de verschillende beoordeling voor de korte- en langetermijnimpact kan het dus zijn dat de BelAir-app een goede luchtkwaliteit toont op een bepaalde tijdstip en locatie, terwijl de jaargemiddelde luchtkwaliteit daar slecht is.",
+      "summary": "De BelAIR app geeft een idee van de kortetermijnimpact (de acute effecten) van de actuele luchtvervuiling. Die kan van uur tot uur wijzigen. Maar naast acute effecten op korte termijn veroorzaakt luchtvervuiling ook langetermijn of chronische effecten.",
+      "title": "Wat is het verschil tussen korte- en langetermijneffecten van luchtvervuiling?"
+    },
+    "readMore": "lees meer"
   },
   "home": {
     "header": "Start",
