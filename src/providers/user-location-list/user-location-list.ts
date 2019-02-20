@@ -22,6 +22,7 @@ export interface UserLocation {
 const STORAGE_USER_LOCATIONS_KEY = 'userlocation';
 const STORAGE_SHOW_NEAREST_STATIONS_KEY = 'showNearestStations';
 const STORAGE_SHOW_SUB_INDEX_PANEL_KEY = 'showSubIndexPanel';
+const STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY = 'showAnnuelMeanPanel';
 
 @Injectable()
 export class UserLocationListProvider {
@@ -34,6 +35,7 @@ export class UserLocationListProvider {
 
   private showNearestStationsReplay: ReplaySubject<boolean> = new ReplaySubject(1);
   private showSubIndexPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
+  private showAnnualMeanPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     protected storage: Storage,
@@ -48,6 +50,7 @@ export class UserLocationListProvider {
     })
     this.loadShowNearestStations();
     this.loadShowSubIndexPanel();
+    this.loadShowAnnualMeanPanel();
   }
 
   public addUserLocation(label: string, point: Point) {
@@ -172,7 +175,7 @@ export class UserLocationListProvider {
   }
 
   //show sub index panel
-  public setShowShowSubIndexPanel(show: boolean) {
+  public setShowSubIndexPanel(show: boolean) {
     this.storage.set(STORAGE_SHOW_SUB_INDEX_PANEL_KEY, show);
     this.showSubIndexPanelReplay.next(show);
   }
@@ -184,6 +187,22 @@ export class UserLocationListProvider {
   private loadShowSubIndexPanel() {
     this.storage.get(STORAGE_SHOW_SUB_INDEX_PANEL_KEY)
       .then(res => this.showSubIndexPanelReplay.next(res === null ? true : res))
+      .catch(error => console.error(error))
+  }
+
+  //show annual mean panel
+  public setShowAnnualMeanPanel(show: boolean) {
+    this.storage.set(STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY, show);
+    this.showAnnualMeanPanelReplay.next(show);
+  }
+
+  public getShowAnnualMeanPanel(): Observable<boolean> {
+    return this.showAnnualMeanPanelReplay.asObservable();
+  }
+
+  private loadShowAnnualMeanPanel() {
+    this.storage.get(STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY)
+      .then(res => this.showAnnualMeanPanelReplay.next(res === null ? true : res))
       .catch(error => console.error(error))
   }
 

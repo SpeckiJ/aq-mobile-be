@@ -20,4 +20,8 @@
     <ion-label>{{'settings.user-locations.show-sub-index-panel' | translate}}</ion-label>
     <ion-toggle color="secondary" [(ngModel)]="showSubIndexPanel" (ngModelChange)="toggleShowSubIndexPanel()"></ion-toggle>
   </ion-item>
+  <ion-item text-wrap (click)="toggleShowAnnualMeanPanel()">
+    <ion-label>{{'settings.user-locations.show-annual-mean-panel' | translate}}</ion-label>
+    <ion-toggle color="secondary" [(ngModel)]="showAnnualMeanPanel" (ngModelChange)="toggleShowAnnualMeanPanel()"></ion-toggle>
+  </ion-item>
 </ion-list>

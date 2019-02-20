@@ -23,6 +23,9 @@ export class UserLocationsSettingsComponent implements OnDestroy {
   public showSubIndexPanel: boolean;
   private showSubIndexPanelSubscriber: Subscription;
 
+  public showAnnualMeanPanel: boolean;
+  private showAnnualPanelSubscriber: Subscription;
+
   constructor(
     protected modalCtrl: ModalController,
     protected locatedTsSrvc: LocatedTimeseriesService,
@@ -33,11 +36,14 @@ export class UserLocationsSettingsComponent implements OnDestroy {
       .subscribe(val => this.showNearestStations = val);
     this.showSubIndexPanelSubscriber = this.userLocationListProvider.getShowSubIndexPanel()
       .subscribe(val => this.showSubIndexPanel = val);
+    this.showAnnualPanelSubscriber = this.userLocationListProvider.getShowAnnualMeanPanel()
+      .subscribe(val => this.showAnnualMeanPanel = val);
   }
 
   public ngOnDestroy() {
     this.showNearestStationsSubscriber.unsubscribe();
     this.showSubIndexPanelSubscriber.unsubscribe();
+    this.showAnnualPanelSubscriber.unsubscribe();
   }
 
   public createNewLocation() {
@@ -57,7 +63,11 @@ export class UserLocationsSettingsComponent implements OnDestroy {
   }
 
   public toggleShowSubIndexPanel() {
-    this.userLocationListProvider.setShowShowSubIndexPanel(this.showSubIndexPanel);
+    this.userLocationListProvider.setShowSubIndexPanel(this.showSubIndexPanel);
+  }
+
+  public toggleShowAnnualMeanPanel() {
+    this.userLocationListProvider.setShowAnnualMeanPanel(this.showAnnualMeanPanel);
   }
 
 }

@@ -374,6 +374,7 @@
       "create-new-location": "Create new location",
       "edit-location": "Edit location",
       "header": "User locations",
+      "show-annual-mean-panel": "Show annual mean on start page",
       "show-location-list": "Show current locations",
       "show-nearest-series-by-default": "Show nearest measurements in diagram",
       "show-nearest-stations": "Show nearest measuring stations on start page",
