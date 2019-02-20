@@ -18,11 +18,13 @@ import L, {
   popup,
 } from 'leaflet';
 import moment from 'moment';
+import { forkJoin } from 'rxjs';
 import { MarkerSelectorGenerator } from 'src/components/customized-station-map-selector/customized-station-map-selector';
 
 import { BelaqiSelection } from '../../components/belaqi-user-location-slider/belaqi-user-location-slider';
 import { StationSelectorComponent } from '../../components/station-selector/station-selector';
 import { getIDForMainPhenomenon, MainPhenomenon } from '../../model/phenomenon';
+import { AnnualMeanProvider } from '../../providers/annual-mean/annual-mean';
 import { IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
 import { MobileSettings } from '../../providers/settings/settings';
 import { DiagramPage } from '../diagram/diagram';
@@ -127,7 +129,8 @@ export class MapPage {
     protected cdr: ChangeDetectorRef,
     protected translateSrvc: TranslateService,
     protected http: HttpClient,
-    protected cacheService: CacheService
+    protected cacheService: CacheService,
+    protected annualProvider: AnnualMeanProvider
   ) {
     const settings = this.settingsSrvc.getSettings();
     this.providerUrl = settings.datasetApis[0].url;
@@ -344,39 +347,42 @@ export class MapPage {
       let wmsUrl: string;
       let timeParam: string;
       if (this.time == TimeLabel.current) {
-        this.ircelineSettings.getSettings(false).subscribe(ircSetts => {
+        forkJoin(
+          this.annualProvider.getYear(),
+          this.ircelineSettings.getSettings(false)
+        ).subscribe(result => {
           wmsUrl = 'http://geo.irceline.be/rioifdm/wms';
-          timeParam = ircSetts.lastupdate.toISOString();
+          const lastUpdate = result[1].lastupdate.toISOString();
+          const year = result[0];
           switch (this.phenomenonLabel) {
             case PhenomenonLabel.BelAQI:
-              layerId = 'belaqi';
+              this.drawLayer(wmsUrl, 'belaqi', geojson)
               break;
             case PhenomenonLabel.BC:
-              if (this.mean === MeanLabel.hourly) { layerId = 'bc_hmean'; }
-              if (this.mean === MeanLabel.yearly) { layerId = 'bc_anmean_2017_atmostreet'; }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'bc_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `bc_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.NO2:
-              if (this.mean === MeanLabel.hourly) { layerId = 'no2_hmean'; }
-              if (this.mean === MeanLabel.yearly) { layerId = 'no2_anmean_2017_atmostreet'; }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'no2_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `no2_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.O3:
-              if (this.mean === MeanLabel.hourly) { layerId = 'o3_hmean'; }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'o3_hmean', geojson, lastUpdate)
               break;
             case PhenomenonLabel.PM10:
-              if (this.mean === MeanLabel.hourly) { layerId = 'pm10_hmean'; }
-              if (this.mean === MeanLabel.daily) { layerId = 'pm10_24hmean'; }
-              if (this.mean === MeanLabel.yearly) { layerId = 'pm10_anmean_2017_atmostreet'; }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'pm10_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm10_24hmean', geojson)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `pm10_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.PM25:
-              if (this.mean === MeanLabel.hourly) { layerId = 'pm25_hmean'; }
-              if (this.mean === MeanLabel.daily) { layerId = 'pm25_24hmean'; }
-              if (this.mean === MeanLabel.yearly) { layerId = 'pm25_anmean_2017_atmostreet'; }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'pm25_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm25_24hmean', geojson)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `pm25_anmean_${year}_atmostreet`, geojson)
               break;
             default:
               break;
           }
-          this.drawLayer(layerId, geojson, timeParam, wmsUrl);
-        });
+        })
       }
       else {
         wmsUrl = 'http://geo.irceline.be/forecast/wms';
@@ -416,7 +422,7 @@ export class MapPage {
             break;
         }
       }
-      this.drawLayer(layerId, geojson, timeParam, wmsUrl);
+      this.drawLayer(wmsUrl, layerId, geojson, timeParam);
     });
   }
 
@@ -426,19 +432,24 @@ export class MapPage {
     switch (this.selectedPhenomenonId) {
       case getIDForMainPhenomenon(MainPhenomenon.BC):
         showYearly = true;
+        this.mean = MeanLabel.yearly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.NO2):
         showYearly = true;
+        this.mean = MeanLabel.yearly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.O3):
+        this.mean = MeanLabel.hourly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.PM10):
         showDaily = true;
         showYearly = true;
+        this.mean = MeanLabel.yearly
         break;
-      case getIDForMainPhenomenon(MainPhenomenon.PM10):
+      case getIDForMainPhenomenon(MainPhenomenon.PM25):
         showDaily = true;
         showYearly = true;
+        this.mean = MeanLabel.yearly
         break;
       default:
         break;
@@ -447,7 +458,7 @@ export class MapPage {
     this.showYearlyMean = showYearly;
   }
 
-  private drawLayer(layerId: string, geojson, timeParam: string, wmsUrl: string) {
+  private drawLayer(wmsUrl: string, layerId: string, geojson: GeoJSON.GeoJsonObject, timeParam?: string) {
     if (layerId) {
       const layerOptions: BoundaryCanvasOptions = {
         layers: layerId,
