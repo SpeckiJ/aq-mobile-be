@@ -25,10 +25,10 @@ import { CacheModule } from 'ionic-cache';
 
 import { ComponentsModule } from '../components/components.module';
 import { DiagramModule } from '../pages/diagram/diagram.module';
+import { FAQModule } from '../pages/faq/faq.module';
 import { IntroPage } from '../pages/intro/intro';
 import { MapModule } from '../pages/map/map.module';
 import { SettingsModule } from '../pages/settings/settings.module';
-import { FAQModule } from '../pages/faq/faq.module';
 import { StartPage } from '../pages/start/start';
 import { AirQualityIndexProvider } from '../providers/air-quality-index/air-quality-index';
 import { AnnualMeanProvider } from '../providers/annual-mean/annual-mean';
@@ -55,6 +55,7 @@ import { JSSONSettingsService } from '../providers/settings/settings';
 import { LocatedTimeseriesService } from '../providers/timeseries/located-timeseries';
 import { TimeseriesService } from '../providers/timeseries/timeseries';
 import { UserTimeseriesService } from '../providers/timeseries/user-timeseries';
+import { UpdateCheckProvider } from '../providers/update-check/update-check';
 import { UserLocationListProvider } from '../providers/user-location-list/user-location-list';
 import { MyApp } from './app.component';
 
@@ -150,6 +151,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     StatusBar,
     TimeseriesService,
+    UpdateCheckProvider,
     UserLocationListProvider,
     UserTimeseriesService,
   ]

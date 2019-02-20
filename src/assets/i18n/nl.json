@@ -397,6 +397,14 @@
       "text": "Dit zijn de berekende \"subindexen\" voor uw locatie. De globale BelAQI index is de hoogste waarde van deze 4 subindexen. De concentratieschalen werden bepaald in functie van de kortetermijnimpact op de gezondheid. De 4 polluenten die gebruikt worden om de BelAQI-index te berekenen zijn:"
     }
   },
+	"update": {
+		"hint": {
+			"popover": {
+				"content": "",
+				"header": ""
+			}
+		}
+	},
   "user-location-list": {
     "header": "Lijst van de locaties"
   },

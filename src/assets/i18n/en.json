@@ -397,6 +397,14 @@
       "text": "These are calculated \"subindices\" for your location. The global BelAQI index is the highest value of these 4 subindices. The concentration scales were determined in function of their short-term health effects. The 4 pollutants used to calculate the BelAQI index are:"
     }
   },
+  "update": {
+    "hint": {
+      "popover": {
+        "content": "This is a new version...",
+        "header": "New version"
+      }
+    }
+  },
   "user-location-list": {
     "header": "Location list"
   },
