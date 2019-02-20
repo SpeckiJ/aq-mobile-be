@@ -149,6 +149,7 @@ export class MapPage {
     } else {
       this.phenomenonLabel = PhenomenonLabel.BelAQI;
       this.showDailyMean = false;
+      this.showYearlyMean = false;
       this.mean = MeanLabel.hourly;
     }
     this.adjustUI();
@@ -420,17 +421,30 @@ export class MapPage {
   }
 
   private adjustMeanUI() {
-    // if selected phenomenon pm10 or pm2.5, then enable 24 hourly mean
-    if ((this.selectedPhenomenonId === getIDForMainPhenomenon(MainPhenomenon.PM10) ||
-      this.selectedPhenomenonId === getIDForMainPhenomenon(MainPhenomenon.PM25))
-      && this.time === TimeLabel.current
-    ) {
-      this.showDailyMean = true;
-      this.mean = 'daily';
-    } else {
-      this.showDailyMean = false;
-      this.mean = 'hourly';
+    let showDaily = false;
+    let showYearly = false;
+    switch (this.selectedPhenomenonId) {
+      case getIDForMainPhenomenon(MainPhenomenon.BC):
+        showYearly = true;
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.NO2):
+        showYearly = true;
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.O3):
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.PM10):
+        showDaily = true;
+        showYearly = true;
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.PM10):
+        showDaily = true;
+        showYearly = true;
+        break;
+      default:
+        break;
     }
+    this.showDailyMean = showDaily;
+    this.showYearlyMean = showYearly;
   }
 
   private drawLayer(layerId: string, geojson, timeParam: string, wmsUrl: string) {
@@ -446,8 +460,7 @@ export class MapPage {
       };
       if (timeParam) {
         layerOptions.time = timeParam;
-      }
-      ;
+      };
       this.overlayMaps.set(layerId + wmsUrl + timeParam, {
         label: this.translateSrvc.instant('map.interpolated-map'),
         visible: true,
