@@ -5,14 +5,15 @@ import { Storage } from '@ionic/storage';
 import { NavController, Platform } from 'ionic-angular';
 
 import { DiagramPage } from '../pages/diagram/diagram';
+import { FAQPage } from '../pages/faq/faq';
 import { IntroPage } from '../pages/intro/intro';
 import { MapPage } from '../pages/map/map';
 import { SettingsPage } from '../pages/settings/settings';
-import { FAQPage } from '../pages/faq/faq';
 import { StartPage } from '../pages/start/start';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../providers/irceline-settings/irceline-settings';
 import { PersonalAlertsProvider } from '../providers/personal-alerts/personal-alerts';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
+import { UpdateCheckProvider } from '../providers/update-check/update-check';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,6 +35,7 @@ export class MyApp implements AfterViewInit {
     private ircelineSettings: IrcelineSettingsProvider,
     private pushNotification: PushNotificationsProvider,
     private localNotification: PersonalAlertsProvider,
+    private updateCheck: UpdateCheckProvider,
     private storage: Storage
   ) {
     this.initializeApp();
@@ -42,6 +44,7 @@ export class MyApp implements AfterViewInit {
 
     this.pushNotification.init();
     this.localNotification.init();
+    this.updateCheck.init();
     this.decideStartView();
   }
 

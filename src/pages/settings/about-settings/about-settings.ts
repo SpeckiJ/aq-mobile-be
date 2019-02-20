@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AppVersion } from '@ionic-native/app-version';
-import { Platform } from 'ionic-angular';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 
 import { IntroPage } from '../../intro/intro';
 
