@@ -29,12 +29,16 @@ export class StartPage {
   }
 
   public setHeaderContent(headerContent: HeaderContent) {
-    const locationHeaderElems = document.querySelectorAll('.location-header') as NodeListOf<HTMLElement>;
+    let visibility;
     if (headerContent) {
-      locationHeaderElems.forEach(e => e.style.visibility = 'inherit');
+      visibility = 'inherit';
       this.sliderHeaderContent = headerContent;
     } else {
-      locationHeaderElems.forEach(e => e.style.visibility = 'hidden');
+      visibility = 'hidden';
+    }
+    const locationHeaderElems = document.querySelectorAll('.location-header');
+    for (let i = 0; i < locationHeaderElems.length; i++) {
+      (locationHeaderElems[i] as HTMLElement).style.visibility = visibility;
     }
   }
 
