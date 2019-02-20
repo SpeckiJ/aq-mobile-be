@@ -29,7 +29,13 @@ export class StartPage {
   }
 
   public setHeaderContent(headerContent: HeaderContent) {
-    this.sliderHeaderContent = headerContent;
+    const locationHeaderElems = document.querySelectorAll('.location-header') as NodeListOf<HTMLElement>;
+    if (headerContent) {
+      locationHeaderElems.forEach(e => e.style.visibility = 'inherit');
+      this.sliderHeaderContent = headerContent;
+    } else {
+      locationHeaderElems.forEach(e => e.style.visibility = 'hidden');
+    }
   }
 
   public doRefresh(refresher: Refresher) {
