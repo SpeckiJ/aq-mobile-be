@@ -8,6 +8,9 @@
         <belaqi-chart [location]="loc" (onReady)="resizeSlide()"></belaqi-chart>
       </div>
       <div *ngIf="showSubIndexPanel">
+        <annual-mean-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc)"></annual-mean-panel>
+      </div>
+      <div *ngIf="showSubIndexPanel">
         <sub-index-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc)"></sub-index-panel>
       </div>
       <div *ngIf="showNearestStationsPanel">
