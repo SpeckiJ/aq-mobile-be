@@ -15,14 +15,9 @@
     }
   },
   "annual-mean-panel": {
-    "header": "",
+    "header": "Lange termijn blootstelling (chronisch)",
     "information-popup": {
-      "moreInfo": "",
-      "no2": "",
-      "o3": "",
-      "pm10": "",
-      "pm25": "",
-      "text": ""
+      "text": "NO2 (Stikstofdioxide), PM10 (fijn stof met een diameter kleiner dan 10 micrometer) en PM2.5 (fijn stof met een diameter kleiner dan 2.5 micrometer) zijn de drie polluenten waar de meeste wetenschappelijke bewijslast bestaat m.b.t. de impact van langetermijn blootstelling."
     }
   },
   "annual-phenomenon-buttons": "Gemodelleerde jaargemiddelde waarde voor deze locatie:",
@@ -240,9 +235,9 @@
     "index": "BelAQI index",
     "interpolated-map": "Geïnterpoleerde kaart",
     "mean": {
-      "daily": "",
-      "hourly": "",
-      "yearly": ""
+      "daily": "24-uur",
+      "hourly": "uur",
+      "yearly": "jaar"
     },
     "nearest-station": "Dichtstbijgelegen meetstation",
     "no-legend": "Geen legende beschikbaar",
@@ -374,11 +369,11 @@
       "create-new-location": "Maak een nieuwe locatie aan",
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
-      "show-annual-mean-panel": "",
+      "show-annual-mean-panel": "Toon de langetermijnimpact op de startpagina",
       "show-location-list": "Toon huidige locaties",
       "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
       "show-nearest-stations": "Toon dichtstbijgelegen meetstations op de startpagina",
-      "show-sub-index-panel": "Toon de BelAQI-subindexen op de startpagina"
+      "show-sub-index-panel": "Toon de kortetermijnimpact op de startpagina"
     }
   },
   "show-geometry": {
@@ -398,7 +393,7 @@
     "zeroBasedYAxe": "Tijdsreeks nul gebaseerd"
   },
   "sub-index-panel": {
-    "header": "Subindex op deze locatie",
+    "header": "Korte termijn blootstelling (acuut)",
     "information-popup": {
       "link": "http://www.irceline.be/nl/belaqi",
       "moreInfo": "Meer info",
@@ -412,8 +407,9 @@
   "update": {
     "hint": {
       "popover": {
-        "content": "",
-        "header": ""
+        "content-p1": "De BelAir app geeft u een berekende inschatting van de korte termijn blootstelling aan luchtvervuiling voor de locaties die door u werden gekozen. Deze berekening wordt om het uur geactualiseerd.",
+        "content-p2": "Met deze nieuwe versie van de app tonen wij u ook een inschatting van de effecten van de lange termijn blootstelling voor deze locaties op de start pagina. Of u deze informatie altijd op de start pagina wilt zien kan u zelf aanpassen in de instellingen.",
+        "link-faq": "Kijk zeker ook even naar de veelgestelde vragen (FAQ)."
       }
     }
   },

@@ -15,14 +15,9 @@
     }
   },
   "annual-mean-panel": {
-    "header": "Jahres Mittelwerte",
+    "header": "Langzeitbelastung (chronisch)",
     "information-popup": {
-      "moreInfo": "",
-      "no2": "",
-      "o3": "",
-      "pm10": "",
-      "pm25": "",
-      "text": ""
+      "text": "NO2 (Stickstoffdioxid), PM10 (Partikel mit einem Durchmesser von weniger als 10 Mikrometern) und PM2,5 (Partikel mit einem Durchmesser von weniger als 2,5 Mikrometern) sind die drei Schadstoffe, bei denen die wissenschaftliche Beweislast hinsichtlich der Auswirkungen einer Langzeitbelastung besteht."
     }
   },
   "annual-phenomenon-buttons": "Modellierter Jahresmittelwert für diesen Standort:",
@@ -240,7 +235,7 @@
     "index": "BelAQI-Index",
     "interpolated-map": "Interpolierte Karte",
     "mean": {
-      "daily": "Täglich",
+      "daily": "24-Stunden",
       "hourly": "Stündlich",
       "yearly": "Jährlich"
     },
@@ -412,8 +407,9 @@
   "update": {
     "hint": {
       "popover": {
-        "content": "Dies ist eine neue Version...",
-        "header": "Neue Version"
+        "content-p1": "Die BelAir-App bietet Ihnen eine kalkulierte Abschätzung der kurzfristigen Luftverschmutzung für die von Ihnen ausgewählten Standorte. Diese Berechnung wird stündlich aktualisiert.",
+        "content-p2": "Mit dieser neuen Version der App zeigen wir Ihnen auch eine Abschätzung der Auswirkungen der Langzeitbelastung für diese Standorte auf der Startseite. Ob Sie diese Informationen immer auf der Startseite sehen möchten, können Sie in den Einstellungen selbst anpassen.",
+        "link-faq": "Schauen Sie sich die häufig gestellten Fragen (FAQ) an."
       }
     }
   },

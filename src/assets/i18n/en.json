@@ -15,14 +15,9 @@
     }
   },
   "annual-mean-panel": {
-    "header": "annual means",
+    "header": "Long-term exposure (chronic)",
     "information-popup": {
-      "moreInfo": "",
-      "no2": "",
-      "o3": "",
-      "pm10": "",
-      "pm25": "",
-      "text": ""
+      "text": "NO2 (Nitrogen dioxide), PM10 (particulate matter with a diameter of less than 10 micrometers) and PM2.5 (particulate matter with a diameter of less than 2.5 micrometres) are the three pollutants where the most scientific burden of proof exists with regard to the impact of long-term exposure."
     }
   },
   "annual-phenomenon-buttons": "Modelled annual mean value for this location:",
@@ -240,7 +235,7 @@
     "index": "BelAQI index",
     "interpolated-map": "interpolated map",
     "mean": {
-      "daily": "Daily",
+      "daily": "24-hour",
       "hourly": "Hourly",
       "yearly": "Yearly"
     },
@@ -412,8 +407,9 @@
   "update": {
     "hint": {
       "popover": {
-        "content": "This is a new version...",
-        "header": "New version"
+        "content-p1": "The BelAir app gives you a calculated estimate of the short-term exposure to air pollution for the locations chosen by you. This calculation is updated every hour.",
+        "content-p2": "With this new version of the app we also show you an estimate of the effects of the long-term exposure for these locations on the start page. Whether you always want to see this information on the start page you can adjust yourself in the settings.",
+        "link-faq": "Be sure to check out the frequently asked questions (FAQ)."
       }
     }
   },

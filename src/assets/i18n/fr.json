@@ -15,14 +15,9 @@
     }
   },
   "annual-mean-panel": {
-    "header": "",
+    "header": "Exposition à long terme (chronique)",
     "information-popup": {
-      "moreInfo": "",
-      "no2": "",
-      "o3": "",
-      "pm10": "",
-      "pm25": "",
-      "text": ""
+      "text": "Le NO2 (dioxyde d'azote), les PM10 (particules d'un diamètre inférieur à 10 micromètres) et les PM2,5 (particules d'un diamètre inférieur à 2,5 micromètres) sont les trois polluants pour lesquels le fardeau de la preuve est le plus scientifique en ce qui concerne l'impact d'une exposition à long terme."
     }
   },
   "annual-phenomenon-buttons": "Indice moyen annuel modélisé pour cette position:",
@@ -240,9 +235,9 @@
     "index": "Indice BelAQI",
     "interpolated-map": "Carte interpolée",
     "mean": {
-      "daily": "",
-      "hourly": "",
-      "yearly": ""
+      "daily": "24-heures",
+      "hourly": "heure",
+      "yearly": "an"
     },
     "nearest-station": "Station de mesure la plus proche",
     "no-legend": "Aucune légende disponible",
@@ -412,8 +407,9 @@
   "update": {
     "hint": {
       "popover": {
-        "content": "",
-        "header": ""
+        "content-p1": "L'application BelAir vous donne une estimation calculée de l'exposition à court terme à la pollution de l'air pour les lieux choisis par vous. Ce calcul est mis à jour toutes les heures.",
+        "content-p2": "Avec cette nouvelle version de l'application, nous vous montrons également une estimation des effets de l'exposition à long terme pour ces positions sur la page d'accueil. Si vous voulez toujours voir cette information sur la page d'accueil, vous pouvez vous ajuster dans les paramètres.",
+        "link-faq": "Assurez-vous de consulter les questions fréquemment posées (FAQ)."
       }
     }
   },
