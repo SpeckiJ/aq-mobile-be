@@ -10,6 +10,10 @@ module.exports = {
     ],
     dest: '{{BUILD}}'
   },
+  copyGeoSearchStyles: {
+    src: ['{{ROOT}}/node_modules/leaflet-geosearch/assets/css/leaflet.css'],
+    dest: '{{BUILD}}/geosearch/'
+  },
   copyLeafletIcons: {
     src: [
       '{{ROOT}}/node_modules/leaflet/dist/images/*'

@@ -17,6 +17,7 @@ import L, {
   Layer,
   popup,
 } from 'leaflet';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import moment from 'moment';
 import { forkJoin } from 'rxjs';
 import { MarkerSelectorGenerator } from 'src/components/customized-station-map-selector/customized-station-map-selector';
@@ -175,6 +176,14 @@ export class MapPage {
   public mapInitialized(mapId: string) {
     this.updateLegend();
     this.zoomToLocation();
+    if (this.mapCache.hasMap(this.mapId)) {
+      const provider = new OpenStreetMapProvider();
+      const searchControl = new GeoSearchControl({
+        provider: provider,
+        autoComplete: false
+      });
+      this.mapCache.getMap(this.mapId).addControl(searchControl);
+    }
   }
 
   public onPhenomenonChange(): void {
