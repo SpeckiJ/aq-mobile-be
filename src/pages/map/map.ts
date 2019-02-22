@@ -108,7 +108,7 @@ export class MapPage {
   public markerSelectorGenerator: MarkerSelectorGenerator;
 
   public mean: string;
-  public showDailyMean: boolean = true;
+  public show24hourMean: boolean = true;
   public showYearlyMean: boolean = true;
 
   public legend: L.Control;
@@ -151,7 +151,7 @@ export class MapPage {
       }
     } else {
       this.phenomenonLabel = PhenomenonLabel.BelAQI;
-      this.showDailyMean = false;
+      this.show24hourMean = false;
       this.showYearlyMean = false;
       this.mean = MeanLabel.hourly;
     }
@@ -427,7 +427,7 @@ export class MapPage {
   }
 
   private adjustMeanUI() {
-    let showDaily = false;
+    let show24hour = false;
     let showYearly = false;
     switch (this.selectedPhenomenonId) {
       case getIDForMainPhenomenon(MainPhenomenon.BC):
@@ -442,19 +442,19 @@ export class MapPage {
         this.mean = MeanLabel.hourly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.PM10):
-        showDaily = true;
+        show24hour = true;
         showYearly = true;
         this.mean = MeanLabel.yearly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.PM25):
-        showDaily = true;
+        show24hour = true;
         showYearly = true;
         this.mean = MeanLabel.yearly
         break;
       default:
         break;
     }
-    this.showDailyMean = showDaily;
+    this.show24hourMean = show24hour;
     this.showYearlyMean = showYearly;
   }
 

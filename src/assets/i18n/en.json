@@ -235,8 +235,9 @@
     "index": "BelAQI index",
     "interpolated-map": "interpolated map",
     "mean": {
-      "daily": "24-hour",
+      "daily": "Day",
       "hourly": "Hourly",
+      "24hour": "24-hour",
       "yearly": "Yearly"
     },
     "nearest-station": "Nearest station",

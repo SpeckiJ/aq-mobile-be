@@ -235,8 +235,9 @@
     "index": "BelAQI index",
     "interpolated-map": "Geïnterpoleerde kaart",
     "mean": {
-      "daily": "24-uur",
+      "daily": "dag",
       "hourly": "uur",
+      "24hour": "24-uur",
       "yearly": "jaar"
     },
     "nearest-station": "Dichtstbijgelegen meetstation",
