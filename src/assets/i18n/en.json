@@ -235,9 +235,8 @@
     "index": "BelAQI index",
     "interpolated-map": "interpolated map",
     "mean": {
-      "daily": "Day",
-      "hourly": "Hourly",
       "24hour": "24-hour",
+      "hourly": "Hourly",
       "yearly": "Yearly"
     },
     "nearest-station": "Nearest station",
@@ -366,18 +365,18 @@
     "header": "Settings",
     "select-language": "Select a language",
     "show-introduction": "Show introduction",
+    "start-page": {
+      "header": "Settings start page",
+      "show-annual-mean-panel": "Show annual mean on start page",
+      "show-nearest-stations": "Show nearest measuring stations on start page",
+      "show-sub-index-panel": "Show BelAQI subindicies on start page"
+    },
     "user-locations": {
       "create-new-location": "Create new location",
       "edit-location": "Edit location",
       "header": "User locations",
       "show-location-list": "Show current locations",
       "show-nearest-series-by-default": "Show nearest measurements in diagram"
-    },
-    "start-page": {
-      "header": "Settings start page",
-      "show-annual-mean-panel": "Show annual mean on start page",
-      "show-nearest-stations": "Show nearest measuring stations on start page",
-      "show-sub-index-panel": "Show BelAQI subindicies on start page"
     }
   },
   "show-geometry": {

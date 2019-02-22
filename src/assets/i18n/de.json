@@ -235,9 +235,8 @@
     "index": "BelAQI-Index",
     "interpolated-map": "Interpolierte Karte",
     "mean": {
-      "daily": "Tag",
-      "hourly": "Stündlich",
       "24hour": "24-Stunden",
+      "hourly": "Stündlich",
       "yearly": "Jährlich"
     },
     "nearest-station": "Nächstgelegene Überwachungsstation",
@@ -366,18 +365,18 @@
     "header": "Einstellungen",
     "select-language": "Wähle eine Sprache",
     "show-introduction": "Öffne Einführung",
+    "start-page": {
+      "header": "Einstellungen Startseite",
+      "show-annual-mean-panel": "Zeige jährliche Mittelwerte auf der Startseite",
+      "show-nearest-stations": "Zeige die nächstgelegene Überwachungsstationen auf der Startseite",
+      "show-sub-index-panel": "Zeige BelAQI Subindizes auf der Startseite"
+    },
     "user-locations": {
       "create-new-location": "Erstelle neuen Standort",
       "edit-location": "Editiere Standort",
       "header": "Nutzer Standorte",
       "show-location-list": "Zeige vorhandene Standorte",
       "show-nearest-series-by-default": "Zeige nächstgelegene Messungen im Diagram"
-    },
-    "start-page": {
-      "header": "Einstellungen Startseite",
-      "show-annual-mean-panel": "Zeige jährliche Mittelwerte auf der Startseite",
-      "show-nearest-stations": "Zeige die nächstgelegene Überwachungsstationen auf der Startseite",
-      "show-sub-index-panel": "Zeige BelAQI Subindizes auf der Startseite"
     }
   },
   "show-geometry": {

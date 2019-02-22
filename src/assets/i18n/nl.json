@@ -235,9 +235,8 @@
     "index": "BelAQI index",
     "interpolated-map": "Geïnterpoleerde kaart",
     "mean": {
-      "daily": "dag",
-      "hourly": "uur",
       "24hour": "24-uur",
+      "hourly": "uur",
       "yearly": "jaar"
     },
     "nearest-station": "Dichtstbijgelegen meetstation",
@@ -366,18 +365,18 @@
     "header": "Instellingen",
     "select-language": "Kies een taal",
     "show-introduction": "Toon introductie",
+    "start-page": {
+      "header": "Instellingen startpagina",
+      "show-annual-mean-panel": "Toon de langetermijnimpact op de startpagina",
+      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op de startpagina",
+      "show-sub-index-panel": "Toon de kortetermijnimpact op de startpagina"
+    },
     "user-locations": {
       "create-new-location": "Maak een nieuwe locatie aan",
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
       "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram"
-    },
-    "start-page": {
-      "header": "Instellingen startpagina",
-      "show-annual-mean-panel": "Toon de langetermijnimpact op de startpagina",
-      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op de startpagina",
-      "show-sub-index-panel": "Toon de kortetermijnimpact op de startpagina"
     }
   },
   "show-geometry": {
