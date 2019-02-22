@@ -11,6 +11,7 @@ import { NetworkAlertProvider } from '../../providers/network-alert/network-aler
 import { RefreshHandler } from '../../providers/refresh/refresh';
 import { LocatedTimeseriesService } from '../../providers/timeseries/located-timeseries';
 import { UserLocation, UserLocationListProvider } from '../../providers/user-location-list/user-location-list';
+import { StartPageSettingsProvider } from '../../providers/start-page-settings/start-page-settings';
 import { ModalUserLocationCreationComponent } from '../modal-user-location-creation/modal-user-location-creation';
 import { ModalUserLocationListComponent } from '../modal-user-location-list/modal-user-location-list';
 import { PhenomenonLocationSelection } from '../nearest-measuring-station-panel/nearest-measuring-station-panel-entry';
@@ -77,6 +78,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
 
   constructor(
     private userLocationProvider: UserLocationListProvider,
+    private startPageSettingsProvider: StartPageSettingsProvider,
     private locatedTimeseriesProvider: LocatedTimeseriesService,
     private ircelineSettings: IrcelineSettingsProvider,
     private locate: LocateProvider,
@@ -95,10 +97,11 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     });
     this.refreshHandler.onRefresh.subscribe(() => this.loadBelaqis(true));
     this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
+    this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
     this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
-    this.showNearestStationsSubscriber = this.userLocationProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
-    this.showSubIndexPanelSubscriber = this.userLocationProvider.getShowSubIndexPanel().subscribe(val => this.showSubIndexPanel = val);
-    this.showAnnualMeanPanelSubscriber = this.userLocationProvider.getShowAnnualMeanPanel().subscribe(val => this.showAnnualMeanPanel = val);
+    this.showNearestStationsSubscriber = this.startPageSettingsProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
+    this.showSubIndexPanelSubscriber = this.startPageSettingsProvider.getShowSubIndexPanel().subscribe(val => this.showSubIndexPanel = val);
+    this.showAnnualMeanPanelSubscriber = this.startPageSettingsProvider.getShowAnnualMeanPanel().subscribe(val => this.showAnnualMeanPanel = val);
   }
 
   public ngAfterViewInit() {

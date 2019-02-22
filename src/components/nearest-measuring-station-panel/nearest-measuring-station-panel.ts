@@ -3,6 +3,7 @@ import { PopoverController } from 'ionic-angular';
 
 import { PhenomenonSeriesID } from '../../model/phenomenon';
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
+import { StartPageSettingsProvider } from '../../providers/start-page-settings/start-page-settings';
 import { NearestMeasuringStationPanelInformationPopupComponent } from './nearest-measuring-station-panel-information-popup';
 
 interface PanelEntry {

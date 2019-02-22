@@ -370,9 +370,12 @@
       "create-new-location": "Create new location",
       "edit-location": "Edit location",
       "header": "User locations",
-      "show-annual-mean-panel": "Show annual mean on start page",
       "show-location-list": "Show current locations",
-      "show-nearest-series-by-default": "Show nearest measurements in diagram",
+      "show-nearest-series-by-default": "Show nearest measurements in diagram"
+    },
+    "start-page": {
+      "header": "Settings start page",
+      "show-annual-mean-panel": "Show annual mean on start page",
       "show-nearest-stations": "Show nearest measuring stations on start page",
       "show-sub-index-panel": "Show BelAQI subindicies on start page"
     }

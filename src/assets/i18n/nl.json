@@ -370,9 +370,12 @@
       "create-new-location": "Maak een nieuwe locatie aan",
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
-      "show-annual-mean-panel": "Toon de langetermijnimpact op de startpagina",
       "show-location-list": "Toon huidige locaties",
-      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
+      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram"
+    },
+    "start-page": {
+      "header": "Instellingen startpagina",
+      "show-annual-mean-panel": "Toon de langetermijnimpact op de startpagina",
       "show-nearest-stations": "Toon dichtstbijgelegen meetstations op de startpagina",
       "show-sub-index-panel": "Toon de kortetermijnimpact op de startpagina"
     }

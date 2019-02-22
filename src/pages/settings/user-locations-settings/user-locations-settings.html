@@ -12,16 +12,4 @@
     <ion-label>{{'settings.user-locations.show-nearest-series-by-default' | translate}}</ion-label>
     <ion-toggle color="secondary" [(ngModel)]="nearestSeriesByDefault" (ngModelChange)="toggleNearestSeries()"></ion-toggle>
   </ion-item>
-  <ion-item text-wrap (click)="toggleShowNearestStations()">
-    <ion-label>{{'settings.user-locations.show-nearest-stations' | translate}}</ion-label>
-    <ion-toggle color="secondary" [(ngModel)]="showNearestStations" (ngModelChange)="toggleShowNearestStations()"></ion-toggle>
-  </ion-item>
-  <ion-item text-wrap (click)="toggleShowSubIndexPanel()">
-    <ion-label>{{'settings.user-locations.show-sub-index-panel' | translate}}</ion-label>
-    <ion-toggle color="secondary" [(ngModel)]="showSubIndexPanel" (ngModelChange)="toggleShowSubIndexPanel()"></ion-toggle>
-  </ion-item>
-  <ion-item text-wrap (click)="toggleShowAnnualMeanPanel()">
-    <ion-label>{{'settings.user-locations.show-annual-mean-panel' | translate}}</ion-label>
-    <ion-toggle color="secondary" [(ngModel)]="showAnnualMeanPanel" (ngModelChange)="toggleShowAnnualMeanPanel()"></ion-toggle>
-  </ion-item>
 </ion-list>

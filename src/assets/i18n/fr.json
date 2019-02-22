@@ -370,9 +370,12 @@
       "create-new-location": "Ajouter une nouvelle localisation",
       "edit-location": "Modifier la localisation",
       "header": "Localisations",
-      "show-annual-mean-panel": "",
       "show-location-list": "Voir les localisations",
-      "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
+      "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique"
+    },
+    "start-page": {
+      "header": "Paramètres page d'accueile",
+      "show-annual-mean-panel": "Afficher les moyenne annuelle sur la page d'accueile",
       "show-nearest-stations": "Afficher les stations de mesure les plus proches sur la page d'accueil",
       "show-sub-index-panel": "Afficher les sous-indices BelAQI sur la page d'accueil"
     }

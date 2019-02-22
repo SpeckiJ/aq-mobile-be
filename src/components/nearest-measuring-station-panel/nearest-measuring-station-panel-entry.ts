@@ -6,6 +6,8 @@ import invert from 'invert-color';
 import { NearestTimeseriesManagerProvider } from '../../providers/nearest-timeseries-manager/nearest-timeseries-manager';
 import { NearestTimeseriesProvider } from '../../providers/nearest-timeseries/nearest-timeseries';
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
+import { StartPageSettingsProvider } from '../../providers/start-page-settings/start-page-settings';
+
 
 interface PanelEntry {
   label: string;
