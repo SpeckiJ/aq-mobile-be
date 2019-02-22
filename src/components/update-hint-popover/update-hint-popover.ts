@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController } from 'ionic-angular';
-
+import { ModalController, ViewController } from 'ionic-angular';
 
 import { FAQPage } from '../../pages/faq/faq';
 
@@ -11,12 +10,12 @@ import { FAQPage } from '../../pages/faq/faq';
 export class UpdateHintPopoverComponent {
 
   constructor(
-    private nav: NavController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private modalCtrl: ModalController
   ) {
   }
   public navigateFAQ() {
-    this.nav.push(FAQPage);
+    this.modalCtrl.create(FAQPage).present();
   }
   public dismiss() {
     this.viewCtrl.dismiss();

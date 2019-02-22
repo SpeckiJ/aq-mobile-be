@@ -195,7 +195,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
   }
 
   public navigateFAQ() {
-    this.nav.push(FAQPage);
+    this.modalCtrl.create(FAQPage).present();
   }
 
   public isLocateDenied(): boolean {
