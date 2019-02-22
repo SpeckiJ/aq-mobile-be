@@ -110,6 +110,7 @@ export class MapPage {
   public mean: string;
   public show24hourMean: boolean = true;
   public showYearlyMean: boolean = true;
+  public disableMeans: boolean;
 
   public legend: L.Control;
   private legendVisible: boolean = false;
@@ -145,9 +146,23 @@ export class MapPage {
 
     if (this.belaqiSelection) {
       const phenId = this.belaqiSelection.phenomenonID;
+      this.selectedPhenomenonId = this.belaqiSelection.phenomenonID;
       this.phenomenonLabel = this.getPhenomenonLabel(phenId);
+      this.adjustMeanUI();
       if (this.belaqiSelection.yearly) {
         this.mean = MeanLabel.yearly;
+      } else {
+        switch (this.selectedPhenomenonId) {
+          case getIDForMainPhenomenon(MainPhenomenon.BC):
+          case getIDForMainPhenomenon(MainPhenomenon.NO2):
+          case getIDForMainPhenomenon(MainPhenomenon.O3):
+            this.mean = MeanLabel.hourly;
+            break;
+          case getIDForMainPhenomenon(MainPhenomenon.PM10):
+          case getIDForMainPhenomenon(MainPhenomenon.PM25):
+            this.mean = MeanLabel.daily;
+            break;
+        }
       }
     } else {
       this.phenomenonLabel = PhenomenonLabel.BelAQI;
@@ -432,11 +447,11 @@ export class MapPage {
     switch (this.selectedPhenomenonId) {
       case getIDForMainPhenomenon(MainPhenomenon.BC):
         showYearly = true;
-        this.mean = MeanLabel.yearly
+        this.mean = MeanLabel.hourly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.NO2):
         showYearly = true;
-        this.mean = MeanLabel.yearly
+        this.mean = MeanLabel.hourly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.O3):
         this.mean = MeanLabel.hourly
@@ -444,18 +459,24 @@ export class MapPage {
       case getIDForMainPhenomenon(MainPhenomenon.PM10):
         show24hour = true;
         showYearly = true;
-        this.mean = MeanLabel.yearly
+        this.mean = MeanLabel.hourly
         break;
       case getIDForMainPhenomenon(MainPhenomenon.PM25):
         show24hour = true;
         showYearly = true;
-        this.mean = MeanLabel.yearly
+        this.mean = MeanLabel.hourly
         break;
       default:
         break;
     }
     this.show24hourMean = show24hour;
     this.showYearlyMean = showYearly;
+    if (this.time !== TimeLabel.current) {
+      this.disableMeans = true;
+      this.mean = null;
+    } else {
+      this.disableMeans = false;
+    }
   }
 
   private drawLayer(wmsUrl: string, layerId: string, geojson: GeoJSON.GeoJsonObject, timeParam?: string) {

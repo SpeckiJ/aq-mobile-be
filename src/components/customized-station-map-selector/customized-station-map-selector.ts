@@ -69,6 +69,7 @@ export class CustomizedStationMapSelectorComponent extends MapSelectorComponent<
 
   public ngAfterViewInit() {
     this.createMap();
+    this.drawGeometries();
   }
 
   protected drawGeometries() {

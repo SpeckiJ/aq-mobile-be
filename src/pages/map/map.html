@@ -55,13 +55,13 @@
     </div>
     <div>
       <ion-segment class="time" [(ngModel)]="mean" (tap)="onMeanChange($event, mean)">
-        <ion-segment-button value="hourly">
+        <ion-segment-button value="hourly" [disabled]="disableMeans">
           {{'map.mean.hourly' | translate}}
         </ion-segment-button>
-        <ion-segment-button value="24hour" *ngIf="show24hourMean">
+        <ion-segment-button value="24hour" *ngIf="show24hourMean" [disabled]="disableMeans">
           {{'map.mean.24hour' | translate}}
         </ion-segment-button>
-        <ion-segment-button value="yearly" *ngIf="showYearlyMean">
+        <ion-segment-button value="yearly" *ngIf="showYearlyMean" [disabled]="disableMeans">
           {{'map.mean.yearly' | translate}}
         </ion-segment-button>
       </ion-segment>
