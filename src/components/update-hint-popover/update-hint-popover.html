@@ -1,8 +1,12 @@
-<div>
-  <h2>
-    {{'update.hint.popover.header' | translate}}
-  </h2>
-  <h4>
-    {{'update.hint.popover.content' | translate}}
-  </h4>
+<div text-wrap>
+  <p>
+    {{'update.hint.popover.content-p1' | translate}}
+  </p>
+  <p>
+    {{'update.hint.popover.content-p2' | translate}}
+  </p>
+  <div class="more-info" small (click)="navigateFAQ()">{{'update.hint.popover.link-faq' | translate}}</div>
+  <button ion-button (click)="dismiss()" right>
+    <span ion-text>{{'controls.close' | translate}}</span>
+  </button>
 </div>

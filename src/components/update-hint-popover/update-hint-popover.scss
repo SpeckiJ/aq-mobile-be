@@ -1,5 +1,10 @@
 update-hint-popover {
   div {
     padding: 10px;
+    text-align: center;
+  }
+  .more-info {
+    text-align: center;
+    color: color($colors, primary);
   }
 }
