@@ -20,9 +20,9 @@ export interface UserLocation {
 }
 
 const STORAGE_USER_LOCATIONS_KEY = 'userlocation';
-const STORAGE_SHOW_NEAREST_STATIONS_KEY = 'showNearestStations';
-const STORAGE_SHOW_SUB_INDEX_PANEL_KEY = 'showSubIndexPanel';
-const STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY = 'showAnnuelMeanPanel';
+// const STORAGE_SHOW_NEAREST_STATIONS_KEY = 'showNearestStations';
+// const STORAGE_SHOW_SUB_INDEX_PANEL_KEY = 'showSubIndexPanel';
+// const STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY = 'showAnnuelMeanPanel';
 
 @Injectable()
 export class UserLocationListProvider {
@@ -33,9 +33,9 @@ export class UserLocationListProvider {
 
   public locationsChanged: EventEmitter<void> = new EventEmitter();
 
-  private showNearestStationsReplay: ReplaySubject<boolean> = new ReplaySubject(1);
-  private showSubIndexPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
-  private showAnnualMeanPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
+  // private showNearestStationsReplay: ReplaySubject<boolean> = new ReplaySubject(1);
+  // private showSubIndexPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
+  // private showAnnualMeanPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     protected storage: Storage,
@@ -48,9 +48,9 @@ export class UserLocationListProvider {
       this.userLocations = locations || [{ type: 'current', isCurrentVisible: false }];
       this.locationsChanged.emit();
     })
-    this.loadShowNearestStations();
-    this.loadShowSubIndexPanel();
-    this.loadShowAnnualMeanPanel();
+    // this.loadShowNearestStations();
+    // this.loadShowSubIndexPanel();
+    // this.loadShowAnnualMeanPanel();
   }
 
   public addUserLocation(label: string, point: Point) {
@@ -158,53 +158,53 @@ export class UserLocationListProvider {
     this.storeLocations();
   }
 
-  // show nearest stations
-  public setShowNearestStations(show: boolean) {
-    this.storage.set(STORAGE_SHOW_NEAREST_STATIONS_KEY, show);
-    this.showNearestStationsReplay.next(show);
-  }
-
-  public getShowNearestStations(): Observable<boolean> {
-    return this.showNearestStationsReplay.asObservable();
-  }
-
-  private loadShowNearestStations() {
-    this.storage.get(STORAGE_SHOW_NEAREST_STATIONS_KEY)
-      .then(res => this.showNearestStationsReplay.next(res))
-      .catch(error => console.error(error))
-  }
-
-  //show sub index panel
-  public setShowSubIndexPanel(show: boolean) {
-    this.storage.set(STORAGE_SHOW_SUB_INDEX_PANEL_KEY, show);
-    this.showSubIndexPanelReplay.next(show);
-  }
-
-  public getShowSubIndexPanel(): Observable<boolean> {
-    return this.showSubIndexPanelReplay.asObservable();
-  }
-
-  private loadShowSubIndexPanel() {
-    this.storage.get(STORAGE_SHOW_SUB_INDEX_PANEL_KEY)
-      .then(res => this.showSubIndexPanelReplay.next(res === null ? true : res))
-      .catch(error => console.error(error))
-  }
-
-  //show annual mean panel
-  public setShowAnnualMeanPanel(show: boolean) {
-    this.storage.set(STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY, show);
-    this.showAnnualMeanPanelReplay.next(show);
-  }
-
-  public getShowAnnualMeanPanel(): Observable<boolean> {
-    return this.showAnnualMeanPanelReplay.asObservable();
-  }
-
-  private loadShowAnnualMeanPanel() {
-    this.storage.get(STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY)
-      .then(res => this.showAnnualMeanPanelReplay.next(res === null ? true : res))
-      .catch(error => console.error(error))
-  }
+  // // show nearest stations
+  // public setShowNearestStations(show: boolean) {
+  //   this.storage.set(STORAGE_SHOW_NEAREST_STATIONS_KEY, show);
+  //   this.showNearestStationsReplay.next(show);
+  // }
+  //
+  // public getShowNearestStations(): Observable<boolean> {
+  //   return this.showNearestStationsReplay.asObservable();
+  // }
+  //
+  // private loadShowNearestStations() {
+  //   this.storage.get(STORAGE_SHOW_NEAREST_STATIONS_KEY)
+  //     .then(res => this.showNearestStationsReplay.next(res))
+  //     .catch(error => console.error(error))
+  // }
+  //
+  // //show sub index panel
+  // public setShowSubIndexPanel(show: boolean) {
+  //   this.storage.set(STORAGE_SHOW_SUB_INDEX_PANEL_KEY, show);
+  //   this.showSubIndexPanelReplay.next(show);
+  // }
+  //
+  // public getShowSubIndexPanel(): Observable<boolean> {
+  //   return this.showSubIndexPanelReplay.asObservable();
+  // }
+  //
+  // private loadShowSubIndexPanel() {
+  //   this.storage.get(STORAGE_SHOW_SUB_INDEX_PANEL_KEY)
+  //     .then(res => this.showSubIndexPanelReplay.next(res === null ? true : res))
+  //     .catch(error => console.error(error))
+  // }
+  //
+  // //show annual mean panel
+  // public setShowAnnualMeanPanel(show: boolean) {
+  //   this.storage.set(STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY, show);
+  //   this.showAnnualMeanPanelReplay.next(show);
+  // }
+  //
+  // public getShowAnnualMeanPanel(): Observable<boolean> {
+  //   return this.showAnnualMeanPanelReplay.asObservable();
+  // }
+  //
+  // private loadShowAnnualMeanPanel() {
+  //   this.storage.get(STORAGE_SHOW_ANNUAL_MEAN_PANEL_KEY)
+  //     .then(res => this.showAnnualMeanPanelReplay.next(res === null ? true : res))
+  //     .catch(error => console.error(error))
+  // }
 
   private storeLocations() {
     this.locationsChanged.emit();

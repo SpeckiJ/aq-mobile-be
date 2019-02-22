@@ -7,13 +7,15 @@ import { AboutSettingsComponent } from './about-settings/about-settings';
 import { CommonSettingsComponent } from './common-settings/common-settings';
 import { SettingsPage } from './settings';
 import { UserLocationsSettingsComponent } from './user-locations-settings/user-locations-settings';
+import { StartPageSettingsComponent } from './start-page-settings/start-page-settings';
 
 @NgModule({
   declarations: [
     AboutSettingsComponent,
     CommonSettingsComponent,
     SettingsPage,
-    UserLocationsSettingsComponent
+    UserLocationsSettingsComponent,
+    StartPageSettingsComponent
   ],
   imports: [
     IonicPageModule.forChild(SettingsPage),

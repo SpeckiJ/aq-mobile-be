@@ -17,14 +17,14 @@ export class UserLocationsSettingsComponent implements OnDestroy {
 
   public nearestSeriesByDefault: boolean;
 
-  public showNearestStations: boolean;
-  private showNearestStationsSubscriber: Subscription;
-
-  public showSubIndexPanel: boolean;
-  private showSubIndexPanelSubscriber: Subscription;
-
-  public showAnnualMeanPanel: boolean;
-  private showAnnualPanelSubscriber: Subscription;
+  // public showNearestStations: boolean;
+  // private showNearestStationsSubscriber: Subscription;
+  //
+  // public showSubIndexPanel: boolean;
+  // private showSubIndexPanelSubscriber: Subscription;
+  //
+  // public showAnnualMeanPanel: boolean;
+  // private showAnnualPanelSubscriber: Subscription;
 
   constructor(
     protected modalCtrl: ModalController,
@@ -32,18 +32,18 @@ export class UserLocationsSettingsComponent implements OnDestroy {
     protected userLocationListProvider: UserLocationListProvider
   ) {
     this.nearestSeriesByDefault = this.locatedTsSrvc.getShowNearestSeriesByDefault();
-    this.showNearestStationsSubscriber = this.userLocationListProvider.getShowNearestStations()
-      .subscribe(val => this.showNearestStations = val);
-    this.showSubIndexPanelSubscriber = this.userLocationListProvider.getShowSubIndexPanel()
-      .subscribe(val => this.showSubIndexPanel = val);
-    this.showAnnualPanelSubscriber = this.userLocationListProvider.getShowAnnualMeanPanel()
-      .subscribe(val => this.showAnnualMeanPanel = val);
+    // this.showNearestStationsSubscriber = this.userLocationListProvider.getShowNearestStations()
+    //   .subscribe(val => this.showNearestStations = val);
+    // this.showSubIndexPanelSubscriber = this.userLocationListProvider.getShowSubIndexPanel()
+    //   .subscribe(val => this.showSubIndexPanel = val);
+    // this.showAnnualPanelSubscriber = this.userLocationListProvider.getShowAnnualMeanPanel()
+    //   .subscribe(val => this.showAnnualMeanPanel = val);
   }
 
   public ngOnDestroy() {
-    this.showNearestStationsSubscriber.unsubscribe();
-    this.showSubIndexPanelSubscriber.unsubscribe();
-    this.showAnnualPanelSubscriber.unsubscribe();
+  //   this.showNearestStationsSubscriber.unsubscribe();
+  //   this.showSubIndexPanelSubscriber.unsubscribe();
+  //   this.showAnnualPanelSubscriber.unsubscribe();
   }
 
   public createNewLocation() {
@@ -58,16 +58,16 @@ export class UserLocationsSettingsComponent implements OnDestroy {
     this.locatedTsSrvc.setShowNearestSeriesByDefault(this.nearestSeriesByDefault);
   }
 
-  public toggleShowNearestStations() {
-    this.userLocationListProvider.setShowNearestStations(this.showNearestStations);
-  }
-
-  public toggleShowSubIndexPanel() {
-    this.userLocationListProvider.setShowSubIndexPanel(this.showSubIndexPanel);
-  }
-
-  public toggleShowAnnualMeanPanel() {
-    this.userLocationListProvider.setShowAnnualMeanPanel(this.showAnnualMeanPanel);
-  }
+  // public toggleShowNearestStations() {
+  //   this.userLocationListProvider.setShowNearestStations(this.showNearestStations);
+  // }
+  //
+  // public toggleShowSubIndexPanel() {
+  //   this.userLocationListProvider.setShowSubIndexPanel(this.showSubIndexPanel);
+  // }
+  //
+  // public toggleShowAnnualMeanPanel() {
+  //   this.userLocationListProvider.setShowAnnualMeanPanel(this.showAnnualMeanPanel);
+  // }
 
 }
