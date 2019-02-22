@@ -97,7 +97,6 @@ export class MapPage {
   public phenomenonFilter: ParameterFilter;
   public avoidZoomToSelection = true;
   public zoomControlOptions: L.Control.ZoomOptions = {};
-  public layerControlOptions: L.Control.LayersOptions = { position: "bottomleft", hideSingleBase: true };
   public overlayMaps: Map<string, LayerOptions> = new Map<string, LayerOptions>();
   public fitBounds: L.LatLngBoundsExpression;
   public clusterStations: boolean;
