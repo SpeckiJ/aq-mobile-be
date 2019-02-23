@@ -15,7 +15,7 @@
     }
   },
   "annual-mean-panel": {
-    "header": "Langzeitbelastung (chronisch)",
+    "header": "Langzeitbelastung",
     "information-popup": {
       "text": "NO2 (Stickstoffdioxid), PM10 (Partikel mit einem Durchmesser von weniger als 10 Mikrometern) und PM2,5 (Partikel mit einem Durchmesser von weniger als 2,5 Mikrometern) sind die drei Schadstoffe, bei denen die wissenschaftliche Beweislast hinsichtlich der Auswirkungen einer Langzeitbelastung besteht."
     }
@@ -396,7 +396,7 @@
     "zeroBasedYAxe": "Zeitreihe null-basiert"
   },
   "sub-index-panel": {
-    "header": "Subindex an diesem Standort",
+    "header": "Kurzzeitbelastung",
     "information-popup": {
       "link": "http://www.irceline.be/en/belaqi",
       "moreInfo": "Mehr Info",

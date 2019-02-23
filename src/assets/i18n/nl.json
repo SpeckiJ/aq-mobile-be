@@ -15,7 +15,7 @@
     }
   },
   "annual-mean-panel": {
-    "header": "Lange termijn blootstelling (chronisch)",
+    "header": "Lange termijn blootstelling",
     "information-popup": {
       "text": "NO2 (Stikstofdioxide), PM10 (fijn stof met een diameter kleiner dan 10 micrometer) en PM2.5 (fijn stof met een diameter kleiner dan 2.5 micrometer) zijn de drie polluenten waar de meeste wetenschappelijke bewijslast bestaat m.b.t. de impact van langetermijn blootstelling."
     }
@@ -396,7 +396,7 @@
     "zeroBasedYAxe": "Tijdsreeks nul gebaseerd"
   },
   "sub-index-panel": {
-    "header": "Korte termijn blootstelling (acuut)",
+    "header": "Korte termijn blootstelling",
     "information-popup": {
       "link": "http://www.irceline.be/nl/belaqi",
       "moreInfo": "Meer info",

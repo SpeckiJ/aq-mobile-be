@@ -15,7 +15,7 @@
     }
   },
   "annual-mean-panel": {
-    "header": "Long-term exposure (chronic)",
+    "header": "Long-term exposure",
     "information-popup": {
       "text": "NO2 (Nitrogen dioxide), PM10 (particulate matter with a diameter of less than 10 micrometers) and PM2.5 (particulate matter with a diameter of less than 2.5 micrometres) are the three pollutants where the most scientific burden of proof exists with regard to the impact of long-term exposure."
     }
@@ -396,7 +396,7 @@
     "zeroBasedYAxe": "Timeseries zero based"
   },
   "sub-index-panel": {
-    "header": "Subindex at this location",
+    "header": "Short-term exposure",
     "information-popup": {
       "link": "http://www.irceline.be/en/belaqi",
       "moreInfo": "More info",
