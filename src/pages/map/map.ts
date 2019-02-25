@@ -379,7 +379,7 @@ export class MapPage {
           const year = result[0];
           switch (this.phenomenonLabel) {
             case PhenomenonLabel.BelAQI:
-              this.drawLayer(wmsUrl, 'belaqi', geojson)
+              this.drawLayer(wmsUrl, 'belaqi', geojson, lastUpdate)
               break;
             case PhenomenonLabel.BC:
               if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'bc_hmean', geojson, lastUpdate)
@@ -394,12 +394,12 @@ export class MapPage {
               break;
             case PhenomenonLabel.PM10:
               if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'pm10_hmean', geojson, lastUpdate)
-              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm10_24hmean', geojson)
+              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm10_24hmean', geojson, lastUpdate)
               if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `pm10_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.PM25:
               if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'pm25_hmean', geojson, lastUpdate)
-              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm25_24hmean', geojson)
+              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm25_24hmean', geojson, lastUpdate)
               if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `pm25_anmean_${year}_atmostreet`, geojson)
               break;
             default:
