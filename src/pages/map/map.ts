@@ -49,7 +49,7 @@ enum TimeLabel {
 
 enum MeanLabel {
   hourly = 'hourly',
-  daily = 'daily',
+  daily = '24hour',
   yearly = 'yearly'
 }
 
