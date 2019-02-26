@@ -310,11 +310,11 @@
 	"update": {
 		"hint": {
 			"popover": {
-				"content-p1": "The BelAir app gives you a calculated estimate of the short-term exposure to air pollution for the locations chosen by you. This calculation is updated every hour.",
-       			"content-p2": "With this new version of the app we also show you an estimate of the effects of the long-term exposure for these locations on the start page. Whether you always want to see this information on the start page you can adjust yourself in the settings.",
-        		"dont-show": "Do not show this message again when you start the app",
-        		"link-faq": "Read more information here",
-        		"link-faq-url": "https://www.vmm.be/data/luchtkwaliteit-op-zak-met-belair-app/faq-belair"
+				"content-p1": "What is the short-term effect of the air quality in your neighborhood on your health?",
+   			"content-p2": "BelAir makes a calculated estimate of exposure to air pollution in the short term. This calculation is updated every hour. Would you like to know more about how exactly this calculation is made, what you will see and why the result may differ from other measurement result (e.g. CurieuzeNeuzen)?",
+    		"dont-show": "Do not show this message again when you start the app",
+    		"link-faq": "Read more information here",
+    		"link-faq-url": "http://www.irceline.be/en/documentation/belair/faq"
 			}
 		}
 	},

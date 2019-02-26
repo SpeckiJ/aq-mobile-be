@@ -310,11 +310,11 @@
 	"update": {
 		"hint": {
 			"popover": {
-				"content-p1": "Die BelAir-App bietet Ihnen eine kalkulierte Abschätzung der kurzfristigen Luftverschmutzung für die von Ihnen ausgewählten Standorte. Diese Berechnung wird stündlich aktualisiert.",
-        		"content-p2": "Mit dieser neuen Version der App zeigen wir Ihnen auch eine Abschätzung der Auswirkungen der Langzeitbelastung für diese Standorte auf der Startseite. Ob Sie diese Informationen immer auf der Startseite sehen möchten, können Sie in den Einstellungen selbst anpassen.",
-        		"dont-show": "Diese Meldung beim App-Start nicht mehr anzeigen",
-        		"link-faq": "Lesen Sie hier weitere Informationen",
-        		"link-faq-url": "https://www.vmm.be/data/luchtkwaliteit-op-zak-met-belair-app/faq-belair"
+				"content-p1": "Wie wirkt sich die Luftqualität in Ihrer Nachbarschaft kurzfristig auf Ihre Gesundheit aus?",
+    		"content-p2": "BelAir nimmt kurzfristig eine kalkulierte Schätzung der Luftverschmutzung vor. Diese Berechnung wird stündlich aktualisiert. Möchten Sie mehr darüber erfahren, wie genau diese Berechnung durchgeführt wird, was Sie sehen werden und warum das Ergebnis von z.B. Ihrem Messergebnis von CurieuzeNeuzen abweichen kann?",
+    		"dont-show": "Diese Meldung beim App-Start nicht mehr anzeigen",
+    		"link-faq": "Lesen Sie hier weitere Informationen",
+    		"link-faq-url": "http://www.irceline.be/de/documentation/belair/faq"
 			}
 		}
 	},
