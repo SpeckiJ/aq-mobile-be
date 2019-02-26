@@ -57,6 +57,7 @@ import { JSSONSettingsService } from '../providers/settings/settings';
 import { LocatedTimeseriesService } from '../providers/timeseries/located-timeseries';
 import { TimeseriesService } from '../providers/timeseries/timeseries';
 import { UserTimeseriesService } from '../providers/timeseries/user-timeseries';
+import { UpdateCheckProvider } from '../providers/update-check/update-check';
 import { UserLocationListProvider } from '../providers/user-location-list/user-location-list';
 import { MyApp } from './app.component';
 
@@ -145,7 +146,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatusBar,
     TimeseriesService,
     UserLocationListProvider,
-    UserTimeseriesService
+    UserTimeseriesService,
+    UpdateCheckProvider
   ]
 })
 export class AppModule { }

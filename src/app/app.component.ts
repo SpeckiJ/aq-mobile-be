@@ -12,6 +12,7 @@ import { StartPage } from '../pages/start/start';
 import { IrcelineSettings, IrcelineSettingsProvider } from '../providers/irceline-settings/irceline-settings';
 import { PersonalAlertsProvider } from '../providers/personal-alerts/personal-alerts';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
+import { UpdateCheckProvider } from '../providers/update-check/update-check';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,12 +34,14 @@ export class MyApp implements AfterViewInit {
     private ircelineSettings: IrcelineSettingsProvider,
     private pushNotification: PushNotificationsProvider,
     private localNotification: PersonalAlertsProvider,
+    private updateCheck: UpdateCheckProvider,
     private storage: Storage
   ) {
     this.initializeApp();
 
     this.ircelineSettings.getSettings(false).subscribe((settings: IrcelineSettings) => this.lastupdate = settings.lastupdate);
 
+    this.updateCheck.init();
     this.pushNotification.init();
     this.localNotification.init();
     this.decideStartView();

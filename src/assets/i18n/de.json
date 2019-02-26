@@ -307,6 +307,17 @@
 		"header": "Zeitreihenerscheinung ändern",
 		"zeroBasedYAxe": "Zeitreihe null-basiert"
 	},
+	"update": {
+		"hint": {
+			"popover": {
+				"content-p1": "Die BelAir-App bietet Ihnen eine kalkulierte Abschätzung der kurzfristigen Luftverschmutzung für die von Ihnen ausgewählten Standorte. Diese Berechnung wird stündlich aktualisiert.",
+        		"content-p2": "Mit dieser neuen Version der App zeigen wir Ihnen auch eine Abschätzung der Auswirkungen der Langzeitbelastung für diese Standorte auf der Startseite. Ob Sie diese Informationen immer auf der Startseite sehen möchten, können Sie in den Einstellungen selbst anpassen.",
+        		"dont-show": "Diese Meldung beim App-Start nicht mehr anzeigen",
+        		"link-faq": "Lesen Sie hier weitere Informationen",
+        		"link-faq-url": "https://www.vmm.be/data/luchtkwaliteit-op-zak-met-belair-app/faq-belair"
+			}
+		}
+	},
 	"user-location-list": {
 		"header": "Standortliste"
 	},

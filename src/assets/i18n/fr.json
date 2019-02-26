@@ -307,6 +307,17 @@
 		"header": "Changer le style de cette série",
 		"zeroBasedYAxe": "Axe Y à zéro"
 	},
+	"update": {
+		"hint": {
+			"popover": {
+				"content-p1": "L'application BelAir vous donne une estimation calculée de l'exposition à court terme à la pollution de l'air pour les lieux choisis par vous. Ce calcul est mis à jour toutes les heures.",
+        		"content-p2": "Avec cette nouvelle version de l'application, nous vous montrons également une estimation des effets de l'exposition à long terme pour ces positions sur la page d'accueil. Si vous voulez toujours voir cette information sur la page d'accueil, vous pouvez vous ajuster dans les paramètres.",
+        		"dont-show": "Ne plus afficher ce message lorsque vous démarrez l'application",
+        		"link-faq": "Lire plus d'informations ici",
+        		"link-faq-url": "https://www.vmm.be/data/luchtkwaliteit-op-zak-met-belair-app/faq-belair"
+			}
+		}
+	},
 	"user-location-list": {
 		"header": "Liste des localisations"
 	},

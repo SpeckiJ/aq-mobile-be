@@ -60,6 +60,7 @@ import { PushNotificationComponent } from './push-notification/push-notification
 import { RefreshButtonComponent } from './refresh-button/refresh-button';
 import { SimpleLegendEntryComponent } from './simple-legend-entry/simple-legend-entry';
 import { StationSelectorComponent } from './station-selector/station-selector';
+import { UpdateHintPopoverComponent } from './update-hint-popover/update-hint-popover';
 import { UserLocationCreationComponent } from './user-location-creation/user-location-creation';
 
 @NgModule({
@@ -111,6 +112,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		SimpleLegendEntryComponent,
 		StationSelectorComponent,
 		UserLocationCreationComponent,
+		UpdateHintPopoverComponent,
 	],
 	imports: [
 		CommonModule,
@@ -170,6 +172,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		SimpleLegendEntryComponent,
 		StationSelectorComponent,
 		UserLocationCreationComponent,
+		UpdateHintPopoverComponent,
 	],
 	entryComponents: [
 		BelaqiChartInformationComponent,
@@ -191,6 +194,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		PhenomenonSelectorPopoverComponent,
 		PushNotificationComponent,
 		StationSelectorComponent,
+		UpdateHintPopoverComponent
 	]
 })
 export class ComponentsModule { }
