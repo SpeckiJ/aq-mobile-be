@@ -28,7 +28,7 @@ export class UpdateCheckProvider {
     this.storage.get(STORAGE_DONT_SHOW_ON_STARTUP)
       .then(dontShowOnStartup => {
         if (dontShowOnStartup === null || !dontShowOnStartup) {
-          this.popoverCtrl.create(UpdateHintPopoverComponent, {}, { showBackdrop: true }).present();
+          this.popoverCtrl.create(UpdateHintPopoverComponent, { }, { showBackdrop: true, cssClass: 'update-hint-popover' }).present();
         }
       });
   }
