@@ -8,10 +8,13 @@
         <belaqi-chart [location]="loc" (onReady)="resizeSlide()"></belaqi-chart>
       </div>
       <div *ngIf="showSubIndexPanel">
-        <sub-index-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc)"></sub-index-panel>
+        <sub-index-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc, false)"></sub-index-panel>
+      </div>
+      <div *ngIf="showAnnualMeanPanel">
+        <annual-mean-panel [location]="loc" (onReady)="resizeSlide()" (onSelect)="selectPhenomenon($event, loc, true)"></annual-mean-panel>
       </div>
       <div *ngIf="showNearestStationsPanel">
-        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenonLocation($event, loc)" (onReady)="resizeSlide()"></nearest-measuring-station-panel>
+        <nearest-measuring-station-panel [location]="loc" (onSelect)="selectPhenomenonLocation($event, loc, false)" (onReady)="resizeSlide()"></nearest-measuring-station-panel>
       </div>
     </div>
     <div *ngIf="!currentLocationError && !loc.latitude" style="height: 300px;">

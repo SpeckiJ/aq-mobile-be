@@ -14,6 +14,12 @@
       "link-more-url": "http://www.irceline.be/nl/"
     }
   },
+  "annual-mean-panel": {
+    "header": "Lange termijn blootstelling",
+    "information-popup": {
+      "text": "NO2 (Stikstofdioxide), PM10 (fijn stof met een diameter kleiner dan 10 micrometer) en PM2.5 (fijn stof met een diameter kleiner dan 2.5 micrometer) zijn de drie polluenten waar de meeste wetenschappelijke bewijslast bestaat m.b.t. de impact van langetermijn blootstelling."
+    }
+  },
   "annual-phenomenon-buttons": "Gemodelleerde jaargemiddelde waarde voor deze locatie:",
   "belaqi-chart": {
     "error": "Helaas is er een fout opgetreden bij het maken van de grafiek."
@@ -229,8 +235,9 @@
     "index": "BelAQI index",
     "interpolated-map": "Geïnterpoleerde kaart",
     "mean": {
-      "daily": "",
-      "hourly": ""
+      "24hour": "24-uur",
+      "hourly": "uur",
+      "yearly": "jaar"
     },
     "nearest-station": "Dichtstbijgelegen meetstation",
     "no-legend": "Geen legende beschikbaar",
@@ -343,8 +350,7 @@
     "message": "Vernieuw alles"
   },
   "refresh": {
-    "pull-message": "Trek naar beneden om te vernieuwen",
-    "progress": "Bezig om te vernieuwen"
+    "pull-message": "Trek naar beneden om te vernieuwen"
   },
   "settings": {
     "about": {
@@ -359,14 +365,18 @@
     "header": "Instellingen",
     "select-language": "Kies een taal",
     "show-introduction": "Toon introductie",
+    "start-page": {
+      "header": "Instellingen startpagina",
+      "show-annual-mean-panel": "Toon de langetermijnimpact op de startpagina",
+      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op de startpagina",
+      "show-sub-index-panel": "Toon de kortetermijnimpact op de startpagina"
+    },
     "user-locations": {
       "create-new-location": "Maak een nieuwe locatie aan",
       "edit-location": "Bewerk locatie",
       "header": "Gebruikerslocaties",
       "show-location-list": "Toon huidige locaties",
-      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram",
-      "show-nearest-stations": "Toon dichtstbijgelegen meetstations op de startpagina",
-      "show-sub-index-panel": "Toon de BelAQI-subindexen op de startpagina"
+      "show-nearest-series-by-default": "Toon de dichtstbijgelegen metingen in het diagram"
     }
   },
   "show-geometry": {
@@ -386,7 +396,7 @@
     "zeroBasedYAxe": "Tijdsreeks nul gebaseerd"
   },
   "sub-index-panel": {
-    "header": "Subindex op deze locatie",
+    "header": "Korte termijn blootstelling",
     "information-popup": {
       "link": "http://www.irceline.be/nl/belaqi",
       "moreInfo": "Meer info",
@@ -413,8 +423,6 @@
   },
   "user-location": {
     "creation": {
-      "locate-error": "Er is een fout opgetreden bij het bepalen van uw huidige locatie.",
-      "location-mode-off": "Activeer alstublieft de locatiedienst van uw apparaat.",
       "limit-reached": "U kunt niet meer dan 5 locaties opslaan. Verwijder eerst een van de bestaande locaties.",
       "message-added": "Locatie toegevoegd",
       "message-exists": "Locatie bestaat al"

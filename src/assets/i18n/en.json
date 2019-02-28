@@ -14,6 +14,12 @@
       "link-more-url": "http://www.irceline.be/en"
     }
   },
+  "annual-mean-panel": {
+    "header": "Long-term exposure",
+    "information-popup": {
+      "text": "NO2 (Nitrogen dioxide), PM10 (particulate matter with a diameter of less than 10 micrometers) and PM2.5 (particulate matter with a diameter of less than 2.5 micrometres) are the three pollutants where the most scientific burden of proof exists with regard to the impact of long-term exposure."
+    }
+  },
   "annual-phenomenon-buttons": "Modelled annual mean value for this location:",
   "belaqi-chart": {
     "error": "Unfortunately, an error occurred while determining the graph."
@@ -229,8 +235,9 @@
     "index": "BelAQI index",
     "interpolated-map": "interpolated map",
     "mean": {
-      "daily": "running 24-hourly mean",
-      "hourly": "hourly mean"
+      "24hour": "24-hour",
+      "hourly": "Hourly",
+      "yearly": "Yearly"
     },
     "nearest-station": "Nearest station",
     "no-legend": "No legend available",
@@ -343,8 +350,7 @@
     "message": "Refresh all"
   },
   "refresh": {
-    "pull-message": "Pull to refresh",
-    "progress": "busy refreshing"
+    "pull-message": "Pull to refresh"
   },
   "settings": {
     "about": {
@@ -359,14 +365,18 @@
     "header": "Settings",
     "select-language": "Select a language",
     "show-introduction": "Show introduction",
+    "start-page": {
+      "header": "Settings start page",
+      "show-annual-mean-panel": "Show annual mean on start page",
+      "show-nearest-stations": "Show nearest measuring stations on start page",
+      "show-sub-index-panel": "Show BelAQI subindicies on start page"
+    },
     "user-locations": {
       "create-new-location": "Create new location",
       "edit-location": "Edit location",
       "header": "User locations",
       "show-location-list": "Show current locations",
-      "show-nearest-series-by-default": "Show nearest measurements in diagram",
-      "show-nearest-stations": "Show nearest measuring stations on start page",
-      "show-sub-index-panel": "Show BelAQI subindicies on start page"
+      "show-nearest-series-by-default": "Show nearest measurements in diagram"
     }
   },
   "show-geometry": {
@@ -386,7 +396,7 @@
     "zeroBasedYAxe": "Timeseries zero based"
   },
   "sub-index-panel": {
-    "header": "Subindex at this location",
+    "header": "Short-term exposure",
     "information-popup": {
       "link": "http://www.irceline.be/en/belaqi",
       "moreInfo": "More info",
@@ -413,8 +423,6 @@
   },
   "user-location": {
     "creation": {
-      "locate-error": "An error occurred, while determining your current location.",
-      "location-mode-off": "Please activate the location service of your device.",
       "limit-reached": "You can not create more than 5 locations. Please first remove one of the exiting locations.",
       "message-added": "User location added",
       "message-exists": "User location already exists"

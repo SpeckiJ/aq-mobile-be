@@ -11,6 +11,7 @@ import { NetworkAlertProvider } from '../../providers/network-alert/network-aler
 import { RefreshHandler } from '../../providers/refresh/refresh';
 import { LocatedTimeseriesService } from '../../providers/timeseries/located-timeseries';
 import { UserLocation, UserLocationListProvider } from '../../providers/user-location-list/user-location-list';
+import { StartPageSettingsProvider } from '../../providers/start-page-settings/start-page-settings';
 import { ModalUserLocationCreationComponent } from '../modal-user-location-creation/modal-user-location-creation';
 import { ModalUserLocationListComponent } from '../modal-user-location-list/modal-user-location-list';
 import { PhenomenonLocationSelection } from '../nearest-measuring-station-panel/nearest-measuring-station-panel-entry';
@@ -33,7 +34,8 @@ export interface BelaqiSelection {
     latitude: number;
     label: string;
     type: 'user' | 'current';
-  }
+  };
+  yearly: boolean;
 }
 
 @Component({
@@ -66,6 +68,9 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
   public showSubIndexPanel: boolean;
   private showSubIndexPanelSubscriber: Subscription;
 
+  public showAnnualMeanPanel: boolean;
+  private showAnnualMeanPanelSubscriber: Subscription;
+
   private refresherSubscriber: Subscription;
   private locationStatusSubscriber: Subscription;
   private locChangedSubscriber: Subscription;
@@ -73,6 +78,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
 
   constructor(
     private userLocationProvider: UserLocationListProvider,
+    private startPageSettingsProvider: StartPageSettingsProvider,
     private locatedTimeseriesProvider: LocatedTimeseriesService,
     private ircelineSettings: IrcelineSettingsProvider,
     private locate: LocateProvider,
@@ -91,9 +97,11 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     });
     this.refreshHandler.onRefresh.subscribe(() => this.loadBelaqis(true));
     this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
+    this.userLocationProvider.locationsChanged.subscribe(() => this.loadBelaqis(false));
     this.networkAlert.onConnected.subscribe(() => this.loadBelaqis(false));
-    this.showNearestStationsSubscriber = this.userLocationProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
-    this.showSubIndexPanelSubscriber = this.userLocationProvider.getShowSubIndexPanel().subscribe(val => this.showSubIndexPanel = val);
+    this.showNearestStationsSubscriber = this.startPageSettingsProvider.getShowNearestStations().subscribe(val => this.showNearestStationsPanel = val);
+    this.showSubIndexPanelSubscriber = this.startPageSettingsProvider.getShowSubIndexPanel().subscribe(val => this.showSubIndexPanel = val);
+    this.showAnnualMeanPanelSubscriber = this.startPageSettingsProvider.getShowAnnualMeanPanel().subscribe(val => this.showAnnualMeanPanel = val);
   }
 
   public ngAfterViewInit() {
@@ -110,9 +118,10 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
     if (this.networkSubscriber) { this.networkSubscriber.unsubscribe(); }
     if (this.showNearestStationsSubscriber) { this.showNearestStationsSubscriber.unsubscribe(); }
     if (this.showSubIndexPanelSubscriber) { this.showSubIndexPanelSubscriber.unsubscribe(); }
+    if (this.showAnnualMeanPanelSubscriber) { this.showAnnualMeanPanelSubscriber.unsubscribe(); }
   }
 
-  public selectPhenomenonLocation(selection: PhenomenonLocationSelection, userlocation: UserLocation) {
+  public selectPhenomenonLocation(selection: PhenomenonLocationSelection, userlocation: UserLocation, yearly: boolean) {
     this.phenomenonSelected.emit({
       phenomenonID: selection.phenomenonId,
       stationlocation: {
@@ -124,11 +133,12 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
         longitude: userlocation.longitude,
         label: userlocation.label,
         type: userlocation.type
-      }
+      },
+      yearly
     });
   }
 
-  public selectPhenomenon(phenId: string, userlocation: UserLocation) {
+  public selectPhenomenon(phenId: string, userlocation: UserLocation, yearly: boolean) {
     this.phenomenonSelected.emit({
       phenomenonID: phenId,
       userlocation: {
@@ -136,7 +146,8 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
         longitude: userlocation.longitude,
         label: userlocation.label,
         type: userlocation.type
-      }
+      },
+      yearly
     })
   }
 
@@ -187,7 +198,7 @@ export class BelaqiUserLocationSliderComponent implements AfterViewInit, OnDestr
   }
 
   public navigateFAQ() {
-    this.nav.push(FAQPage);
+    this.modalCtrl.create(FAQPage).present();
   }
 
   public isLocateDenied(): boolean {

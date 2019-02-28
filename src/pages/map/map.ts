@@ -17,12 +17,15 @@ import L, {
   Layer,
   popup,
 } from 'leaflet';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import moment from 'moment';
+import { forkJoin } from 'rxjs';
 import { MarkerSelectorGenerator } from 'src/components/customized-station-map-selector/customized-station-map-selector';
 
 import { BelaqiSelection } from '../../components/belaqi-user-location-slider/belaqi-user-location-slider';
 import { StationSelectorComponent } from '../../components/station-selector/station-selector';
 import { getIDForMainPhenomenon, MainPhenomenon } from '../../model/phenomenon';
+import { AnnualMeanProvider } from '../../providers/annual-mean/annual-mean';
 import { IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
 import { MobileSettings } from '../../providers/settings/settings';
 import { DiagramPage } from '../diagram/diagram';
@@ -46,7 +49,8 @@ enum TimeLabel {
 
 enum MeanLabel {
   hourly = 'hourly',
-  daily = 'daily'
+  daily = '24hour',
+  yearly = 'yearly'
 }
 
 const phenomenonMapping = [
@@ -94,7 +98,6 @@ export class MapPage {
   public phenomenonFilter: ParameterFilter;
   public avoidZoomToSelection = true;
   public zoomControlOptions: L.Control.ZoomOptions = {};
-  public layerControlOptions: L.Control.LayersOptions = { position: "bottomleft", hideSingleBase: true };
   public overlayMaps: Map<string, LayerOptions> = new Map<string, LayerOptions>();
   public fitBounds: L.LatLngBoundsExpression;
   public clusterStations: boolean;
@@ -105,7 +108,9 @@ export class MapPage {
   public markerSelectorGenerator: MarkerSelectorGenerator;
 
   public mean: string;
-  public showDailyMean: boolean = true;
+  public show24hourMean: boolean = true;
+  public showYearlyMean: boolean = true;
+  public disableMeans: boolean;
 
   public legend: L.Control;
   private legendVisible: boolean = false;
@@ -125,7 +130,8 @@ export class MapPage {
     protected cdr: ChangeDetectorRef,
     protected translateSrvc: TranslateService,
     protected http: HttpClient,
-    protected cacheService: CacheService
+    protected cacheService: CacheService,
+    protected annualProvider: AnnualMeanProvider
   ) {
     const settings = this.settingsSrvc.getSettings();
     this.providerUrl = settings.datasetApis[0].url;
@@ -140,10 +146,28 @@ export class MapPage {
 
     if (this.belaqiSelection) {
       const phenId = this.belaqiSelection.phenomenonID;
+      this.selectedPhenomenonId = this.belaqiSelection.phenomenonID;
       this.phenomenonLabel = this.getPhenomenonLabel(phenId);
+      this.adjustMeanUI();
+      if (this.belaqiSelection.yearly) {
+        this.mean = MeanLabel.yearly;
+      } else {
+        switch (this.selectedPhenomenonId) {
+          case getIDForMainPhenomenon(MainPhenomenon.BC):
+          case getIDForMainPhenomenon(MainPhenomenon.NO2):
+          case getIDForMainPhenomenon(MainPhenomenon.O3):
+            this.mean = MeanLabel.hourly;
+            break;
+          case getIDForMainPhenomenon(MainPhenomenon.PM10):
+          case getIDForMainPhenomenon(MainPhenomenon.PM25):
+            this.mean = MeanLabel.daily;
+            break;
+        }
+      }
     } else {
       this.phenomenonLabel = PhenomenonLabel.BelAQI;
-      this.showDailyMean = false;
+      this.show24hourMean = false;
+      this.showYearlyMean = false;
       this.mean = MeanLabel.hourly;
     }
     this.adjustUI();
@@ -152,6 +176,14 @@ export class MapPage {
   public mapInitialized(mapId: string) {
     this.updateLegend();
     this.zoomToLocation();
+    if (this.mapCache.hasMap(this.mapId)) {
+      const provider = new OpenStreetMapProvider();
+      const searchControl = new GeoSearchControl({
+        provider: provider,
+        autoComplete: false
+      });
+      this.mapCache.getMap(this.mapId).addControl(searchControl);
+    }
   }
 
   public onPhenomenonChange(): void {
@@ -338,43 +370,42 @@ export class MapPage {
       let wmsUrl: string;
       let timeParam: string;
       if (this.time == TimeLabel.current) {
-        this.ircelineSettings.getSettings(false).subscribe(ircSetts => {
+        forkJoin(
+          this.annualProvider.getYear(),
+          this.ircelineSettings.getSettings(false)
+        ).subscribe(result => {
           wmsUrl = 'http://geo.irceline.be/rioifdm/wms';
-          timeParam = ircSetts.lastupdate.toISOString();
+          const lastUpdate = result[1].lastupdate.toISOString();
+          const year = result[0];
           switch (this.phenomenonLabel) {
             case PhenomenonLabel.BelAQI:
-              layerId = 'belaqi';
+              this.drawLayer(wmsUrl, 'belaqi', geojson, lastUpdate)
               break;
             case PhenomenonLabel.BC:
-              layerId = 'bc_hmean';
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'bc_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `bc_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.NO2:
-              layerId = 'no2_hmean';
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'no2_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `no2_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.O3:
-              layerId = 'o3_hmean';
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'o3_hmean', geojson, lastUpdate)
               break;
             case PhenomenonLabel.PM10:
-              if (this.mean === 'daily') {
-                layerId = 'pm10_24hmean';
-              }
-              else {
-                layerId = 'pm10_hmean';
-              }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'pm10_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm10_24hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `pm10_anmean_${year}_atmostreet`, geojson)
               break;
             case PhenomenonLabel.PM25:
-              if (this.mean === 'daily') {
-                layerId = 'pm25_24hmean';
-              }
-              else {
-                layerId = 'pm25_hmean';
-              }
+              if (this.mean === MeanLabel.hourly) this.drawLayer(wmsUrl, 'pm25_hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.daily) this.drawLayer(wmsUrl, 'pm25_24hmean', geojson, lastUpdate)
+              if (this.mean === MeanLabel.yearly) this.drawLayer(wmsUrl, `pm25_anmean_${year}_atmostreet`, geojson)
               break;
             default:
               break;
           }
-          this.drawLayer(layerId, geojson, timeParam, wmsUrl);
-        });
+        })
       }
       else {
         wmsUrl = 'http://geo.irceline.be/forecast/wms';
@@ -414,25 +445,49 @@ export class MapPage {
             break;
         }
       }
-      this.drawLayer(layerId, geojson, timeParam, wmsUrl);
+      this.drawLayer(wmsUrl, layerId, geojson, timeParam);
     });
   }
 
   private adjustMeanUI() {
-    // if selected phenomenon pm10 or pm2.5, then enable 24 hourly mean
-    if ((this.selectedPhenomenonId === getIDForMainPhenomenon(MainPhenomenon.PM10) ||
-      this.selectedPhenomenonId === getIDForMainPhenomenon(MainPhenomenon.PM25))
-      && this.time === TimeLabel.current
-    ) {
-      this.showDailyMean = true;
-      this.mean = 'daily';
+    let show24hour = false;
+    let showYearly = false;
+    switch (this.selectedPhenomenonId) {
+      case getIDForMainPhenomenon(MainPhenomenon.BC):
+        showYearly = true;
+        this.mean = MeanLabel.hourly
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.NO2):
+        showYearly = true;
+        this.mean = MeanLabel.hourly
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.O3):
+        this.mean = MeanLabel.hourly
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.PM10):
+        show24hour = true;
+        showYearly = true;
+        this.mean = MeanLabel.hourly
+        break;
+      case getIDForMainPhenomenon(MainPhenomenon.PM25):
+        show24hour = true;
+        showYearly = true;
+        this.mean = MeanLabel.hourly
+        break;
+      default:
+        break;
+    }
+    this.show24hourMean = show24hour;
+    this.showYearlyMean = showYearly;
+    if (this.time !== TimeLabel.current) {
+      this.disableMeans = true;
+      this.mean = null;
     } else {
-      this.showDailyMean = false;
-      this.mean = 'hourly';
+      this.disableMeans = false;
     }
   }
 
-  private drawLayer(layerId: string, geojson, timeParam: string, wmsUrl: string) {
+  private drawLayer(wmsUrl: string, layerId: string, geojson: GeoJSON.GeoJsonObject, timeParam?: string) {
     if (layerId) {
       const layerOptions: BoundaryCanvasOptions = {
         layers: layerId,
@@ -445,8 +500,7 @@ export class MapPage {
       };
       if (timeParam) {
         layerOptions.time = timeParam;
-      }
-      ;
+      };
       this.overlayMaps.set(layerId + wmsUrl + timeParam, {
         label: this.translateSrvc.instant('map.interpolated-map'),
         visible: true,

@@ -180,7 +180,7 @@ export class BelaqiWheelComponent extends LanguageChangNotifier implements After
             ctx.textAlign = 'center';
 
             // indexLabel
-            ctx.font = "1.2em Open Sans";
+            ctx.font = "1.1em Open Sans";
             this.wrapText(ctx, this.belaqi.getLabelForIndexSplit(index), centerX + 2, centerY - 3, 90, 1.2);
 
             // modelledLabel

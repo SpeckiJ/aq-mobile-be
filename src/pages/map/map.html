@@ -45,9 +45,9 @@
       <div class="map" *ngIf="phenomenonLabel">
         <customized-station-map-selector [mapId]="mapId" [serviceUrl]="providerUrl" [filter]="phenomenonFilter"
           [avoidZoomToSelection]="avoidZoomToSelection" [statusIntervals]="true" [ignoreStatusIntervalIfBeforeDuration]="statusIntervalDuration"
-          [zoomControlOptions]="zoomControlOptions" [layerControlOptions]="layerControlOptions" [overlayMaps]="overlayMaps"
-          [fitBounds]="fitBounds" [markerSelectorGenerator]="markerSelectorGenerator" (onSelected)="onStationSelected($event)"
-          [cluster]="clusterStations" (onContentLoading)="onMapLoading($event)" (mapInitialized)="mapInitialized($event)"></customized-station-map-selector>
+          [zoomControlOptions]="zoomControlOptions" [overlayMaps]="overlayMaps" [fitBounds]="fitBounds"
+          [markerSelectorGenerator]="markerSelectorGenerator" (onSelected)="onStationSelected($event)" [cluster]="clusterStations"
+          (onContentLoading)="onMapLoading($event)" (mapInitialized)="mapInitialized($event)"></customized-station-map-selector>
       </div>
       <div class="error" *ngIf="!phenomenonLabel">
         {{'map.error' | translate}}
@@ -55,11 +55,14 @@
     </div>
     <div>
       <ion-segment class="time" [(ngModel)]="mean" (tap)="onMeanChange($event, mean)">
-        <ion-segment-button value="hourly">
+        <ion-segment-button value="hourly" [disabled]="disableMeans">
           {{'map.mean.hourly' | translate}}
         </ion-segment-button>
-        <ion-segment-button value="daily" *ngIf="showDailyMean">
-          {{'map.mean.daily' | translate}}
+        <ion-segment-button value="24hour" *ngIf="show24hourMean" [disabled]="disableMeans">
+          {{'map.mean.24hour' | translate}}
+        </ion-segment-button>
+        <ion-segment-button value="yearly" *ngIf="showYearlyMean" [disabled]="disableMeans">
+          {{'map.mean.yearly' | translate}}
         </ion-segment-button>
       </ion-segment>
     </div>
@@ -82,7 +85,7 @@
         </ion-segment-button>
       </ion-segment>
     </div>
-    <mobile-geosearch-control [mapId]="mapId" [options]="geoSearchOptions"></mobile-geosearch-control>
+    <!-- <mobile-geosearch-control [mapId]="mapId" [options]="geoSearchOptions"></mobile-geosearch-control> -->
   </ion-card>
 
 </ion-content>

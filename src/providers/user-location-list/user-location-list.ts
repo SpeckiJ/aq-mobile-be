@@ -20,8 +20,6 @@ export interface UserLocation {
 }
 
 const STORAGE_USER_LOCATIONS_KEY = 'userlocation';
-const STORAGE_SHOW_NEAREST_STATIONS_KEY = 'showNearestStations';
-const STORAGE_SHOW_SUB_INDEX_PANEL_KEY = 'showSubIndexPanel';
 
 @Injectable()
 export class UserLocationListProvider {
@@ -31,9 +29,6 @@ export class UserLocationListProvider {
   public phenomenonIDs = ['391', '8', '7', '5', '6001'];
 
   public locationsChanged: EventEmitter<void> = new EventEmitter();
-
-  private showNearestStationsReplay: ReplaySubject<boolean> = new ReplaySubject(1);
-  private showSubIndexPanelReplay: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     protected storage: Storage,
@@ -46,8 +41,6 @@ export class UserLocationListProvider {
       this.userLocations = locations || [{ type: 'current', isCurrentVisible: false }];
       this.locationsChanged.emit();
     })
-    this.loadShowNearestStations();
-    this.loadShowSubIndexPanel();
   }
 
   public addUserLocation(label: string, point: Point) {
@@ -153,38 +146,6 @@ export class UserLocationListProvider {
     const index = this.userLocations.findIndex(res => res.id === userLocation.id);
     this.userLocations[index] = userLocation;
     this.storeLocations();
-  }
-
-  // show nearest stations
-  public setShowNearestStations(show: boolean) {
-    this.storage.set(STORAGE_SHOW_NEAREST_STATIONS_KEY, show);
-    this.showNearestStationsReplay.next(show);
-  }
-
-  public getShowNearestStations(): Observable<boolean> {
-    return this.showNearestStationsReplay.asObservable();
-  }
-
-  private loadShowNearestStations() {
-    this.storage.get(STORAGE_SHOW_NEAREST_STATIONS_KEY)
-      .then(res => this.showNearestStationsReplay.next(res))
-      .catch(error => console.error(error))
-  }
-
-  //show sub index panel
-  public setShowShowSubIndexPanel(show: boolean) {
-    this.storage.set(STORAGE_SHOW_SUB_INDEX_PANEL_KEY, show);
-    this.showSubIndexPanelReplay.next(show);
-  }
-
-  public getShowSubIndexPanel(): Observable<boolean> {
-    return this.showSubIndexPanelReplay.asObservable();
-  }
-
-  private loadShowSubIndexPanel() {
-    this.storage.get(STORAGE_SHOW_SUB_INDEX_PANEL_KEY)
-      .then(res => this.showSubIndexPanelReplay.next(res === null ? true : res))
-      .catch(error => console.error(error))
   }
 
   private storeLocations() {

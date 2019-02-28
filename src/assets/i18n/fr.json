@@ -14,6 +14,12 @@
       "link-more-url": "http://www.irceline.be/fr"
     }
   },
+  "annual-mean-panel": {
+    "header": "Exposition à long terme",
+    "information-popup": {
+      "text": "Le NO2 (dioxyde d'azote), les PM10 (particules d'un diamètre inférieur à 10 micromètres) et les PM2,5 (particules d'un diamètre inférieur à 2,5 micromètres) sont les trois polluants pour lesquels le fardeau de la preuve est le plus scientifique en ce qui concerne l'impact d'une exposition à long terme."
+    }
+  },
   "annual-phenomenon-buttons": "Indice moyen annuel modélisé pour cette position:",
   "belaqi-chart": {
     "error": "Malheureusement, une erreur est survenue lors du chargement du graphique."
@@ -229,8 +235,9 @@
     "index": "Indice BelAQI",
     "interpolated-map": "Carte interpolée",
     "mean": {
-      "daily": "",
-      "hourly": ""
+      "24hour": "24-heures",
+      "hourly": "heure",
+      "yearly": "an"
     },
     "nearest-station": "Station de mesure la plus proche",
     "no-legend": "Aucune légende disponible",
@@ -343,8 +350,7 @@
     "message": "Actualiser"
   },
   "refresh": {
-    "pull-message": "Glissez l'écran vers le bas pour actualiser",
-    "progress": "actualisation"
+    "pull-message": "Glissez l'écran vers le bas pour actualiser"
   },
   "settings": {
     "about": {
@@ -359,14 +365,18 @@
     "header": "Paramètres",
     "select-language": "Sélectionnez une langue",
     "show-introduction": "Voir l'introduction",
+    "start-page": {
+      "header": "Paramètres page d'accueile",
+      "show-annual-mean-panel": "Afficher les moyenne annuelle sur la page d'accueile",
+      "show-nearest-stations": "Afficher les stations de mesure les plus proches sur la page d'accueil",
+      "show-sub-index-panel": "Afficher les sous-indices BelAQI sur la page d'accueil"
+    },
     "user-locations": {
       "create-new-location": "Ajouter une nouvelle localisation",
       "edit-location": "Modifier la localisation",
       "header": "Localisations",
       "show-location-list": "Voir les localisations",
-      "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique",
-      "show-nearest-stations": "Afficher les stations de mesure les plus proches sur la page d'accueil",
-      "show-sub-index-panel": "Afficher les sous-indices BelAQI sur la page d'accueil"
+      "show-nearest-series-by-default": "Montrer les mesures les plus proches dans le graphique"
     }
   },
   "show-geometry": {
@@ -386,7 +396,7 @@
     "zeroBasedYAxe": "Axe Y à zéro"
   },
   "sub-index-panel": {
-    "header": "Sous-index à cette localisation",
+    "header": "Exposition à court terme",
     "information-popup": {
       "link": "http://www.irceline.be/fr/belaqi",
       "moreInfo": "Plus d'info",
@@ -413,8 +423,6 @@
   },
   "user-location": {
     "creation": {
-      "locate-error": "Une erreur est survenue lors de la détermination de votre position actuelle.",
-      "location-mode-off": "Veuillez activer le service de localisation de votre appareil.",
       "limit-reached": "Vous ne pouvez pas créer plus de 5 localisations. Veuillez d'abord supprimer une des localisations existantes.",
       "message-added": "Localisation ajoutée",
       "message-exists": "La localisation existe déjà"

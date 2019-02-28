@@ -1,11 +1,17 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>{{'faq.header' | translate}}</ion-title>
-  </ion-navbar>
-</ion-header> -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'faq.header' | translate}}
+    </ion-title>
+    <ion-buttons start right>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-  <ion-title text-wrap>{{'faq.header' | translate}}</ion-title>
   <ion-item>
     <header text-wrap>{{'faq.calculatedHow.title' | translate}}</header>
     <p class="subtile" text-wrap>{{'faq.calculatedHow.summary' | translate}}</p>

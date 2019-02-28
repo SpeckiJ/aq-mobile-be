@@ -2,20 +2,21 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { PopoverController } from 'ionic-angular';
 
 import { PhenomenonSeriesID } from '../../model/phenomenon';
+import { AnnualPhenomenonMapping } from '../../providers/annual-mean/annual-mean';
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
-import { StartPageSettingsProvider } from '../../providers/start-page-settings/start-page-settings';
-import { NearestMeasuringStationPanelInformationPopupComponent } from './nearest-measuring-station-panel-information-popup';
+import { AnnualMeanPanelInformationPopupComponent } from './annual-mean-panel-information-popup';
 
-interface PanelEntry {
-  label: string;
-  id: string;
+export interface AnnualMeanEntry {
+  label: string,
+  phenomenon: AnnualPhenomenonMapping;
+  id: string
 }
 
 @Component({
-  selector: 'nearest-measuring-station-panel',
-  templateUrl: 'nearest-measuring-station-panel.html'
+  selector: 'annual-mean-panel',
+  templateUrl: 'annual-mean-panel.html'
 })
-export class NearestMeasuringStationPanelComponent implements OnChanges {
+export class AnnualMeanPanelComponent implements OnChanges {
 
   @Output()
   public onSelect: EventEmitter<string> = new EventEmitter();
@@ -26,25 +27,20 @@ export class NearestMeasuringStationPanelComponent implements OnChanges {
   @Input()
   public location: UserLocation;
 
-  public entries: PanelEntry[] = [
-    {
-      label: 'BC',
-      id: PhenomenonSeriesID.BC
-    },
+  public entries: AnnualMeanEntry[] = [
     {
       label: 'NO2',
+      phenomenon: AnnualPhenomenonMapping.NO2,
       id: PhenomenonSeriesID.NO2
     },
     {
-      label: 'O3',
-      id: PhenomenonSeriesID.O3
-    },
-    {
       label: 'PM10',
+      phenomenon: AnnualPhenomenonMapping.PM10,
       id: PhenomenonSeriesID.PM10
     },
     {
       label: 'PM2.5',
+      phenomenon: AnnualPhenomenonMapping.PM25,
       id: PhenomenonSeriesID.PM25
     }
   ];
@@ -66,7 +62,7 @@ export class NearestMeasuringStationPanelComponent implements OnChanges {
   }
 
   public presentPopover(myEvent) {
-    this.popoverCtrl.create(NearestMeasuringStationPanelInformationPopupComponent).present({ ev: myEvent });
+    this.popoverCtrl.create(AnnualMeanPanelInformationPopupComponent).present({ ev: myEvent });
   }
 
   public entryReady() {

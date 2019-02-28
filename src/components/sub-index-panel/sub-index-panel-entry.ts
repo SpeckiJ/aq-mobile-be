@@ -7,6 +7,7 @@ import { CategorizeValueToIndexProvider } from '../../providers/categorize-value
 import { IrcelineSettingsProvider } from '../../providers/irceline-settings/irceline-settings';
 import { ModelledValueProvider } from '../../providers/modelled-value/modelled-value';
 import { UserLocation } from '../../providers/user-location-list/user-location-list';
+import { StartPageSettingsProvider } from '../../providers/start-page-settings/start-page-settings';
 import { SubIndexEntry } from './sub-index-panel';
 
 @Component({

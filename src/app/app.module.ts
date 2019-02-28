@@ -57,6 +57,7 @@ import { TimeseriesService } from '../providers/timeseries/timeseries';
 import { UserTimeseriesService } from '../providers/timeseries/user-timeseries';
 import { UpdateCheckProvider } from '../providers/update-check/update-check';
 import { UserLocationListProvider } from '../providers/user-location-list/user-location-list';
+import { StartPageSettingsProvider } from '../providers/start-page-settings/start-page-settings';
 import { MyApp } from './app.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -149,11 +150,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     PushNotificationsProvider,
     RefreshHandler,
     SplashScreen,
+    StartPageSettingsProvider,
     StatusBar,
     TimeseriesService,
     UpdateCheckProvider,
     UserLocationListProvider,
-    UserTimeseriesService
+    UserTimeseriesService,
   ]
 })
 export class AppModule { }

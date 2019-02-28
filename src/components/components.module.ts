@@ -10,6 +10,9 @@ import { IonicModule } from 'ionic-angular';
 
 import { AirQualityIndexComponent } from './air-quality-index/air-quality-index';
 import { AirQualityLocationPanelComponent } from './air-quality-location-panel/air-quality-location-panel';
+import { AnnualMeanPanelComponent } from './annual-mean-panel/annual-mean-panel';
+import { AnnualMeanPanelEntryComponent } from './annual-mean-panel/annual-mean-panel-entry';
+import { AnnualMeanPanelInformationPopupComponent } from './annual-mean-panel/annual-mean-panel-information-popup';
 import { AnnualPhenomenonButtonsComponent } from './annual-phenomenon-buttons/annual-phenomenon-buttons';
 import { BelaqiChartComponent } from './belaqi-chart/belaqi-chart';
 import { BelaqiChartInformationComponent } from './belaqi-chart/belaqi-chart-information';
@@ -70,6 +73,9 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 	declarations: [
 		AirQualityIndexComponent,
 		AirQualityLocationPanelComponent,
+		AnnualMeanPanelComponent,
+		AnnualMeanPanelEntryComponent,
+		AnnualMeanPanelInformationPopupComponent,
 		AnnualPhenomenonButtonsComponent,
 		BelaqiChartComponent,
 		BelaqiChartInformationComponent,
@@ -133,6 +139,9 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 	exports: [
 		AirQualityIndexComponent,
 		AirQualityLocationPanelComponent,
+		AnnualMeanPanelComponent,
+		AnnualMeanPanelEntryComponent,
+		AnnualMeanPanelInformationPopupComponent,
 		AnnualPhenomenonButtonsComponent,
 		BelaqiChartComponent,
 		BelaqiChartInformationComponent,
@@ -184,6 +193,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		UserLocationCreationComponent,
 	],
 	entryComponents: [
+		AnnualMeanPanelInformationPopupComponent,
 		BelaqiChartInformationComponent,
 		BelaqiLocateDelayedInformationComponent,
 		BelaqiWheelInformationComponent,
