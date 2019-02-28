@@ -1,8 +1,9 @@
-<ion-header>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-footer>
   <ion-navbar class="main-navigation">
     <div class="row" style="max-width:300px;margin:auto;vertical-align: middle;align-items: center!important;">
       <div class="col">
-        <button ion-button clear  style="margin: none;" class="text-on-bottom" (click)="openPage('start')" [ngClass]="{selected: selectedPage === 'start'}">
+        <button ion-button clear style="margin: none;" class="text-on-bottom" (click)="openPage('start')" [ngClass]="{selected: selectedPage === 'start'}">
           <ion-icon name="home"></ion-icon>
           <span class="nav-butto-label">{{'home.header' | translate}}</span>
         </button>
@@ -21,22 +22,21 @@
             <ion-icon name="stats"></ion-icon>
             <span class="nav-butto-label">{{'diagram.header' | translate}}</span>
           </button>
-      </ion-buttons>
+        </ion-buttons>
 
-      <!-- <geolocation-enabled-icon float-right></geolocation-enabled-icon>
-      <notification-icon float-right></notification-icon> -->
+        <!-- <geolocation-enabled-icon float-right></geolocation-enabled-icon>
+          <notification-icon float-right></notification-icon> -->
 
-      <ion-buttons end>
+        <ion-buttons end>
 
-        <!--
-        <refresh-button float-right></refresh-button>
-        <button ion-button icon-only clear (click)="openPage('settings')" [ngClass]="{selected: selectedPage === 'settings'}">
-          <ion-icon name="settings"></ion-icon>
-          <span class="nav-butto-label">{{'settings.header' | translate}}</span>
-        </button> -->
-      </ion-buttons>
-    </div>
+          <!--
+            <refresh-button float-right></refresh-button>
+            <button ion-button icon-only clear (click)="openPage('settings')" [ngClass]="{selected: selectedPage === 'settings'}">
+              <ion-icon name="settings"></ion-icon>
+              <span class="nav-butto-label">{{'settings.header' | translate}}</span>
+            </button> -->
+        </ion-buttons>
+      </div>
     </div>
   </ion-navbar>
-</ion-header>
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+</ion-footer>
