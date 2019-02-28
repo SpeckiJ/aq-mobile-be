@@ -63,7 +63,7 @@ import { StationSelectorComponent } from './station-selector/station-selector';
 import { SubIndexPanelComponent } from './sub-index-panel/sub-index-panel';
 import { SubIndexPanelEntryComponent } from './sub-index-panel/sub-index-panel-entry';
 import { SubIndexPanelInformationPopupComponent } from './sub-index-panel/sub-index-panel-information-popup';
-import { UpdateHintPopoverComponent } from './update-hint-popover/update-hint-popover';
+import { ModalStartupHintComponent } from './update-hint-popover/modal-startup-hint';
 import { UserLocationCreationComponent } from './user-location-creation/user-location-creation';
 
 @NgModule({
@@ -98,6 +98,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		ModalLegendComponent,
 		ModalOptionsEditorComponent,
 		ModalPhenomenonSelectorComponent,
+		ModalStartupHintComponent,
 		ModalTimespanEditorComponent,
 		ModalUserLocationCreationComponent,
 		ModalUserLocationListComponent,
@@ -117,9 +118,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		SubIndexPanelComponent,
 		SubIndexPanelEntryComponent,
 		SubIndexPanelInformationPopupComponent,
-		UpdateHintPopoverComponent,
 		UserLocationCreationComponent,
-		UpdateHintPopoverComponent,
 	],
 	imports: [
 		CommonModule,
@@ -162,6 +161,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		ModalLegendComponent,
 		ModalOptionsEditorComponent,
 		ModalPhenomenonSelectorComponent,
+		ModalStartupHintComponent,
 		ModalTimespanEditorComponent,
 		ModalUserLocationCreationComponent,
 		ModalUserLocationListComponent,
@@ -181,9 +181,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		SubIndexPanelComponent,
 		SubIndexPanelEntryComponent,
 		SubIndexPanelInformationPopupComponent,
-		UpdateHintPopoverComponent,
 		UserLocationCreationComponent,
-		UpdateHintPopoverComponent,
 	],
 	entryComponents: [
 		BelaqiChartInformationComponent,
@@ -197,6 +195,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		ModalLegendComponent,
 		ModalOptionsEditorComponent,
 		ModalPhenomenonSelectorComponent,
+		ModalStartupHintComponent,
 		ModalTimespanEditorComponent,
 		ModalUserLocationCreationComponent,
 		ModalUserLocationListComponent,
@@ -206,7 +205,6 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		PushNotificationComponent,
 		StationSelectorComponent,
 		SubIndexPanelInformationPopupComponent,
-		UpdateHintPopoverComponent,
 	]
 })
 export class ComponentsModule { }

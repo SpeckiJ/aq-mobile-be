@@ -1,0 +1,31 @@
+modal-startup-hint {
+  ion-content {
+    ion-grid {
+      height: 100%;
+
+      ion-row {
+        align-items: center;
+        padding: 10%;
+        height: 100%;
+
+        p {
+          margin-block-start: 2em;
+          margin-block-end: 2em;
+        }
+
+        .dont-show {
+          font-size: 0.8em !important;
+        }
+
+        .more-info {
+          text-align: center;
+          color: color($colors, primary);
+        }
+      }
+    }
+  }
+
+  ion-footer {
+    text-align: center;
+  }
+}

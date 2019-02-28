@@ -1,0 +1,28 @@
+<ion-content center text-center>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>
+          {{'update.hint.popover.content-p1' | translate}}
+        </p>
+        <p>
+          {{'update.hint.popover.content-p2' | translate}}
+        </p>
+        <div class="more-info" small (click)="externalLink()">{{'update.hint.popover.link-faq' | translate}}</div>
+        <br />
+        <ion-list>
+          <ion-item>
+            <ion-label class="dont-show" text-wrap>{{'update.hint.popover.dont-show' | translate}}</ion-label>
+            <ion-toggle color="secondary" (ionChange)="dontShow($event)"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <button ion-button (click)="dismiss()">
+    <span ion-text>{{'controls.close' | translate}}</span>
+  </button>
+</ion-footer>

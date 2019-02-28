@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AppVersion } from '@ionic-native/app-version';
 import { Storage } from '@ionic/storage';
-import { Platform, PopoverController } from 'ionic-angular';
+import { ModalController, Platform } from 'ionic-angular';
 
-import { UpdateHintPopoverComponent } from '../../components/update-hint-popover/update-hint-popover';
+import { ModalStartupHintComponent } from '../../components/update-hint-popover/modal-startup-hint';
 
 const STORAGE_LAST_INSTALLED_VERSION_CODE = 'lastInstalledVersionCode';
 const STORAGE_DONT_SHOW_ON_STARTUP = 'dontShowPopupOnStartup';
@@ -17,7 +17,7 @@ export class UpdateCheckProvider {
     private platform: Platform,
     private appVersion: AppVersion,
     private storage: Storage,
-    private popoverCtrl: PopoverController
+    private modalCtrl: ModalController
   ) { }
 
   public init(): any {
@@ -54,7 +54,7 @@ export class UpdateCheckProvider {
   }
 
   private presentPopover() {
-    this.popoverCtrl.create(UpdateHintPopoverComponent, {}, { showBackdrop: true, cssClass: 'update-hint-popover' }).present();
+    this.modalCtrl.create(ModalStartupHintComponent, {}, { showBackdrop: true, cssClass: 'modal-startup' }).present();
   }
 
 }

@@ -6,10 +6,10 @@ import { Toggle, ViewController } from 'ionic-angular';
 import { UpdateCheckProvider } from '../../providers/update-check/update-check';
 
 @Component({
-  selector: 'update-hint-popover',
-  templateUrl: 'update-hint-popover.html'
+  selector: 'modal-startup-hint',
+  templateUrl: 'modal-startup-hint.html'
 })
-export class UpdateHintPopoverComponent {
+export class ModalStartupHintComponent {
 
   constructor(
     private iab: InAppBrowser,
