@@ -1,5 +1,13 @@
 update-hint-popover {
-  div {
-    padding: 10px;
+    .content {
+      padding: 10px;
+      text-align: center;
+    }
+    .dont-show {
+      font-size: 0.8em !important;
+    }
+    .more-info {
+      text-align: center;
+      color: color($colors, primary);
+    }
   }
-}

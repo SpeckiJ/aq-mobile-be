@@ -119,6 +119,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		SubIndexPanelInformationPopupComponent,
 		UpdateHintPopoverComponent,
 		UserLocationCreationComponent,
+		UpdateHintPopoverComponent,
 	],
 	imports: [
 		CommonModule,
@@ -182,6 +183,7 @@ import { UserLocationCreationComponent } from './user-location-creation/user-loc
 		SubIndexPanelInformationPopupComponent,
 		UpdateHintPopoverComponent,
 		UserLocationCreationComponent,
+		UpdateHintPopoverComponent,
 	],
 	entryComponents: [
 		BelaqiChartInformationComponent,

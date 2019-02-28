@@ -153,7 +153,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeseriesService,
     UpdateCheckProvider,
     UserLocationListProvider,
-    UserTimeseriesService,
+    UserTimeseriesService
   ]
 })
 export class AppModule { }

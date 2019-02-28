@@ -397,14 +397,17 @@
       "text": "Dit zijn de berekende \"subindexen\" voor uw locatie. De globale BelAQI index is de hoogste waarde van deze 4 subindexen. De concentratieschalen werden bepaald in functie van de kortetermijnimpact op de gezondheid. De 4 polluenten die gebruikt worden om de BelAQI-index te berekenen zijn:"
     }
   },
-	"update": {
-		"hint": {
-			"popover": {
-				"content": "",
-				"header": ""
-			}
-		}
-	},
+  "update": {
+    "hint": {
+      "popover": {
+        "content-p1": "Wat is op dit moment op korte termijn het effect van de luchtkwaliteit in jouw buurt op je gezondheid?",
+        "content-p2": "BelAir maakt voor jou een berekende inschatting van de blootstelling aan luchtvervuiling op de korte termijn. Elk uur wordt die berekening geactualiseerd. Op voorstel van bevoegd minister Koen Van den Heuvel geven we extra duiding over hoe die berekening precies gemaakt wordt, wat je allemaal te zien krijgt en waarom het resultaat kan verschillen van je meetresultaat van CurieuzeNeuzen.",
+        "dont-show": "Deze melding niet meer weergeven bij het starten van de app",
+        "link-faq": "Lees hier meer informatie",
+        "link-faq-url": "https://www.vmm.be/data/luchtkwaliteit-op-zak-met-belair-app/faq-belair"
+      }
+    }
+  },
   "user-location-list": {
     "header": "Lijst van de locaties"
   },

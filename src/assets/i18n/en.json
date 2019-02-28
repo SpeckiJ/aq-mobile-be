@@ -400,8 +400,11 @@
   "update": {
     "hint": {
       "popover": {
-        "content": "This is a new version...",
-        "header": "New version"
+        "content-p1": "What is the short-term effect of the air quality in your neighborhood on your health?",
+   			"content-p2": "BelAir makes a calculated estimate of exposure to air pollution in the short term. This calculation is updated every hour. Would you like to know more about how exactly this calculation is made, what you will see and why the result may differ from other measurement result (e.g. CurieuzeNeuzen)?",
+    		"dont-show": "Do not show this message again when you start the app",
+    		"link-faq": "Read more information here",
+    		"link-faq-url": "http://www.irceline.be/en/documentation/belair/faq"
       }
     }
   },

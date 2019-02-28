@@ -65,7 +65,7 @@
     "cordova-plugin-fcm-with-dependecy-updated": "^2.4.0",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-inappbrowser": "^3.0.0",
-    "cordova-plugin-ionic-webview": "^2.3.3",
+    "cordova-plugin-ionic-webview": "^2.4.0",
     "cordova-plugin-local-notification": "^0.9.0-beta.3",
     "cordova-plugin-network-information": "^2.0.1",
     "cordova-plugin-request-location-accuracy": "^2.2.3",

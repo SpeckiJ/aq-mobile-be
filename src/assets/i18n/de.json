@@ -400,8 +400,11 @@
   "update": {
     "hint": {
       "popover": {
-        "content": "Dies ist eine neue Version...",
-        "header": "Neue Version"
+        "content-p1": "Wie wirkt sich die Luftqualität in Ihrer Nachbarschaft kurzfristig auf Ihre Gesundheit aus?",
+        "content-p2": "BelAir nimmt kurzfristig eine kalkulierte Schätzung der Luftverschmutzung vor. Diese Berechnung wird stündlich aktualisiert. Möchten Sie mehr darüber erfahren, wie genau diese Berechnung durchgeführt wird, was Sie sehen werden und warum das Ergebnis von z.B. Ihrem Messergebnis von CurieuzeNeuzen abweichen kann?",
+        "dont-show": "Diese Meldung beim App-Start nicht mehr anzeigen",
+        "link-faq": "Lesen Sie hier weitere Informationen",
+        "link-faq-url": "http://www.irceline.be/de/documentation/belair/faq"
       }
     }
   },

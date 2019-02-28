@@ -400,8 +400,11 @@
 	"update": {
 		"hint": {
 			"popover": {
-				"content": "",
-				"header": ""
+				"content-p1": "Quel est l’effet à court terme de la qualité de l’air de votre quartier sur votre santé?",
+    		"content-p2": "BelAir calcule l'exposition court terme à la pollution atmosphérique pour votre localisation. Cette information est mise à jour toutes les heures. Souhaitez-vous plus d’explications sur l’information fournie, la méthode de calcul ou les raisons pour lesquelles ce calcul diffère d’autres études (comme par exemple CurieuzeNeuzen)?",
+    		"dont-show": "Ne plus afficher ce message lorsque vous démarrez l'application",
+    		"link-faq": "Lire plus",
+    		"link-faq-url": "http://www.irceline.be/fr/documentation/belair/faq"
 			}
 		}
 	},
