@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LocalStorage } from '@helgoland/core';
-import { BackgroundMode } from '@ionic-native/background-mode';
 import { ILocalNotification, LocalNotifications } from '@ionic-native/local-notifications';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
@@ -12,6 +11,9 @@ import { NotificationPresenter, PersonalAlert } from '../notification-presenter/
 import { UserLocationListProvider } from '../user-location-list/user-location-list';
 
 // import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+
+declare var cordova: any;
+
 const DEFAULT_LOCAL_ALERT_UPDATE_IN_MINUTES = 60;
 const DEFAULT_LOCAL_ALERT_UPDATE_LEVEL = 5;
 const DEFAULT_LOCAL_ALERT_UPDATE_SENSITIVE = false;
@@ -35,7 +37,6 @@ export class PersonalAlertsProvider {
 
   constructor(
     private localNotifications: LocalNotifications,
-    private backgroundMode: BackgroundMode,
     // private backgroundGeolocation: BackgroundGeolocation,
     private localStorage: LocalStorage,
     private presenter: NotificationPresenter,
@@ -66,45 +67,59 @@ export class PersonalAlertsProvider {
 
   public activate() {
     this.localStorage.save(LOCALSTORAGE_INDEX_ALERT_ACTIVE, true);
-
-    // this.localNotifications.schedule({ text: 'Activate personal alerts' });
-
     this.platform.ready().then(() => {
-
       if (this.platform.is('cordova')) {
-        this.backgroundMode.on('activate').subscribe(res => {
-          // this.backgroundMode.disableWebViewOptimizations();
-          // this.localNotifications.schedule({ text: 'Start BackgroundMode - min: ' + this.getPeriod() + ', level: ' + this.getLevel() });
-          this.interval = setInterval(this.runAlertTask, this.getPeriod() * MINUTE_IN_MILLIS);
-        });
-
-        this.backgroundMode.on('deactivate').subscribe(res => {
-          if (this.interval) { clearInterval(this.interval); }
-          this.interval = null;
-        });
-
-        this.translateSrvc.onLangChange.subscribe(res => this.setBackgroundModeInformations());
-        if (this.translateSrvc.currentLang) { this.setBackgroundModeInformations() };
-
-        this.backgroundMode.enable();
+        this.translateSrvc.get('personal-alerts.background-service.title').subscribe(() => {
+          this.activateBackgroundMode();
+        })
       }
     });
-
   }
 
-  private setBackgroundModeInformations() {
-    this.backgroundMode.setDefaults({
-      silent: false,
+  private activateBackgroundMode() {
+    cordova.plugins.backgroundMode.setDefaults({
+      title: this.translateSrvc.instant('personal-alerts.background-service.title'),
       text: this.translateSrvc.instant('personal-alerts.background-service.hint'),
-      title: this.translateSrvc.instant('personal-alerts.background-service.title')
+      color: 'FF0000',
+      silent: false
     });
+
+    cordova.plugins.backgroundMode.on('activate', () => {
+      // this.backgroundMode.disableWebViewOptimizations();
+      // this.localNotifications.schedule({ text: 'Start BackgroundMode - min: ' + this.getPeriod() + ', level: ' + this.getLevel() });
+      console.log(`Start BackgroundMode - min:  ${this.getPeriod()} ', level: ' ${this.getLevel()}`);
+      this.interval = setInterval(this.runAlertTask, this.getPeriod() * MINUTE_IN_MILLIS);
+    });
+
+    cordova.plugins.backgroundMode.onactivate = () => { }
+    cordova.plugins.backgroundMode.ondeactivate = () => { }
+
+    cordova.plugins.backgroundMode.on('enable', () => {
+      console.log('background mode enable');
+    });
+
+    cordova.plugins.backgroundMode.on('disable', () => {
+      console.log('background mode disable');
+    });
+
+    cordova.plugins.backgroundMode.on('deactivate', () => {
+      console.log(`Stop BackgroundMode - min:  ${this.getPeriod()} ', level: ' ${this.getLevel()}`);
+      if (this.interval) { clearInterval(this.interval); }
+      this.interval = null;
+    });
+
+    cordova.plugins.backgroundMode.on('failure', () => {
+      console.log('background mode failure');
+    });
+
+    cordova.plugins.backgroundMode.setEnabled(true);
   }
 
   public deactivate() {
     this.localStorage.save(LOCALSTORAGE_INDEX_ALERT_ACTIVE, false);
     if (this.interval) {
       // this.backgroundGeolocation.finish();
-      this.backgroundMode.disable();
+      cordova.plugins.backgroundMode.disable();
       clearInterval(this.interval);
     }
   }
@@ -135,6 +150,7 @@ export class PersonalAlertsProvider {
 
   runAlertTask = () => {
     // this.localNotifications.schedule({ text: 'Starting task ...' });
+    console.log(`Start tasking...`);
     const request = [];
     // request.push(this.doCurrentLocationCheck());
     request.push(this.doUserLocationsCheck());
@@ -156,14 +172,17 @@ export class PersonalAlertsProvider {
 
   private doUserLocationsCheck(): Observable<PersonalAlert[]> {
     // this.localNotifications.schedule({ text: `User locations check` });
+    console.log(`User locations check`);
     return new Observable<PersonalAlert[]>((observer: Observer<PersonalAlert[]>) => {
       // this.localNotifications.schedule({ text: `Has user locations: ${res}` });
       const requests = [];
       const alerts: PersonalAlert[] = [];
       this.userLocations.getUserLocations().forEach(loc => {
         if (loc.type === 'user') {
+          console.log(`User Location:  ${loc.label}`);
           requests.push(this.belaqiProvider.getValue(loc.latitude, loc.longitude).pipe(
             tap(res => {
+              console.log(`Get Value ${res} for location:  ${loc.label}`);
               if (this.getLevel() <= res) {
                 alerts.push({
                   belaqi: res,
@@ -178,6 +197,7 @@ export class PersonalAlertsProvider {
 
       forkJoin(requests).subscribe(() => {
         // this.localNotifications.schedule({ text: `User locations results: ${alerts}` });
+        console.log(`User locations results: ${JSON.stringify(alerts)}`);
         observer.next(alerts);
         observer.complete();
       });
@@ -186,7 +206,7 @@ export class PersonalAlertsProvider {
 
   private notifyAlerts(alerts: PersonalAlert[]) {
     if (alerts.length > 0) {
-      if (this.platform.is('cordova') && this.backgroundMode.isActive()) {
+      if (this.platform.is('cordova') && cordova.plugins.backgroundMode.isActive()) {
         this.localNotifications.schedule({
           id: new Date().getTime(),
           text: `${alerts.length} Alerts at ${new Date().toLocaleTimeString()}`,

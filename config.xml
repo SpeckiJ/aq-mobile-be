@@ -101,7 +101,6 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To fetch the data relevant for your location from the servers feeding the BelAir app." />
     </plugin>
     <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.3" />
-    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
     <plugin name="cordova-sqlite-storage" spec="^2.5.2" />
     <plugin name="cordova.plugins.diagnostic" spec="^4.0.10" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
@@ -111,4 +110,5 @@
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
     <engine name="browser" spec="5.0.4" />
+    <plugin name="cordova-plugin-background-mode" spec="https://github.com/katzer/cordova-plugin-background-mode.git" />
 </widget>

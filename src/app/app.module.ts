@@ -6,7 +6,6 @@ import { HelgolandD3Module } from '@helgoland/d3';
 import { HelgolandDatasetlistModule } from '@helgoland/depiction';
 import { GeoSearch, HelgolandMapControlModule, HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
 import { AppVersion } from '@ionic-native/app-version';
-import { BackgroundMode } from '@ionic-native/background-mode';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { FCM } from '@ionic-native/fcm';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -122,7 +121,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AirQualityIndexProvider,
     AnnualMeanProvider,
     AppVersion,
-    BackgroundMode,
     BelaqiIndexProvider,
     CategorizeValueToIndexProvider,
     CustomDatasetApiInterface,
