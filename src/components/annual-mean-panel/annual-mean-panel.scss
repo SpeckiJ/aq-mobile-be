@@ -16,7 +16,8 @@ annual-mean-panel {
     }
   }
   .entries {
-    background-color: #d3e5e9;
+    background-color: color($colors, panel-background);
     border-radius: 2.5em;
+    color: black;
   }
 }

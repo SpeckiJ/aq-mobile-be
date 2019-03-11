@@ -19,6 +19,15 @@ page-start {
     }
   }
 
+  .list {
+    background-image: linear-gradient(135deg, #91c0d5 50%, #6cb5a2);
+  }
+
+  .item {
+    background: transparent;
+    --background: transparent;
+  }
+
   ion-content {
     .scroll-content {
       margin-bottom: 58px;
@@ -46,13 +55,14 @@ page-start {
 
   .label {
     text-align: center;
+    color: white;
+    font-weight: bold;
 
     .location-label {
       font-size: 1.2em;
       text-overflow: ellipsis;
       white-space: nowrap;
-      overflow: hidden;
-      padding: 10px;
+      overflow: hidden; 
     }
 
     .location-date {
