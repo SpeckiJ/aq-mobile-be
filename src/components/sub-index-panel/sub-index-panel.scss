@@ -1,9 +1,11 @@
 sub-index-panel {
   .header {
     padding: 5px;
+    padding-top: 10px;
     display: flex;
     align-content: center;
     align-items: center;
+    font-size: 50%;
   }
 
   .col {
