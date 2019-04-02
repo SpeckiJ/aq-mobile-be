@@ -35,6 +35,8 @@ export class OverlayInfoDrawerComponent implements AfterViewInit, OnChanges {
 
   @Input() minimumHeight = 0;
 
+  private safeAreaHeight: number;
+
   @Output() stateChange: EventEmitter<DrawerState> = new EventEmitter<DrawerState>();
 
   constructor(
@@ -42,7 +44,9 @@ export class OverlayInfoDrawerComponent implements AfterViewInit, OnChanges {
     private renderer: Renderer2,
     private domCtrl: DomController,
     private platform: Platform
-  ) { }
+  ) {
+    this.safeAreaHeight = this.getSafeAreaHeight();
+  }
 
   ngAfterViewInit() {
     this.setDrawerState(this.state);
@@ -61,6 +65,11 @@ export class OverlayInfoDrawerComponent implements AfterViewInit, OnChanges {
     }
   }
 
+  private getSafeAreaHeight() {
+    const div = document.getElementsByTagName('ion-app');
+    return div[0].offsetHeight;
+  }
+
   private setDrawerState(state: DrawerState) {
     this.renderer.setStyle(this.element.nativeElement, 'transition', this.transition);
     switch (state) {
@@ -68,7 +77,7 @@ export class OverlayInfoDrawerComponent implements AfterViewInit, OnChanges {
         this.setTranslateY(this.distanceBottom + 'px');
         break;
       case DrawerState.Docked:
-        this.setTranslateY(-(this.platform.height() - this.dockedHeight + 5) + 'px');
+        this.setTranslateY(-(this.safeAreaHeight - this.dockedHeight + 5) + 'px');
         break;
     }
     this.state = state;
